@@ -23,7 +23,7 @@ final class CTXTutorialConfigLoader {
         configs = try decoder.decode([String: [CTXTutorialConfig<M>]].self, from: data)
         
         if let configs = configs {
-            return (configs["configs"] as! [CTXTutorialConfig<M>])
+            return (configs["tutorials"] as! [CTXTutorialConfig<M>])
         } else {
             fatalError("Configs are nil")
         }
