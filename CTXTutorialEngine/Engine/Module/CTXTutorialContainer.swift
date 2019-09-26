@@ -15,8 +15,6 @@ final class CTXTutorialContainerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.darkOverlay.backgroundColor = .red//UIColor(white: 0, alpha: 0.64)//TODO: ability to change color
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeTutorial))
         
         self.darkOverlay.addGestureRecognizer(tapGesture)
@@ -40,9 +38,11 @@ final class CTXTutorialContainerView: UIView {
     }
     
     func configure(backgroundSnapshot: UIView,
+                   overlayColor: UIColor,
                    closeHandler: @escaping () -> Void) {
         
         self.closeHandler = closeHandler
+        self.darkOverlay.backgroundColor = overlayColor
         self.addSubview(backgroundSnapshot)
         self.addSubview(self.darkOverlay)
     }

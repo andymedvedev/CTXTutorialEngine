@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct CTXTutorialConfig<M: Meta>: Decodable {
+public struct CTXTutorialConfig<M: Meta>: Decodable{
     
     let id: Int
     let name: String?
-    let eventConfigs: CTXTutorialMetaArray<M>
+    let eventConfigs: CTXTutorialEventConfigsArray<M>
     
     enum CodingKeys: String, CodingKey {
         case id

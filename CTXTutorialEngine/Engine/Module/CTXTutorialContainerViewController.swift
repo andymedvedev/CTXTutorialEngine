@@ -23,14 +23,14 @@ final class CTXTutorialContainerViewController: UIViewController {
     private let tutorialContainer = CTXTutorialContainerView()
     private var currentStep = 0
     private var totalStepsCount = 1
+    private var statusBarStyle: UIStatusBarStyle?
     
     override var shouldAutorotate: Bool {
         return false
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        //TODO: add ability to controll it
-        return .lightContent
+        return self.statusBarStyle ?? .default
     }
     
     override func loadView() {
@@ -52,37 +52,50 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
 
         let window = UIApplication.shared.keyWindow
         
-        guard let rootVC = window?.rootViewController,
-            let rootView = rootVC.view,
-            let backgroundSnapshot = rootView.snapshotView(afterScreenUpdates: true) else { return }
+        guard let backgroundVC = UIApplication.getTopViewController(),
+            let backgroundView = backgroundVC.view,
+            let backgroundSnapshot = backgroundView.snapshotView(afterScreenUpdates: true) else { return }
         
         window?.pause()
         
-        var topPresentedVC: UIViewController? = rootVC
+        var topPresentedVC: UIViewController? = backgroundVC
         
         while let presentedVC = topPresentedVC?.presentedViewController {
             topPresentedVC = presentedVC
         }
         
-        if topPresentedVC === rootVC {
+        if topPresentedVC === backgroundVC {
             topPresentedVC = nil
         }
         
-        let presentedViewSnapshot = topPresentedVC?.view.snapshotView(afterScreenUpdates: true)
-
+        
+        self.statusBarStyle = backgroundVC.preferredStatusBarStyle
+        
         self.snapshotStepModels = self.getSnapshotsModels(by: stepModels)
         
-        if let presentedViewSnapshot = presentedViewSnapshot,
-            let presentedView = topPresentedVC?.view {
+        if let topPresentedVC = topPresentedVC {
             
-            presentedViewSnapshot.frame.origin = presentedView.convert(CGPoint.zero, to: nil)
-            presentedViewSnapshot.layer.cornerRadius = delegate?.cornerRadiusForModalViewSnapshot() ?? 20
-            presentedViewSnapshot.layer.masksToBounds = true
+            let presentedViewSnapshot = topPresentedVC.view.snapshotView(afterScreenUpdates: true)
             
-            backgroundSnapshot.addSubview(presentedViewSnapshot)
+            if let presentedViewSnapshot = presentedViewSnapshot,
+                let presentedView = topPresentedVC.view {
+                
+                let cornerRadius = delegate?.cornerRadiusForModalViewSnapshot() ?? CTXTutorialConstants.modalViewCornerRaius
+                
+                presentedViewSnapshot.frame.origin = presentedView.convert(CGPoint.zero, to: nil)
+                presentedViewSnapshot.layer.cornerRadius = cornerRadius
+                presentedViewSnapshot.layer.masksToBounds = true
+                
+                self.statusBarStyle = topPresentedVC.preferredStatusBarStyle
+                
+                backgroundSnapshot.addSubview(presentedViewSnapshot)
+            }
         }
+
+        let overlayColor = delegate?.tutorialOverlayColor() ?? CTXTutorialConstants.tutorialOverlayColor
         
-        self.tutorialContainer.configure(backgroundSnapshot: backgroundSnapshot) { [weak self] in
+        self.tutorialContainer.configure(backgroundSnapshot: backgroundSnapshot,
+                                         overlayColor: overlayColor) { [weak self] in
             
             self?.presenter?.onHideTutorial()
         }

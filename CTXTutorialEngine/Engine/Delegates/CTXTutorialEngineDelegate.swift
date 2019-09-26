@@ -14,6 +14,8 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
     
     func hintViewFor(for tutorial: CTXTutorial, with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
     
+    func tutorialOverlayColor() -> UIColor
+    
     func cornerRadiusForModalViewSnapshot() -> CGFloat
     
     func selectedViewsToProcess(in accessibilityViewsDict: [String: [[UIView]]]) -> [UIView]
@@ -31,8 +33,12 @@ public extension CTXTutorialEngineDelegate {
         return nil
     }
     
+    func tutorialOverlayColor() -> UIColor {
+        return CTXTutorialConstants.tutorialOverlayColor
+    }
+    
     func cornerRadiusForModalViewSnapshot() -> CGFloat {
-        return 20
+        return CTXTutorialConstants.modalViewCornerRaius
     }
     
     func selectedViewsToProcess(in accessibilityViewsDict: [String : [[UIView]]]) -> [UIView] {

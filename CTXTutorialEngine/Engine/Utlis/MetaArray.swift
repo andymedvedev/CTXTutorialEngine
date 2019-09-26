@@ -8,7 +8,10 @@
 
 import Foundation
 
-public protocol Meta: Decodable {
+public protocol CTXTutorialEventConfig: Decodable {
+}
+
+public protocol Meta: CTXTutorialEventConfig {
     associatedtype Element
     
     var type: Decodable.Type { get }
@@ -18,17 +21,17 @@ public protocol Meta: Decodable {
     init?(rawValue: String)
 }
 
-struct CTXTutorialMetaArray<M: Meta>: Decodable, ExpressibleByArrayLiteral {
+struct CTXTutorialEventConfigsArray<M: Meta>: Decodable {
     
     let array: [M.Element]
     
-    init(_ array: [M.Element]) {
-        self.array = array
-    }
-    
-    init(arrayLiteral elements: M.Element...) {
-        self.array = elements
-    }
+//    init(_ array: [M.Element]) {
+//        self.array = array
+//    }
+//    
+//    init(arrayLiteral elements: M.Element...) {
+//        self.array = elements
+//    }
     
     struct ElementKey: CodingKey {
         var stringValue: String

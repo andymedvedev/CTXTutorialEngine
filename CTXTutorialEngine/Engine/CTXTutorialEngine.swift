@@ -45,15 +45,15 @@ public final class CTXTutorialEngine {
     
     public func setup<M: Meta>(with configName: String? = nil,
                       eventTypes: [CTXTutorialEvent.Type],
-                      eventConfigMetaType: M.Type) {
+                      eventConfigMetaType: M.Type) where M.Element == CTXTutorialEventConfig {
         
         self.eventTypes = eventTypes
         
-        let itemConfigs = try! CTXTutorialConfigLoader().loadConfigs(eventConfigMetaType: eventConfigMetaType)
+        let tutorialConfigs = try! CTXTutorialConfigLoader().loadConfigs(eventConfigMetaType: eventConfigMetaType)
         
-        self.tutorials = itemConfigs.map {
+        self.tutorials = tutorialConfigs.map { tutorialConfig in
             
-            let tutorial = CTXTutorial(with: $0)
+            let tutorial = CTXTutorial(with: tutorialConfig)
             
             tutorial.add(self)
             self.bus.add(tutorial)

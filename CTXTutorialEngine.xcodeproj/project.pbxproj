@@ -39,6 +39,8 @@
 		2C20EDB52335C63A00CC57A1 /* CTXTutorialWeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20EDB12335C63A00CC57A1 /* CTXTutorialWeakViewController.swift */; };
 		2C20EDB62335C63A00CC57A1 /* CTXTutorialViewVisiblityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20EDB22335C63A00CC57A1 /* CTXTutorialViewVisiblityChecker.swift */; };
 		2C20EDB72335C63A00CC57A1 /* CTXTutorialEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20EDB32335C63A00CC57A1 /* CTXTutorialEngine.swift */; };
+		2C2B9E82233CED32009F0E57 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B9E81233CED32009F0E57 /* UIApplicationExtension.swift */; };
+		2C2B9E84233CF18D009F0E57 /* CTXTutorialConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */; };
 		2C4AF74923371B2500E01ED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF74823371B2500E01ED2 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +100,8 @@
 		2C20EDB12335C63A00CC57A1 /* CTXTutorialWeakViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialWeakViewController.swift; sourceTree = "<group>"; };
 		2C20EDB22335C63A00CC57A1 /* CTXTutorialViewVisiblityChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewVisiblityChecker.swift; sourceTree = "<group>"; };
 		2C20EDB32335C63A00CC57A1 /* CTXTutorialEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialEngine.swift; sourceTree = "<group>"; };
+		2C2B9E81233CED32009F0E57 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialConstants.swift; sourceTree = "<group>"; };
 		2C4AF74823371B2500E01ED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +196,7 @@
 				2C1601C723358AC1000D0FBA /* CTXTutorialEvent.swift */,
 				2C1601C323358AC1000D0FBA /* CTXTutorial.swift */,
 				2C1FAC962337764100F606A5 /* CTXTutorialHintView.swift */,
+				2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				2C4AF74823371B2500E01ED2 /* UIViewExtension.swift */,
+				2C2B9E81233CED32009F0E57 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 				2C19A116233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift in Sources */,
 				2C20EDB62335C63A00CC57A1 /* CTXTutorialViewVisiblityChecker.swift in Sources */,
 				2C20EDAF2335B03900CC57A1 /* CTXTutorialStepModel.swift in Sources */,
+				2C2B9E82233CED32009F0E57 /* UIApplicationExtension.swift in Sources */,
 				2C1601D123358AC1000D0FBA /* CTXTutorialEvent.swift in Sources */,
 				2C2062192338F20E00E02FD8 /* CTXTutorialViewsShownEventConfig.swift in Sources */,
 				2C19A111233C744B00F1AE09 /* MetaArray.swift in Sources */,
@@ -424,6 +431,7 @@
 				2C1601D023358AC1000D0FBA /* CTXTutorialContainerViewController.swift in Sources */,
 				2C16018E23358A38000D0FBA /* AppDelegate.swift in Sources */,
 				2C4AF74923371B2500E01ED2 /* UIViewExtension.swift in Sources */,
+				2C2B9E84233CF18D009F0E57 /* CTXTutorialConstants.swift in Sources */,
 				2C20EDAC2335A06C00CC57A1 /* CTXTutorialEngineDelegate.swift in Sources */,
 				2C1601C923358AC1000D0FBA /* CTXTutoriarPresenterImpl.swift in Sources */,
 			);

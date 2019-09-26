@@ -4,9 +4,6 @@
 
 import Foundation
 
-public protocol CTXTutorialEventConfig: Decodable {
-}
-
 public class CTXTutorialViewsShownEventStepsConfig: Decodable {
     
     let stepConfigs: [CTXTutorialStepConfig]

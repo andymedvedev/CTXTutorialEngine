@@ -93,11 +93,17 @@ private extension CTXTutorial {
         guard let eventTypes = CTXTutorialEngine.shared.eventTypes else { return }
         
         self.chain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
-
-            print(String(describing: eventConfig))
+            
+            //TODO: remove this guard somehow
+            guard let eventConfig = eventConfig as? CTXTutorialEventConfig else {
+                fatalError("CTXTutorialEngine: one of user defined event config classes not conform to \"CTXTutorialEventConfig\"")
+            }
+            
             for eventType in eventTypes {
 
                 if let event = eventType.init(with: eventConfig) {
+                    return event
+                } else if let event = CTXTutorialViewsShownEvent(with: eventConfig) {
                     return event
                 }
             }
