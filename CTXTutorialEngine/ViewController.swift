@@ -25,10 +25,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         
-        let redView = UIView(frame: CGRect(x: 100, y: 100, width: 100, height: 30))
+        let redView = UIView(frame: CGRect(x: 16, y: 50, width: 160, height: 160))
         let blueView = UIView(frame: CGRect(x: 210, y: 100, width: 100, height: 60))
         
         redView.backgroundColor = .red
+        redView.layer.mask = self.makeShape()
         blueView.backgroundColor = .blue
         
         redView.accessibilityIdentifier = "redView"
@@ -40,6 +41,15 @@ class ViewController: UIViewController {
         CTXTutorialEngine.shared.observe(self, contentType: .dynamic)
         CTXTutorialEngine.shared.delegate = self
         CTXTutorialEngine.shared.start()
+    }
+    
+    func makeShape() -> CAShapeLayer {
+        
+        let layer = CAShapeLayer()
+        layer.path = UIBezierPath(roundedRect: CGRect(x: 40, y: 40, width: 50, height: 50), cornerRadius: 50).cgPath
+        layer.fillColor = UIColor.red.cgColor
+        
+        return layer
     }
 }
 

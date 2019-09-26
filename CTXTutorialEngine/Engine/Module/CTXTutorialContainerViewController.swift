@@ -152,7 +152,7 @@ private extension CTXTutorialContainerViewController {
             }
             
             return CTXTutorialStepModel(text: model.text,
-                                                     views: snapshots)
+                                        views: snapshots)
         }
         
         return snapshotsModels

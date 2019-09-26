@@ -52,7 +52,7 @@ public final class CTXTutorialHintView: CTXTutorialHintViewType {
             buttonsStack.addArrangedSubview(nextButton)
         }
         
-        self.frame = CGRect(x: 100, y: 150, width: 300, height: 100)
+        self.frame = CGRect(x: 100, y: 400, width: 300, height: 100)
         self.addSubview(textLabel)
         self.addSubview(buttonsStack)
         self.backgroundColor = .white

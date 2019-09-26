@@ -50,12 +50,12 @@ final class CTXTutorialContainerView: UIView {
         self.hintView = hintView
         self.snapshots = snapshots
         
-        if let hintView = self.hintView {
-            self.addSubview(hintView)
-        }
-        
         if let snapshots = self.snapshots {
             snapshots.forEach{ self.addSubview($0) }
+        }
+        
+        if let hintView = self.hintView {
+            self.addSubview(hintView)
         }
     }
 }

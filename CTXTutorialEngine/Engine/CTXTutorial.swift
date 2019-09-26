@@ -112,14 +112,15 @@ private extension CTXTutorial {
         }
     }
     
-    func show(with lastEvent: CTXTutorialEvent) {
+    func show(with lastPushedEvent: CTXTutorialEvent) {
         
-        if let event = self.poppedEventsChain.last as? CTXTutorialViewsShownEvent {
+        if let configuredEvent = self.poppedEventsChain.last as? CTXTutorialViewsShownEvent,
+            let event = lastPushedEvent as? CTXTutorialViewsShownEvent {
             
             let views = event.views
             var models = [CTXTutorialStepModel]()
             
-            for config in event.stepConfigs {
+            for config in configuredEvent.stepConfigs {
                 
                 let viewsForModel = views.filter{ view in
                     
