@@ -35,7 +35,7 @@ enum MyEvent: CTXTutorialEvent {
         
         guard let config = config as? MyEventConfig else { return nil }
         
-        switch config.value {
+        switch config.event {
         case "launch": self = .launch
         case "check:true": self = .check(true)
         case "check:false": self = .check(false)

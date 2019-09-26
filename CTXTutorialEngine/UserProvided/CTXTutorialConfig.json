@@ -5,14 +5,14 @@
             "name": "redBlueViewsTutorial",
             "events": [
                 {
-                    "myBasicEvent": {
-                        "value": "launch"
+                    "MyBasicEvent": {
+                        "event": "launch"
                     }
                 },
                 
                 {
                     "CTXTutorialViewsShownEvent": {
-                        "value": {
+                        "event": {
                             "steps":[
                                 {
                                     "text": "Red View Tutorial step",
@@ -35,14 +35,14 @@
             "name": "greenViewTutorial",
             "events": [
                 {
-                    "myBasicEvent": {
-                        "value": "launch"
+                    "MyBasicEvent": {
+                        "event": "launch"
                     }
                 },
                 
                 {
                     "CTXTutorialViewsShownEvent": {
-                        "value": {
+                        "event": {
                             "steps":[
                                 {
                                     "text": "Green View Tutorial",

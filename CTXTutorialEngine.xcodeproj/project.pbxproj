@@ -23,7 +23,7 @@
 		2C1601D023358AC1000D0FBA /* CTXTutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1601C623358AC1000D0FBA /* CTXTutorialContainerViewController.swift */; };
 		2C1601D123358AC1000D0FBA /* CTXTutorialEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1601C723358AC1000D0FBA /* CTXTutorialEvent.swift */; };
 		2C19A10F233C578100F1AE09 /* CTXTutorialStepConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A10E233C578100F1AE09 /* CTXTutorialStepConfig.swift */; };
-		2C19A111233C744B00F1AE09 /* MetaArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A110233C744B00F1AE09 /* MetaArray.swift */; };
+		2C19A111233C744B00F1AE09 /* CTXTutorialEventConfigsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A110233C744B00F1AE09 /* CTXTutorialEventConfigsArray.swift */; };
 		2C19A114233C786800F1AE09 /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A113233C786800F1AE09 /* MyEventConfigMetatype.swift */; };
 		2C19A116233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A115233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift */; };
 		2C19A118233C859200F1AE09 /* MyEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C19A117233C859200F1AE09 /* MyEventConfig.swift */; };
@@ -84,7 +84,7 @@
 		2C1601C623358AC1000D0FBA /* CTXTutorialContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainerViewController.swift; sourceTree = "<group>"; };
 		2C1601C723358AC1000D0FBA /* CTXTutorialEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialEvent.swift; sourceTree = "<group>"; };
 		2C19A10E233C578100F1AE09 /* CTXTutorialStepConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepConfig.swift; sourceTree = "<group>"; };
-		2C19A110233C744B00F1AE09 /* MetaArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaArray.swift; sourceTree = "<group>"; };
+		2C19A110233C744B00F1AE09 /* CTXTutorialEventConfigsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigsArray.swift; sourceTree = "<group>"; };
 		2C19A113233C786800F1AE09 /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventConfigMetatype.swift; sourceTree = "<group>"; };
 		2C19A115233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigMetaType.swift; sourceTree = "<group>"; };
 		2C19A117233C859200F1AE09 /* MyEventConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEventConfig.swift; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				2C2062142338ECDF00E02FD8 /* CTXTutorialConfigLoader.swift */,
-				2C19A110233C744B00F1AE09 /* MetaArray.swift */,
+				2C19A110233C744B00F1AE09 /* CTXTutorialEventConfigsArray.swift */,
 				2C19A115233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift */,
 			);
 			path = Utlis;
@@ -422,7 +422,7 @@
 				2C2B9E82233CED32009F0E57 /* UIApplicationExtension.swift in Sources */,
 				2C1601D123358AC1000D0FBA /* CTXTutorialEvent.swift in Sources */,
 				2C2062192338F20E00E02FD8 /* CTXTutorialViewsShownEventConfig.swift in Sources */,
-				2C19A111233C744B00F1AE09 /* MetaArray.swift in Sources */,
+				2C19A111233C744B00F1AE09 /* CTXTutorialEventConfigsArray.swift in Sources */,
 				2C19A10F233C578100F1AE09 /* CTXTutorialStepConfig.swift in Sources */,
 				2C1FAC972337764100F606A5 /* CTXTutorialHintView.swift in Sources */,
 				2C1601CD23358AC1000D0FBA /* CTXTutorial.swift in Sources */,

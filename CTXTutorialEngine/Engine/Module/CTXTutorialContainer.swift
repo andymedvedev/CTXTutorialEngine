@@ -18,23 +18,11 @@ final class CTXTutorialContainerView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeTutorial))
         
         self.darkOverlay.addGestureRecognizer(tapGesture)
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.darkOverlay.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        NSLayoutConstraint.activate([
-            self.darkOverlay.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.darkOverlay.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.darkOverlay.topAnchor.constraint(equalTo: self.topAnchor),
-            self.darkOverlay.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
     }
     
     func configure(backgroundSnapshot: UIView,
@@ -45,6 +33,13 @@ final class CTXTutorialContainerView: UIView {
         self.darkOverlay.backgroundColor = overlayColor
         self.addSubview(backgroundSnapshot)
         self.addSubview(self.darkOverlay)
+        
+        NSLayoutConstraint.activate([
+            self.darkOverlay.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.darkOverlay.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.darkOverlay.topAnchor.constraint(equalTo: self.topAnchor),
+            self.darkOverlay.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ])
     }
     
     func showNextStep(with hintView: CTXTutorialHintViewType, snapshots: [UIView]) {

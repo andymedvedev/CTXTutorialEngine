@@ -26,7 +26,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         
         guard let config = config as? CTXTutorialViewsShownEventConfig else { return nil }
         
-        self.stepConfigs = config.value.stepConfigs
+        self.stepConfigs = config.eventConfig.stepConfigs
         
         self.views = self.stepConfigs.map{ stepConfig -> [UIView] in
             

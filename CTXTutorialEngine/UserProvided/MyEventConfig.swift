@@ -9,5 +9,5 @@
 import Foundation
 
 struct MyEventConfig: CTXTutorialEventConfig {
-    let value: String
+    let event: String
 }

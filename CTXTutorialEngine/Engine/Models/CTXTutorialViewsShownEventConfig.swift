@@ -15,5 +15,9 @@ public class CTXTutorialViewsShownEventStepsConfig: Decodable {
 
 public class CTXTutorialViewsShownEventConfig: CTXTutorialEventConfig {
     
-    let value: CTXTutorialViewsShownEventStepsConfig
+    let eventConfig: CTXTutorialViewsShownEventStepsConfig
+    
+    enum CodingKeys: String, CodingKey {
+        case eventConfig = "event"
+    }
 }
