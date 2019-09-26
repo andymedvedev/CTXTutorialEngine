@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct CTXTutorialItemStep: Decodable {
+public struct CTXTutorialStepConfig: Decodable {
     
     let text: String?
     let accessibilityIdentifiers: [String]

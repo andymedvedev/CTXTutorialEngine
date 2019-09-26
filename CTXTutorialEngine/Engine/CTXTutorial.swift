@@ -17,7 +17,16 @@ protocol CTXTutorialSubject {
 }
 
 
-open class CTXTutorial {
+public protocol CTXTutorialProtocol {
+    var id: Int {get}
+    var name: String? {get}
+}
+
+class sss: CTXTutorial {
+    
+}
+
+open class CTXTutorial: CTXTutorialProtocol {
     
     public let id: Int
     public var name: String?
@@ -29,11 +38,11 @@ open class CTXTutorial {
     private var chain = [CTXTutorialEvent]()
     private var poppedEventsChain = [CTXTutorialEvent]()
     
-    init(with itemConfig: CTXTutorialItemConfig) {
+    init<M: Meta>(with config: CTXTutorialConfig<M>) {
         
-        self.id = itemConfig.id
-        self.name = itemConfig.name
-        self.makeChain(from: itemConfig)
+        self.id = config.id
+        self.name = config.name
+        self.makeChain(from: config)
     }
 }
 
@@ -79,19 +88,20 @@ extension CTXTutorial: CTXTutorialSubject {
 
 private extension CTXTutorial {
     
-    func makeChain(from config: CTXTutorialItemConfig) {
+    func makeChain<M: Meta>(from config: CTXTutorialConfig<M>) {
         
-        self.chain = config.events.compactMap{ event -> CTXTutorialEvent? in
-            
-            if let basicEvent = event.basicEvent,
-                
-                let eventClass = CTXTutorialEngine.shared.eventClass {
-                return eventClass.self.init(rawValue: basicEvent)
-            } else if let stepEvent = event.stepsEvent {
-                
-                return CTXTutorialViewsShownEvent(with: stepEvent.steps)
+        guard let eventTypes = CTXTutorialEngine.shared.eventTypes else { return }
+        
+        self.chain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
+
+            print(String(describing: eventConfig))
+            for eventType in eventTypes {
+
+                if let event = eventType.init(with: eventConfig) {
+                    return event
+                }
             }
-            
+
             return nil
         }
     }
@@ -103,7 +113,7 @@ private extension CTXTutorial {
             let views = event.views
             var models = [CTXTutorialStepModel]()
             
-            for config in event.configs {
+            for config in event.stepConfigs {
                 
                 let viewsForModel = views.filter{ view in
                     

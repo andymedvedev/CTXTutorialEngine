@@ -8,9 +8,15 @@
 
 import Foundation
 
-struct CTXTutorialItemConfig: Decodable {
+public struct CTXTutorialConfig<M: Meta>: Decodable {
     
     let id: Int
     let name: String?
-    let events: [CTXTutorialItemEvent]
+    let eventConfigs: CTXTutorialMetaArray<M>
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case eventConfigs = "events"
+    }
 }

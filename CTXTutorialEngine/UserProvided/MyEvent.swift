@@ -31,17 +31,15 @@ enum MyEvent: CTXTutorialEvent {
         return .different
     }
     
-    init(rawValue: String) {
+    init?(with config: CTXTutorialEventConfig) {
         
-        switch rawValue {
+        guard let config = config as? MyEventConfig else { return nil }
+        
+        switch config.value {
         case "launch": self = .launch
         case "check:true": self = .check(true)
         case "check:false": self = .check(false)
         default: self = .unknown
         }
-    }
-    
-    func getString(from state: Bool) -> String {
-        return state ? ":true" : ":false"
     }
 }

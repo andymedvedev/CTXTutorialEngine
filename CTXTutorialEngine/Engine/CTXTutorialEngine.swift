@@ -32,7 +32,8 @@ public final class CTXTutorialEngine {
         }
     }
     
-    var eventClass: CTXTutorialEvent.Type?
+    var eventTypes: [CTXTutorialEvent.Type]?
+    var eventConfigTypes: [CTXTutorialEventConfig.Type]?
     
     private let bus = CTXTutorialEventBus.shared
     private let visibilityChecker = CTXTutorialViewVisibilityChecker()
@@ -42,10 +43,13 @@ public final class CTXTutorialEngine {
     
     private init() {}
     
-    public func setup<T>(with configName: String? = nil, eventClass: T.Type) where T: CTXTutorialEvent {
-        self.eventClass = eventClass
+    public func setup<M: Meta>(with configName: String? = nil,
+                      eventTypes: [CTXTutorialEvent.Type],
+                      eventConfigMetaType: M.Type) {
         
-        let itemConfigs = try! CTXTutorialConfigLoader().loadConfigs()
+        self.eventTypes = eventTypes
+        
+        let itemConfigs = try! CTXTutorialConfigLoader().loadConfigs(eventConfigMetaType: eventConfigMetaType)
         
         self.tutorials = itemConfigs.map {
             

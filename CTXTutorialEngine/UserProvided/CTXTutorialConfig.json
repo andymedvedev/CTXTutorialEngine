@@ -1,0 +1,58 @@
+{
+    "configs": [
+        {
+            "id": 0,
+            "name": "redBlueViewsTutorial",
+            "events": [
+                {
+                    "myBasicEvent": {
+                        "value": "launch"
+                    }
+                },
+                
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "value": {
+                            "steps":[
+                                {
+                                    "text": "Red View Tutorial step",
+                                    "accessibilityIdentifiers": ["redView"]
+                                },
+                                
+                                {
+                                    "text": "Blue View Tutorial step",
+                                    "accessibilityIdentifiers": ["blueView"]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        
+        {
+            "id": 1,
+            "name": "greenViewTutorial",
+            "events": [
+                {
+                    "myBasicEvent": {
+                        "value": "launch"
+                    }
+                },
+                
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "value": {
+                            "steps":[
+                                {
+                                    "text": "Green View Tutorial",
+                                    "accessibilityIdentifiers": ["greenView"]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

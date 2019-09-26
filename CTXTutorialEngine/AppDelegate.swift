@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        CTXTutorialEngine.shared.setup(eventClass: MyEvent.self)
+        CTXTutorialEngine.shared.setup(eventTypes: [MyEvent.self],
+                                       eventConfigMetaType: MyEventConfigMetatype.self)
         CTXTutorialEventBus.shared.push(MyEvent.launch)
         
         self.window?.rootViewController = ViewController()

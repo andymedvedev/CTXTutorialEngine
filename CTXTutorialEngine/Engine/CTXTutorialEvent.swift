@@ -11,25 +11,26 @@ public enum CTXTutorialEventComparingResult {
 }
 
 public protocol CTXTutorialEvent {
-    
     func compare(with event: CTXTutorialEvent) -> CTXTutorialEventComparingResult
-    func compareViews(_ lhs: [UIView], _ rhs: [UIView]) -> CTXTutorialEventComparingResult
     
-    init(rawValue: String)
+    init?(with config: CTXTutorialEventConfig)
 }
 
 public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
 
-    let configs: [CTXTutorialItemStep]
+    
+    let stepConfigs: [CTXTutorialStepConfig]
     let views: [UIView]
     
-    init(with configs: [CTXTutorialItemStep] = []) {
+    public init?(with config: CTXTutorialEventConfig) {
         
-        self.configs = configs
+        guard let config = config as? CTXTutorialViewsShownEventConfig else { return nil }
         
-        self.views = configs.map{ config -> [UIView] in
+        self.stepConfigs = config.value.stepConfigs
+        
+        self.views = self.stepConfigs.map{ stepConfig -> [UIView] in
             
-            let views = config.accessibilityIdentifiers.map { id -> UIView in
+            let views = stepConfig.accessibilityIdentifiers.map { id -> UIView in
                 let view = UIView()
                 
                 view.accessibilityIdentifier = id
@@ -42,14 +43,8 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
     }
     
     init(with views: [UIView]) {
-        self.configs = []
+        self.stepConfigs = []
         self.views = views
-    }
-    
-    //Stub init
-    public init(rawValue: String) {
-        self.views = []
-        self.configs = []
     }
     
     public func compare(with event: CTXTutorialEvent) -> CTXTutorialEventComparingResult {
@@ -64,7 +59,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
     }
 }
 
-public extension CTXTutorialEvent {
+private extension CTXTutorialViewsShownEvent {
     
     func compareViews(_ lhs: [UIView], _ rhs: [UIView]) -> CTXTutorialEventComparingResult {
         

@@ -10,19 +10,20 @@ import Foundation
 
 final class CTXTutorialConfigLoader {
     
-    func loadConfigs(with name: String = "CTXTutorialConfig") throws -> [CTXTutorialItemConfig] {
+    func loadConfigs<M: Meta>(with name: String = "CTXTutorialConfig",
+                              eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>] {
         guard let configFileURL = Bundle.main.url(forResource: name, withExtension: "json") else {
             fatalError("Config with name: \"\(name)\" not found.")
         }
         
         let data = try Data(contentsOf: configFileURL)
         let decoder = JSONDecoder()
-        var configs: [String: [CTXTutorialItemConfig]]?
+        var configs: [String: [CTXTutorialConfig<M>]]?
         
-        configs = try decoder.decode([String: [CTXTutorialItemConfig]].self, from: data)
+        configs = try decoder.decode([String: [CTXTutorialConfig<M>]].self, from: data)
         
         if let configs = configs {
-            return (configs["configs"] as! [CTXTutorialItemConfig])
+            return (configs["configs"] as! [CTXTutorialConfig<M>])
         } else {
             fatalError("Configs are nil")
         }
