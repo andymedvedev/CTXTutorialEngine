@@ -62,6 +62,14 @@ public final class CTXTutorialEngine {
         }
     }
     
+    public func add(_ tutorial: CTXTutorial) {
+        
+        tutorial.add(self)
+        
+        self.bus.add(tutorial)
+        self.tutorials.append(tutorial)
+    }
+    
     public func start() {
         
         self.pollingTimer?.invalidate()

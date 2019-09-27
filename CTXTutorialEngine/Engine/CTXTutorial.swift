@@ -26,7 +26,7 @@ class sss: CTXTutorial {
     
 }
 
-open class CTXTutorial: CTXTutorialProtocol {
+public class CTXTutorial: CTXTutorialProtocol {
     
     public let id: Int
     public var name: String?
@@ -35,7 +35,7 @@ open class CTXTutorial: CTXTutorialProtocol {
     
     var observers = [CTXTutorialObserver]()
     
-    private var chain = [CTXTutorialEvent]()
+    private var eventsChain = [CTXTutorialEvent]()
     private var poppedEventsChain = [CTXTutorialEvent]()
     
     init<M: Meta>(with config: CTXTutorialConfig<M>) {
@@ -44,26 +44,33 @@ open class CTXTutorial: CTXTutorialProtocol {
         self.name = config.name
         self.makeChain(from: config)
     }
+    
+    init(id: Int, name: String? = nil, eventsChain: [CTXTutorialEvent]) {
+        
+        self.id = id
+        self.name = name
+        self.eventsChain = eventsChain
+    }
 }
 
 extension CTXTutorial: CTXTutorialEventObserver {
     
     func push(_ event: CTXTutorialEvent) {
         
-        if let currentEvent = self.chain.first {
+        if let currentEvent = self.eventsChain.first {
             
             if let index = self.poppedEventsChain.firstIndex(where: {
                 $0.compare(with: event) == .mutuallyExclusive}) {
                 
-                self.chain = self.poppedEventsChain.dropFirst(index) + self.chain
+                self.eventsChain = self.poppedEventsChain.dropFirst(index) + self.eventsChain
             }
             
             if currentEvent.compare(with: event) == .equal {
                 
-                self.poppedEventsChain.append(self.chain.removeFirst())
+                self.poppedEventsChain.append(self.eventsChain.removeFirst())
             }
             
-            if self.chain.isEmpty {
+            if self.eventsChain.isEmpty {
                 
                 self.show(with: event)
             }
@@ -92,7 +99,7 @@ private extension CTXTutorial {
         
         guard let eventTypes = CTXTutorialEngine.shared.eventTypes else { return }
         
-        self.chain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
+        self.eventsChain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
             
             //TODO: remove this guard somehow
             guard let eventConfig = eventConfig as? CTXTutorialEventConfig else {

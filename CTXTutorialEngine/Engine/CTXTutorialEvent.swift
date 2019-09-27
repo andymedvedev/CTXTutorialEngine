@@ -10,15 +10,24 @@ public enum CTXTutorialEventComparingResult {
     case different
 }
 
+
 public protocol CTXTutorialEvent {
     func compare(with event: CTXTutorialEvent) -> CTXTutorialEventComparingResult
     
     init?(with config: CTXTutorialEventConfig)
 }
 
+
+public extension CTXTutorialEvent {
+    
+    init?(with config: CTXTutorialEventConfig) {
+        return nil
+    }
+}
+
+
 public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
 
-    
     let stepConfigs: [CTXTutorialStepConfig]
     let views: [UIView]
     
@@ -43,6 +52,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
     }
     
     init(with views: [UIView]) {
+        
         self.stepConfigs = []
         self.views = views
     }
@@ -58,6 +68,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         }
     }
 }
+
 
 private extension CTXTutorialViewsShownEvent {
     

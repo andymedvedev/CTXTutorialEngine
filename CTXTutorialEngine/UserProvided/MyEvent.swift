@@ -42,4 +42,13 @@ enum MyEvent: CTXTutorialEvent {
         default: self = .unknown
         }
     }
+    
+    init(rawValue: String) {
+        switch rawValue {
+        case "launch": self = .launch
+        case "check:true": self = .check(true)
+        case "check:false": self = .check(false)
+        default: self = .unknown
+        }
+    }
 }

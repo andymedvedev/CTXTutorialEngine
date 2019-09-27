@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         let redView = UIView(frame: CGRect(x: 16, y: 50, width: 160, height: 160))
         let blueView = UIView(frame: CGRect(x: 210, y: 100, width: 100, height: 60))
-        
+
         redView.backgroundColor = .red
         redView.layer.mask = self.makeShape()
         blueView.backgroundColor = .blue
@@ -57,13 +57,24 @@ extension ViewController: CTXTutorialEngineDelegate {
     
     func engineDidEndShow(tutorial: CTXTutorial) {
         
-        let greenView = UIView(frame: CGRect(x: 150, y: 150, width: 150, height: 150))
+        if tutorial.id == 0 {
+            let greenView = UIView(frame: CGRect(x: 150, y: 150, width: 150, height: 150))
+            
+            greenView.backgroundColor = .green
+            greenView.accessibilityIdentifier = "greenView"
+            self.view.addSubview(greenView)
+        }
+
         
-        greenView.backgroundColor = .green
-        greenView.accessibilityIdentifier = "greenView"
-        self.view.addSubview(greenView)
+        if tutorial.id == 2 {
+            let customView = UIView(frame: CGRect(x: 150, y: 300, width: 40, height: 40))
+            
+            customView.backgroundColor = .brown
+            customView.accessibilityIdentifier = "myCustomView"
+            self.view.addSubview(customView)
+        }
         
-        if tutorial.id == 1 {
+        if tutorial.id == 100 {
             CTXTutorialEngine.shared.unobserve(self)
         }
     }

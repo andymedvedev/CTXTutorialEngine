@@ -11,6 +11,10 @@ public class CTXTutorialViewsShownEventStepsConfig: Decodable {
     enum CodingKeys: String, CodingKey {
         case stepConfigs = "steps"
     }
+    
+    init(stepConfigs: [CTXTutorialStepConfig]) {
+        self.stepConfigs = stepConfigs
+    }
 }
 
 public class CTXTutorialViewsShownEventConfig: CTXTutorialEventConfig {
@@ -19,5 +23,9 @@ public class CTXTutorialViewsShownEventConfig: CTXTutorialEventConfig {
     
     enum CodingKeys: String, CodingKey {
         case eventConfig = "event"
+    }
+    
+    init(eventConfig: CTXTutorialViewsShownEventStepsConfig) {
+        self.eventConfig = eventConfig
     }
 }
