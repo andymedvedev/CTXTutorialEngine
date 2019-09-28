@@ -25,7 +25,7 @@ public class CTXTutorialViewsShownEventConfig: CTXTutorialEventConfig {
         case eventConfig = "event"
     }
     
-    init(eventConfig: CTXTutorialViewsShownEventStepsConfig) {
-        self.eventConfig = eventConfig
+    init(stepConfigs: [CTXTutorialStepConfig]) {
+        self.eventConfig = CTXTutorialViewsShownEventStepsConfig(stepConfigs: stepConfigs)
     }
 }

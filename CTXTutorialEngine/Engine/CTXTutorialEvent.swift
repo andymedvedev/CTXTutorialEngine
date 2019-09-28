@@ -75,7 +75,7 @@ private extension CTXTutorialViewsShownEvent {
     func compareViews(_ lhs: [UIView], _ rhs: [UIView]) -> CTXTutorialEventComparingResult {
         
         let leftSet = Set<String>(lhs.compactMap{ $0.accessibilityIdentifier })
-        let rightSet = Set<String>(lhs.compactMap{ $0.accessibilityIdentifier })
+        let rightSet = Set<String>(rhs.compactMap{ $0.accessibilityIdentifier })
         
         if rightSet.isSubset(of: leftSet) || leftSet.isSubset(of: rightSet) {
             

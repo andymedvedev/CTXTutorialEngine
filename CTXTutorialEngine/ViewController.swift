@@ -11,7 +11,12 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
+    
+    let redView = UIView(frame: CGRect(x: 16, y: 50, width: 50, height: 50))
+    let blueView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
+    let greenView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
+    let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,28 +30,36 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = .white
         
-        let redView = UIView(frame: CGRect(x: 16, y: 50, width: 160, height: 160))
-        let blueView = UIView(frame: CGRect(x: 210, y: 100, width: 100, height: 60))
-
-        redView.backgroundColor = .red
-        redView.layer.mask = self.makeShape()
-        blueView.backgroundColor = .blue
+        self.redView.backgroundColor = .red
+        self.blueView.backgroundColor = .blue
+        self.greenView.backgroundColor = .green
+        self.customView.backgroundColor = .brown
         
-        redView.accessibilityIdentifier = "redView"
-        blueView.accessibilityIdentifier = "blueView"
         
-        self.view.addSubview(redView)
-        self.view.addSubview(blueView)
+        self.redView.layer.mask = self.makeMaskShape()
+        
+        self.redView.accessibilityIdentifier = "redView"
+        self.blueView.accessibilityIdentifier = "blueView"
+        self.greenView.accessibilityIdentifier = "greenView"
+        self.customView.accessibilityIdentifier = "myCustomView"
+        
+        self.view.addSubview(self.redView)
+        self.view.addSubview(self.blueView)
+        self.view.addSubview(self.greenView)
+        self.view.addSubview(self.customView)
+        
+        self.greenView.isHidden = true
+        self.customView.alpha = 0
         
         CTXTutorialEngine.shared.observe(self, contentType: .dynamic)
         CTXTutorialEngine.shared.delegate = self
         CTXTutorialEngine.shared.start()
     }
     
-    func makeShape() -> CAShapeLayer {
+    func makeMaskShape() -> CAShapeLayer {
         
         let layer = CAShapeLayer()
-        layer.path = UIBezierPath(roundedRect: CGRect(x: 40, y: 40, width: 50, height: 50), cornerRadius: 50).cgPath
+        layer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 50, height: 50), cornerRadius: 50).cgPath
         layer.fillColor = UIColor.red.cgColor
         
         return layer
@@ -58,20 +71,12 @@ extension ViewController: CTXTutorialEngineDelegate {
     func engineDidEndShow(tutorial: CTXTutorial) {
         
         if tutorial.id == 0 {
-            let greenView = UIView(frame: CGRect(x: 150, y: 150, width: 150, height: 150))
-            
-            greenView.backgroundColor = .green
-            greenView.accessibilityIdentifier = "greenView"
-            self.view.addSubview(greenView)
+            self.greenView.isHidden = false
         }
 
         
-        if tutorial.id == 2 {
-            let customView = UIView(frame: CGRect(x: 150, y: 300, width: 40, height: 40))
-            
-            customView.backgroundColor = .brown
-            customView.accessibilityIdentifier = "myCustomView"
-            self.view.addSubview(customView)
+        if tutorial.id == 1 {
+            self.customView.alpha = 1
         }
         
         if tutorial.id == 100 {

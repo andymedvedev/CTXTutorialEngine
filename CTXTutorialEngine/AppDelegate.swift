@@ -23,12 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                        eventConfigMetaType: MyEventConfigMetatype.self)
         
         
-        let stepConfig = CTXTutorialStepConfig(text: "My Custom View Step",
+        let stepConfig = CTXTutorialStepConfig(text: "My Custom View Tutorial step",
                                                accessibilityIdentifiers: ["myCustomView"])
         
-        let stepsEventConfig = CTXTutorialViewsShownEventStepsConfig(stepConfigs: [stepConfig])
-        
-        let viewsShownEventConfig = CTXTutorialViewsShownEventConfig(eventConfig: stepsEventConfig)
+        let viewsShownEventConfig = CTXTutorialViewsShownEventConfig(stepConfigs: [stepConfig])
         
         guard let viewsShownEvent = CTXTutorialViewsShownEvent(with: viewsShownEventConfig) else {fatalError("cannot create event")}
         
