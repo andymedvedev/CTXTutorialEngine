@@ -43,13 +43,23 @@ public final class CTXTutorialEngine {
     
     private init() {}
     
-    public func setup<M: Meta>(with configName: String? = nil,
-                      eventTypes: [CTXTutorialEvent.Type],
-                      eventConfigMetaType: M.Type) where M.Element == CTXTutorialEventConfig {
+    public func addTutorials<M: Meta>(from configName: String = "CTXTutorialConfig",
+                                      withEventTypes eventTypes: [CTXTutorialEvent.Type],
+                                      eventConfigMetaType: M.Type,
+                                      completion: (CTXTutorialAdditionError?) -> ()) where M.Element == CTXTutorialEventConfig {
         
         self.eventTypes = eventTypes
         
-        let tutorialConfigs = try! CTXTutorialConfigLoader().loadConfigs(eventConfigMetaType: eventConfigMetaType)
+        let tutorialConfigs = try! CTXTutorialConfigLoader().loadConfigs(from: configName,
+                                                                         eventConfigMetaType: eventConfigMetaType)
+        
+        tutorialConfigs.forEach { tutorialConfig in
+            
+            if self.tutorials.first(where: {$0.id == tutorialConfig.id}) != nil {
+                
+                completion(CTXTutorialAdditionError())
+            }
+        }
         
         self.tutorials = tutorialConfigs.map { tutorialConfig in
             
@@ -60,14 +70,22 @@ public final class CTXTutorialEngine {
             
             return tutorial
         }
+        
+        completion(nil)
     }
     
-    public func add(_ tutorial: CTXTutorial) {
+    public func add(_ tutorial: CTXTutorial, completion: (CTXTutorialAdditionError?) -> ()) {
+        
+        if self.tutorials.first(where: {$0.id == tutorial.id}) != nil {
+            
+            completion(CTXTutorialAdditionError())
+        }
         
         tutorial.add(self)
-        
         self.bus.add(tutorial)
         self.tutorials.append(tutorial)
+        
+        completion(nil)
     }
     
     public func start() {

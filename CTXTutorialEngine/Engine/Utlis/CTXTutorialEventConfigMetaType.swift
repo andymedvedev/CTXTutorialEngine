@@ -16,7 +16,7 @@ public class CTXTutorialEventConfigMetaType: Meta {
         if self.rawValue == "CTXTutorialViewsShownEvent" {
             return CTXTutorialViewsShownEventConfig.self
         } else {
-            fatalError("CTXTutorialEngine: unhandled type")
+            fatalError("CTXTutorialEngine: \(String(describing: self)) class wasn't found by rawValue: \"\(self.rawValue)\".\nCheck your custom class. Key of event in config and rawValue of class must be equal.")
         }
     }
     

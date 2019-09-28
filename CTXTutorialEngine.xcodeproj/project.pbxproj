@@ -42,6 +42,7 @@
 		2C2B9E82233CED32009F0E57 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B9E81233CED32009F0E57 /* UIApplicationExtension.swift */; };
 		2C2B9E84233CF18D009F0E57 /* CTXTutorialConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */; };
 		2C4AF74923371B2500E01ED2 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AF74823371B2500E01ED2 /* UIViewExtension.swift */; };
+		2CC3C924233F7FC500E1EB77 /* CTXTutorialAdditionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3C923233F7FC500E1EB77 /* CTXTutorialAdditionError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		2C2B9E81233CED32009F0E57 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialConstants.swift; sourceTree = "<group>"; };
 		2C4AF74823371B2500E01ED2 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		2CC3C923233F7FC500E1EB77 /* CTXTutorialAdditionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialAdditionError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				2C2062182338F20E00E02FD8 /* CTXTutorialViewsShownEventConfig.swift */,
 				2C20EDAE2335B03900CC57A1 /* CTXTutorialStepModel.swift */,
 				2C2062112338EA7F00E02FD8 /* CTXTutorialStepInfo.swift */,
+				2CC3C923233F7FC500E1EB77 /* CTXTutorialAdditionError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C2062172338ED7000E02FD8 /* CTXTutorialConfig.swift in Sources */,
+				2CC3C924233F7FC500E1EB77 /* CTXTutorialAdditionError.swift in Sources */,
 				2C19A114233C786800F1AE09 /* MyEventConfigMetatype.swift in Sources */,
 				2C2062152338ECDF00E02FD8 /* CTXTutorialConfigLoader.swift in Sources */,
 				2C1601CB23358AC1000D0FBA /* CTXTutorialModuleContract.swift in Sources */,

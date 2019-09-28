@@ -19,8 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        self.engine.setup(eventTypes: [MyEvent.self],
-                                       eventConfigMetaType: MyEventConfigMetatype.self)
+        self.engine.addTutorials(withEventTypes: [MyEvent.self],
+                                 eventConfigMetaType: MyEventConfigMetatype.self) { error in
+            if let error = error {
+                print(error.errorDescription)
+            }
+        }
         
         
         let stepConfig = CTXTutorialStepConfig(text: "My Custom View Tutorial step",
@@ -34,7 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                          name: "My Custom Tutorial",
                                          eventsChain: [MyEvent.launch, viewsShownEvent])
         
-        self.engine.add(customTutorial)
+        self.engine.add(customTutorial) { error in
+            if let error = error {
+                print(error.errorDescription)
+            }
+        }
         CTXTutorialEventBus.shared.push(MyEvent.launch)
         
         self.window?.rootViewController = ViewController()

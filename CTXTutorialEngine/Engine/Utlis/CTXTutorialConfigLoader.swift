@@ -10,10 +10,9 @@ import Foundation
 
 final class CTXTutorialConfigLoader {
     
-    func loadConfigs<M: Meta>(with name: String = "CTXTutorialConfig",
-                              eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>]  {
-        guard let configFileURL = Bundle.main.url(forResource: name, withExtension: "json") else {
-            fatalError("Config with name: \"\(name)\" not found.")
+    func loadConfigs<M: Meta>(from fileName: String, eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>]  {
+        guard let configFileURL = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            fatalError("Config with name: \"\(fileName)\" not found.")
         }
         
         let data = try Data(contentsOf: configFileURL)
