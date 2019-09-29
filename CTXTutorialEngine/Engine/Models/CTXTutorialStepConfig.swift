@@ -7,5 +7,5 @@ import Foundation
 public struct CTXTutorialStepConfig: Decodable {
     
     let text: String?
-    let accessibilityIdentifiers: [String]
+    let accessibilityIdentifier: String
 }

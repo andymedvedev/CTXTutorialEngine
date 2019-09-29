@@ -16,12 +16,12 @@
                             "steps":[
                                 {
                                     "text": "Red View Tutorial step",
-                                    "accessibilityIdentifiers": ["redView"]
+                                    "accessibilityIdentifier": "redView"
                                 },
                                 
                                 {
                                     "text": "Blue View Tutorial step",
-                                    "accessibilityIdentifiers": ["blueView"]
+                                    "accessibilityIdentifier": "blueView"
                                 }
                             ]
                         }
@@ -46,7 +46,7 @@
                             "steps":[
                                 {
                                     "text": "Green View Tutorial step",
-                                    "accessibilityIdentifiers": ["greenView"]
+                                    "accessibilityIdentifier": "greenView"
                                 }
                             ]
                         }

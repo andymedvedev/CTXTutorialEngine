@@ -8,13 +8,16 @@ final class CTXTutorialPresenterImpl: CTXTutorialPresenter {
     
     var router: CTXTutorialRouter?
     var view: CTXTutorialView?
+    var completion: (() -> ())?
     
     func present(_ tutorial: CTXTutorial,
                  with models: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?) {
+                 and delegate: CTXTutorialEngineDelegate?,
+                 completion: @escaping () -> ()) {
         
         CTXTutorialEventBus.shared.isLocked = true
         
+        self.completion = completion
         self.view?.show(tutorial,
                         with: models,
                         and: delegate)
@@ -24,7 +27,10 @@ final class CTXTutorialPresenterImpl: CTXTutorialPresenter {
                             cleaningCallback: @escaping () -> ()) {
         
         self.router?.showTutorial(startHandler: startHandler,
-                                  hideCompletion: cleaningCallback)
+                                  hideCompletion: {
+            cleaningCallback()
+            self.completion?()
+        })
     }
     
     func onHideTutorial() {

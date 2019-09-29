@@ -40,6 +40,7 @@ public final class CTXTutorialEngine {
     private var weakViewControllers = [CTXTutorialWeakViewController]()
     private var tutorials = [CTXTutorial]()
     private var pollingTimer: Timer?
+    private var stoppedByUser = false
     
     private init() {}
     
@@ -98,6 +99,7 @@ public final class CTXTutorialEngine {
     
     public func stop() {
         
+        self.stoppedByUser = true
         self.pollingTimer?.invalidate()
         self.pollingTimer = nil
     }
@@ -157,11 +159,22 @@ extension CTXTutorialEngine: CTXTutorialObserver {
     
     func tutorialWillShow(_ tutorial: CTXTutorial) {
         
+        if !self.stoppedByUser {
+            self.stop()
+            self.stoppedByUser = false
+        }
+    }
+    
+    func tutorialDidFinish(_ tutorial: CTXTutorial) {
+        
         self.tutorials.removeAll(where: { $0 === tutorial })
         self.bus.remove(tutorial)
         
         if self.tutorials.isEmpty {
             self.stop()
+            self.stoppedByUser = false
+        } else if !self.stoppedByUser {
+            self.start()
         }
     }
 }

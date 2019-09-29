@@ -7,6 +7,7 @@ import Foundation
 protocol CTXTutorialObserver: AnyObject {
     
     func tutorialWillShow(_ tutorial: CTXTutorial)
+    func tutorialDidFinish(_ tutorial: CTXTutorial)
 }
 
 
@@ -127,14 +128,14 @@ private extension CTXTutorial {
             let views = event.views
             var models = [CTXTutorialStepModel]()
             
-            for config in configuredEvent.stepConfigs {
+            for stepConfig in configuredEvent.stepConfigs {
                 
                 let viewsForModel = views.filter{ view in
                     
-                    config.accessibilityIdentifiers.first(where: { view.accessibilityIdentifier == $0 }) != nil
+                    stepConfig.accessibilityIdentifier == view.accessibilityIdentifier
                 }
                 
-                let model = CTXTutorialStepModel(text: config.text, views: viewsForModel)
+                let model = CTXTutorialStepModel(text: stepConfig.text, views: viewsForModel)
                 
                 models.append(model)
             }
@@ -143,9 +144,12 @@ private extension CTXTutorial {
             
             self.delegate?.engineWillShow(tutorial: self)
             
-            module.present(self, with: models, and: self.delegate)
+            self.observers.forEach{ $0.tutorialWillShow(self) }
             
-            self.observers.forEach { $0.tutorialWillShow(self) }
+            module.present(self, with: models, and: self.delegate) { [weak self] in
+                guard let self = self else {return}
+                self.observers.forEach { $0.tutorialDidFinish(self) }
+            }
         }
     }
 }

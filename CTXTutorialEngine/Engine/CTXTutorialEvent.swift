@@ -37,18 +37,12 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         
         self.stepConfigs = config.eventConfig.stepConfigs
         
-        self.views = self.stepConfigs.map{ stepConfig -> [UIView] in
+        self.views = self.stepConfigs.map{ stepConfig -> UIView in
             
-            let views = stepConfig.accessibilityIdentifiers.map { id -> UIView in
-                let view = UIView()
-                
-                view.accessibilityIdentifier = id
-                
-                return view
-            }
-            
-            return views
-        }.flatMap{ $0 }
+            let view = UIView()
+            view.accessibilityIdentifier = stepConfig.accessibilityIdentifier
+            return view
+        }
     }
     
     init(with views: [UIView]) {

@@ -16,7 +16,8 @@ protocol CTXTutorialPresenter: AnyObject {
     
     func present(_ tutorial: CTXTutorial,
                  with stepModels: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?)
+                 and delegate: CTXTutorialEngineDelegate?,
+                 completion: @escaping () -> ())
     
     func onTutorialPrepared(startHandler: @escaping () -> (),
                             cleaningCallback: @escaping () -> ())

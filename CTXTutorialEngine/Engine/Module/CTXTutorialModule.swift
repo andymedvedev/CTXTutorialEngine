@@ -24,8 +24,12 @@ struct CTXTutorialModule {
     
     func present(_ tutorial: CTXTutorial,
                  with stepModels: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?) {
+                 and delegate: CTXTutorialEngineDelegate?,
+                 completion: @escaping () -> ()) {
         
-        self.presenter?.present(tutorial, with: stepModels, and: delegate)
+        self.presenter?.present(tutorial,
+                                with: stepModels,
+                                and: delegate,
+                                completion: completion)
     }
 }

@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let stepConfig = CTXTutorialStepConfig(text: "My Custom View Tutorial step",
-                                               accessibilityIdentifiers: ["myCustomView"])
+                                               accessibilityIdentifier: "myCustomView")
         
         let viewsShownEventConfig = CTXTutorialViewsShownEventConfig(stepConfigs: [stepConfig])
         
@@ -43,6 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error.errorDescription)
             }
         }
+        
+        self.engine.pollingInterval = 0.1
+        
         CTXTutorialEventBus.shared.push(MyEvent.launch)
         
         self.window?.rootViewController = ViewController()
