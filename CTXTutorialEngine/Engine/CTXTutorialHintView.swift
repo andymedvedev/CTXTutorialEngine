@@ -35,7 +35,7 @@ public final class CTXTutorialHintView: CTXTutorialHintViewType {
         
         let closeButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 70, height: 30)))
         let nextButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 70, height: 30)))
-        let buttonsStack = UIStackView(frame: CGRect(x: 0, y: 70, width: 300, height: 30))
+        let buttonsStack = UIStackView(frame: CGRect(x: 0, y: 70, width: 250, height: 30))
         
         closeButton.addTarget(self, action: #selector(closeTutorial), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
@@ -52,7 +52,7 @@ public final class CTXTutorialHintView: CTXTutorialHintViewType {
             buttonsStack.addArrangedSubview(nextButton)
         }
         
-        self.frame = CGRect(x: 100, y: 400, width: 300, height: 100)
+        self.frame = CGRect(x: 0, y: 0, width: 250, height: 100)
         self.addSubview(textLabel)
         self.addSubview(buttonsStack)
         self.backgroundColor = .white

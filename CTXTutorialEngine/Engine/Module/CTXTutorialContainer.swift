@@ -56,6 +56,7 @@ final class CTXTutorialContainerView: UIView {
         
         if let hintView = self.hintView {
             self.addSubview(hintView)
+            hintView.center = self.center
         }
     }
 }

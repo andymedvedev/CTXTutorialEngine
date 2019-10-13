@@ -8,11 +8,16 @@
 
 import Foundation
 
+enum ConfigLoaderError: Error {
+    
+    case error(String)
+}
+
 final class CTXTutorialConfigLoader {
     
     func loadConfigs<M: Meta>(from fileName: String, eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>]  {
         guard let configFileURL = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            fatalError("Config with name: \"\(fileName)\" not found.")
+            throw ConfigLoaderError.error("Config with name: \"\(fileName)\" not found.")
         }
         
         let data = try Data(contentsOf: configFileURL)
@@ -21,10 +26,10 @@ final class CTXTutorialConfigLoader {
         
         configs = try decoder.decode([String: [CTXTutorialConfig<M>]].self, from: data)
         
-        if let configs = configs {
-            return (configs["tutorials"] as! [CTXTutorialConfig<M>])
+        if let configs = configs?["tutorials"] as? [CTXTutorialConfig<M>] {
+            return configs
         } else {
-            fatalError("Configs are nil")
+            throw ConfigLoaderError.error("Configs are nil")
         }
     }
     
