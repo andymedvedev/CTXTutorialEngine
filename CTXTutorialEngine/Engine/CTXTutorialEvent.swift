@@ -37,17 +37,19 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         
         self.stepConfigs = config.eventConfig.stepConfigs
         
-        self.views = self.stepConfigs.map{ stepConfig -> UIView in
+        views = stepConfigs.map{ stepConfig -> UIView in
             
             let view = UIView()
+            
             view.accessibilityIdentifier = stepConfig.accessibilityIdentifier
+            
             return view
         }
     }
     
     init(with views: [UIView]) {
         
-        self.stepConfigs = []
+        stepConfigs = []
         self.views = views
     }
     
@@ -55,7 +57,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         
         if let event = event as? CTXTutorialViewsShownEvent {
             
-            return self.compareViews(self.views, event.views)
+            return self.compareViews(views, event.views)
         } else {
             
             return .different

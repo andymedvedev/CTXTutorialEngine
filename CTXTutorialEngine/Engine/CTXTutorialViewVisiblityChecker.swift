@@ -24,14 +24,7 @@ final class CTXTutorialViewVisibilityChecker {
             let safeAreaInsets: UIEdgeInsets
             
             if inSafeArea {
-                if #available(iOS 11.0, *) {
-                    safeAreaInsets = rootView.safeAreaInsets
-                } else {
-                    safeAreaInsets = UIEdgeInsets(top: rootViewController.topLayoutGuide.length,
-                                                  left: 0,
-                                                  bottom: rootViewController.topLayoutGuide.length,
-                                                  right: 0)
-                }
+                safeAreaInsets = rootView.safeAreaInsets
             } else {
                 safeAreaInsets = .zero
             }

@@ -32,18 +32,18 @@ public final class CTXTutorialEventBus: CTXTutorialEventSubject {
     
     func add(_ observer: CTXTutorialEventObserver) {
         
-        self.observers.append(observer)
+        observers.append(observer)
     }
     
     func remove(_ observer: CTXTutorialEventObserver) {
         
-        self.observers.removeAll { $0 === observer }
+        observers.removeAll { $0 === observer }
     }
     
     public func push(_ event: CTXTutorialEvent) {
         
-        self.observers.forEach{
-            if !self.isLocked {
+        observers.forEach{
+            if !isLocked {
                 $0.push(event)
             }
         }

@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        self.view.backgroundColor = .white
         
         redView.backgroundColor = .red
         blueView.backgroundColor = .blue
@@ -51,11 +51,11 @@ class ViewController: UIViewController {
         button.frame.size = CGSize(width: 100, height: 50)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
-        view.addSubview(redView)
-        view.addSubview(blueView)
-        view.addSubview(greenView)
-        view.addSubview(customView)
-        view.addSubview(button)
+        self.view.addSubview(redView)
+        self.view.addSubview(blueView)
+        self.view.addSubview(greenView)
+        self.view.addSubview(customView)
+        self.view.addSubview(button)
         
         button.center = view.center
         

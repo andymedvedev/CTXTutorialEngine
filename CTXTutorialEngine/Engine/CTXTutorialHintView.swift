@@ -64,10 +64,10 @@ public final class CTXTutorialHintView: CTXTutorialHintViewType {
 private extension CTXTutorialHintView {
     
     @objc func nextStep() {
-        self.nextStepHandler?()
+        nextStepHandler?()
     }
     
     @objc func closeTutorial() {
-        self.closeTutorialHandler?()
+        closeTutorialHandler?()
     }
 }

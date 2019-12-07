@@ -12,7 +12,7 @@ public final class CTXTutorialEngine {
     
     public weak var delegate: CTXTutorialEngineDelegate?
     
-    public var pollingInterval: TimeInterval = 1 {
+    public var pollingInterval: TimeInterval = 0.1 {
         didSet {
             if (self.pollingTimer?.isValid ?? false) {
                 self.start()
@@ -88,34 +88,34 @@ public final class CTXTutorialEngine {
     
     public func start() {
         
-        self.pollingTimer?.invalidate()
-        self.pollingTimer = Timer.scheduledTimer(withTimeInterval: self.pollingInterval,
-                                                 repeats: true,
-                                                 block: self.pollingFunction(_:))
+        pollingTimer?.invalidate()
+        pollingTimer = Timer.scheduledTimer(withTimeInterval: pollingInterval,
+                                            repeats: true,
+                                            block: pollingFunction(_:))
     }
     
     public func stop() {
         
-        self.stoppedByUser = true
-        self.pollingTimer?.invalidate()
-        self.pollingTimer = nil
+        stoppedByUser = true
+        pollingTimer?.invalidate()
+        pollingTimer = nil
     }
     
     public func observe(_ viewController: UIViewController,
                         contentType: CTXTutorialViewControllerContentType) {
         
-        self.weakViewControllers.removeAll(where: { $0.viewController == nil })
+        weakViewControllers.removeAll(where: { $0.viewController == nil })
         
         let weakVC = CTXTutorialWeakViewController(with: viewController,
                                                    contentType: contentType,
-                                                   visibilityChecker: self.visibilityChecker)
+                                                   visibilityChecker: visibilityChecker)
         
-        self.weakViewControllers.append(weakVC)
+        weakViewControllers.append(weakVC)
     }
     
     public func unobserve(_ viewController: UIViewController) {
         
-        self.weakViewControllers.removeAll(where: { $0.viewController === viewController })
+        weakViewControllers.removeAll(where: { $0.viewController === viewController })
     }
 }
 
@@ -125,18 +125,18 @@ private extension CTXTutorialEngine {
         
         guard timer.isValid else { return }
         
-        self.weakViewControllers.forEach { weakVC in
+        weakViewControllers.forEach { weakVC in
             
             guard let vc = weakVC.viewController else { return }
             
-            if vc.view.window != nil &&
-                vc.presentedViewController == nil &&
-                self.visibilityChecker.isVisible(vc.view, inSafeArea: false) {//vc currently on screen and visible
+            if vc.view.window != nil
+                && vc.presentedViewController == nil
+                && visibilityChecker.isVisible(vc.view, inSafeArea: false) {//vc currently on screen and visible
                 
                 let visibleViewsDict = weakVC.visibleAccessibilityViewsDict
                 var viewsToProcess = [UIView]()
                 
-                if let delegate = self.delegate {
+                if let delegate = delegate {
                     
                     viewsToProcess = delegate.selectedViewsToProcess(in: visibleViewsDict)
                 } else {
@@ -146,7 +146,7 @@ private extension CTXTutorialEngine {
                     }
                 }
                     
-                self.bus.push(CTXTutorialViewsShownEvent(with: viewsToProcess))
+                bus.push(CTXTutorialViewsShownEvent(with: viewsToProcess))
             }
         }
     }
@@ -156,7 +156,7 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     func tutorialWillShow(_ tutorial: CTXTutorial) {
         delegate?.engineWillShow(self, tutorial: tutorial)
         
-        //prevent handling possible incoming events by stopping polling
+        //prevent handling incoming events by stopping polling
         if !stoppedByUser {
             stop()
             stoppedByUser = false

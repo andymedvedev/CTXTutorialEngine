@@ -16,17 +16,19 @@ final class CTXTutorialRouterImpl: CTXTutorialRouter {
                       hideCompletion: @escaping () -> Void) {
         
         self.hideCompletion = hideCompletion
-        self.appWindow = UIApplication.shared.keyWindow
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = self.rootViewController
-        self.window?.windowLevel = .alert
-        self.window?.makeKeyAndVisible()
+        
+        appWindow = UIApplication.shared.keyWindow
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = self.rootViewController
+        window?.windowLevel = .alert
+        window?.makeKeyAndVisible()
+        
         startHandler()
     }
     
     func hideTutorial() {
-        self.window?.windowLevel = .normal
-        self.appWindow?.makeKeyAndVisible()
-        self.hideCompletion?()
+        window?.windowLevel = .normal
+        appWindow?.makeKeyAndVisible()
+        hideCompletion?()
     }
 }

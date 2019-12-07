@@ -17,19 +17,19 @@ public final class CTXTutorialWeakViewController {
     var provideSortedViewsSlices = true
     var visibleAccessibilityViewsDict: [String: [[UIView]]] {
         
-        switch self.contentType {
+        switch contentType {
         case .static:
             
-            return self.staticAccessibilityViewsDict
+            return staticAccessibilityViewsDict
         case .dynamic:
             
             var dict = [String: [[UIView]]]()
             
-            if let vcView = self.viewController?.view {
+            if let vcView = viewController?.view {
                 
-                let views = vcView.accessibilityViews().filter{ self.visibilityChecker.isVisible($0) }
+                let views = vcView.accessibilityViews().filter{ visibilityChecker.isVisible($0) }
                 
-                dict = self.makeDict(from: views)
+                dict = makeDict(from: views)
             }
             
             return dict
@@ -53,9 +53,9 @@ public final class CTXTutorialWeakViewController {
         switch contentType {
         case .static:
             
-            let views = viewController.view.accessibilityViews().filter{ self.visibilityChecker.isVisible($0) }
+            let views = viewController.view.accessibilityViews().filter{ visibilityChecker.isVisible($0) }
 
-            self.staticAccessibilityViewsDict = self.makeDict(from: views)
+            staticAccessibilityViewsDict = makeDict(from: views)
         default: break
         }
     }

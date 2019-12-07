@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        self.window = UIWindow(frame: UIScreen.main.bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-        self.engine.addTutorials(with: [MyEvent.self],
-                                 eventConfigMetaType: MyEventConfigMetatype.self) { error in
+        engine.addTutorials(with: [MyEvent.self],
+                            eventConfigMetaType: MyEventConfigMetatype.self) { error in
             if let error = error {
                 print(error.errorDescription)
             }
@@ -37,13 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                          name: "My Custom Tutorial",
                                          eventsChain: [MyEvent.launch, viewsShownEvent])
         
-        self.engine.add(customTutorial) { error in
+        engine.add(customTutorial) { error in
             if let error = error {
                 print(error.errorDescription)
             }
         }
-        
-        self.engine.pollingInterval = 0.1
         
         CTXTutorialEventBus.shared.push(MyEvent.launch)
         
