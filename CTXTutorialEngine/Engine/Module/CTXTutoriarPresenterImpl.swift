@@ -12,23 +12,21 @@ final class CTXTutorialPresenterImpl: CTXTutorialPresenter {
     
     func present(_ tutorial: CTXTutorial,
                  with models: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?,
                  completion: @escaping () -> ()) {
         
         CTXTutorialEventBus.shared.isLocked = true
         
         self.completion = completion
         self.view?.show(tutorial,
-                        with: models,
-                        and: delegate)
+                        with: models)
     }
     
     func onTutorialPrepared(startHandler: @escaping () -> (),
-                            cleaningCallback: @escaping () -> ()) {
+                            cleaningBlock: @escaping () -> ()) {
         
         self.router?.showTutorial(startHandler: startHandler,
                                   hideCompletion: {
-            cleaningCallback()
+            cleaningBlock()
             self.completion?()
         })
     }

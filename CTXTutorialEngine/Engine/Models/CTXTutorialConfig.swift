@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CTXTutorialConfig<M: Meta>: Decodable{
+public struct CTXTutorialConfig<M: Meta>: Decodable {
     
     let id: Int
     let name: String?

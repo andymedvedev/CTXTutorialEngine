@@ -15,7 +15,7 @@ final class CTXTutorialContainerViewController: UIViewController {
     
     var presenter: CTXTutorialPresenter?
     
-    private weak var delegate: CTXTutorialEngineDelegate?
+    weak var delegate: CTXTutorialContainerDelegate?
     
     private var snapshotStepModels = [CTXTutorialStepModel]()
     
@@ -43,11 +43,9 @@ final class CTXTutorialContainerViewController: UIViewController {
 extension CTXTutorialContainerViewController: CTXTutorialView {
     
     func show(_ tutorial: CTXTutorial,
-              with stepModels: [CTXTutorialStepModel],
-              and delegate: CTXTutorialEngineDelegate?) {
+              with stepModels: [CTXTutorialStepModel]) {
         
         self.tutorial = tutorial
-        self.delegate = delegate
         self.totalStepsCount = stepModels.count
 
         let window = UIApplication.shared.keyWindow
@@ -103,15 +101,16 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         self.presenter?.onTutorialPrepared(startHandler: { [weak self] in
                                                self?.onNextStep()
                                            },
-                                           cleaningCallback: { [weak self, weak window] in
-                                            
-                                                if let tutorial = self?.tutorial {
-                                                    delegate?.engineDidEndShow(tutorial: tutorial)
+                                           cleaningBlock: { [weak self, weak window] in
+                                                if let self = self {
+                                                    if let tutorial = self.tutorial {
+                                                        self.delegate?.containerDidEndShow(self, tutorial: tutorial)
+                                                    }
                                                 }
-                                            
+                                                
                                                 self?.presenter = nil
                                                 window?.resume()
-                                           })
+                                            })
     }
 }
 
@@ -166,7 +165,7 @@ private extension CTXTutorialContainerViewController {
         
         let hintView: CTXTutorialHintViewType
         
-        if let customHintView = self.delegate?.hintViewFor(for: tutorial, with: snapshotStepModel) {
+        if let customHintView = self.delegate?.container(self, hintViewFor: tutorial, with: snapshotStepModel) {
             
             hintView = customHintView
         } else {
@@ -192,7 +191,7 @@ private extension CTXTutorialContainerViewController {
                                                                    stepModel: snapshotStepModel)
         
         self.tutorialContainer.showNextStep(with: hintView, snapshots: snapshotStepModel.views)
-        self.delegate?.engineDidShowTutorialStep(tutorial: tutorial, with: stepPresentationInfo)
+        self.delegate?.containerDidShowTutorialStep(self, tutorial: tutorial, with: stepPresentationInfo)
         self.currentStep += 1
     }
 }

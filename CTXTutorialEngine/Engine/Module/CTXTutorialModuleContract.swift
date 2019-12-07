@@ -6,9 +6,10 @@ import UIKit
 
 protocol CTXTutorialView: AnyObject {
     
+    var delegate: CTXTutorialContainerDelegate? { get set }
+    
     func show(_ tutorial: CTXTutorial,
-              with stepModels: [CTXTutorialStepModel],
-              and delegate: CTXTutorialEngineDelegate?)
+              with stepModels: [CTXTutorialStepModel])
 }
 
 
@@ -16,11 +17,10 @@ protocol CTXTutorialPresenter: AnyObject {
     
     func present(_ tutorial: CTXTutorial,
                  with stepModels: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?,
                  completion: @escaping () -> ())
     
     func onTutorialPrepared(startHandler: @escaping () -> (),
-                            cleaningCallback: @escaping () -> ())
+                            cleaningBlock: @escaping () -> ())
     func onHideTutorial()
 }
 

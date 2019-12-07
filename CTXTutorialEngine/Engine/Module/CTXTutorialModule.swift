@@ -4,7 +4,9 @@
 
 import UIKit
 
-struct CTXTutorialModule {
+class CTXTutorialModule {
+
+    weak var delegate: CTXTutorialModuleDelegate?
     
     private var presenter: CTXTutorialPresenter?
     
@@ -24,12 +26,39 @@ struct CTXTutorialModule {
     
     func present(_ tutorial: CTXTutorial,
                  with stepModels: [CTXTutorialStepModel],
-                 and delegate: CTXTutorialEngineDelegate?,
                  completion: @escaping () -> ()) {
         
         self.presenter?.present(tutorial,
                                 with: stepModels,
-                                and: delegate,
                                 completion: completion)
+    }
+}
+
+extension CTXTutorialModule: CTXTutorialContainerDelegate {
+    
+    func containerDidEndShow(_ container: CTXTutorialContainerViewController, tutorial: CTXTutorial) {
+        delegate?.moduleDidEndShow(self, tutorial: tutorial)
+    }
+    
+    func containerDidShowTutorialStep(_ container: CTXTutorialContainerViewController,
+                                      tutorial: CTXTutorial,
+                                      with stepInfo: CTXTutorialStepPresentationInfo) {
+        
+        delegate?.moduleDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
+    }
+    
+    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
+        return delegate?.cornerRadiusForModalViewSnapshot()
+    }
+    
+    func tutorialOverlayColor() -> UIColor? {
+        return delegate?.tutorialOverlayColor()
+    }
+    
+    func container(_ container: CTXTutorialContainerViewController,
+                   hintViewFor tutorial: CTXTutorial,
+                   with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+    
+        return delegate?.module(self, hintViewFor: tutorial, with: currentStepModel)
     }
 }

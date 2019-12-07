@@ -13,7 +13,7 @@ final class MyEventConfigMetatype: CTXTutorialEventConfigMetaType {
     
     override var type: Decodable.Type {
         
-        let configType = ConfigType(rawValue: self.rawValue)
+        let configType = ConfigType(rawValue: rawValue)
         
         switch configType {
         case .myBasicEvent?:

@@ -19,13 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        self.engine.addTutorials(withEventTypes: [MyEvent.self],
+        self.engine.addTutorials(with: [MyEvent.self],
                                  eventConfigMetaType: MyEventConfigMetatype.self) { error in
             if let error = error {
                 print(error.errorDescription)
             }
         }
-        
         
         let stepConfig = CTXTutorialStepConfig(text: "My Custom View Tutorial step",
                                                accessibilityIdentifier: "myCustomView")

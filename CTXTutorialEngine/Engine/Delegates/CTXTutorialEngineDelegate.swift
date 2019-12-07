@@ -6,39 +6,43 @@ import UIKit
 
 public protocol CTXTutorialEngineDelegate: AnyObject {
     
-    func engineWillShow(tutorial: CTXTutorial)
+    func engineWillShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial)
     
-    func engineDidShowTutorialStep(tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo)
+    func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial)
     
-    func engineDidEndShow(tutorial: CTXTutorial)
+    func engineDidShowTutorialStep(_ engine: CTXTutorialEngine,
+                                   tutorial: CTXTutorial,
+                                   with stepInfo: CTXTutorialStepPresentationInfo)
     
-    func hintViewFor(for tutorial: CTXTutorial, with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
+    func engine(_ engine: CTXTutorialEngine,
+                hintViewFor tutorial: CTXTutorial,
+                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
     
-    func tutorialOverlayColor() -> UIColor
+    func tutorialOverlayColor() -> UIColor?
     
-    func cornerRadiusForModalViewSnapshot() -> CGFloat
+    func cornerRadiusForModalViewSnapshot() -> CGFloat?
     
     func selectedViewsToProcess(in accessibilityViewsDict: [String: [[UIView]]]) -> [UIView]
 }
 
 public extension CTXTutorialEngineDelegate {
     
-    func engineWillShow(tutorial: CTXTutorial) {}
+    func engineWillShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {}
     
-    func engineDidShowTutorialStep(tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {}
+    func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {}
     
-    func engineDidEndShow(tutorial: CTXTutorial) {}
+    func engineDidShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {}
     
-    func hintViewFor(for tutorial: CTXTutorial, with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+    func engine(_ engine: CTXTutorialEngine, hintViewFor tutorial: CTXTutorial, with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
         return nil
     }
     
-    func tutorialOverlayColor() -> UIColor {
-        return CTXTutorialConstants.tutorialOverlayColor
+    func tutorialOverlayColor() -> UIColor? {
+        return nil
     }
     
-    func cornerRadiusForModalViewSnapshot() -> CGFloat {
-        return CTXTutorialConstants.modalViewCornerRaius
+    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
+        return nil
     }
     
     func selectedViewsToProcess(in accessibilityViewsDict: [String : [[UIView]]]) -> [UIView] {

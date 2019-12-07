@@ -33,5 +33,4 @@ final class CTXTutorialConfigLoader {
             throw ConfigLoaderError.error("Configs are nil")
         }
     }
-    
 }

@@ -10,11 +10,7 @@ public final class CTXTutorialEngine {
     
     public static let shared = CTXTutorialEngine()
     
-    public weak var delegate: CTXTutorialEngineDelegate? {
-        didSet {
-            self.tutorials.forEach { $0.delegate = self.delegate }
-        }
-    }
+    public weak var delegate: CTXTutorialEngineDelegate?
     
     public var pollingInterval: TimeInterval = 1 {
         didSet {
@@ -27,7 +23,7 @@ public final class CTXTutorialEngine {
     public var provideSortedViewsSlices = true {
         didSet {
             self.weakViewControllers.forEach {
-                $0.provideSortedViewsSlices = self.provideSortedViewsSlices
+                $0.provideSortedViewsSlices = provideSortedViewsSlices
             }
         }
     }
@@ -45,7 +41,7 @@ public final class CTXTutorialEngine {
     private init() {}
     
     public func addTutorials<M: Meta>(from configName: String = "CTXTutorialConfig",
-                                      withEventTypes eventTypes: [CTXTutorialEvent.Type],
+                                      with eventTypes: [CTXTutorialEvent.Type],
                                       eventConfigMetaType: M.Type,
                                       completion: (CTXTutorialAdditionError?) -> ()) where M.Element == CTXTutorialEventConfig {
         
@@ -56,7 +52,7 @@ public final class CTXTutorialEngine {
         
         tutorialConfigs.forEach { tutorialConfig in
             
-            if self.tutorials.first(where: {$0.id == tutorialConfig.id}) != nil {
+            if tutorials.first(where: {$0.id == tutorialConfig.id}) != nil {
                 
                 completion(CTXTutorialAdditionError())
             }
@@ -66,8 +62,8 @@ public final class CTXTutorialEngine {
             
             let tutorial = CTXTutorial(with: tutorialConfig)
             
-            tutorial.add(self)
-            self.bus.add(tutorial)
+            tutorial.delegate = self
+            bus.add(tutorial)
             
             return tutorial
         }
@@ -77,14 +73,15 @@ public final class CTXTutorialEngine {
     
     public func add(_ tutorial: CTXTutorial, completion: (CTXTutorialAdditionError?) -> ()) {
         
-        if self.tutorials.first(where: {$0.id == tutorial.id}) != nil {
+        if tutorials.first(where: {$0.id == tutorial.id}) != nil {
             
             completion(CTXTutorialAdditionError())
         }
         
-        tutorial.add(self)
-        self.bus.add(tutorial)
-        self.tutorials.append(tutorial)
+        tutorial.delegate = self
+        
+        bus.add(tutorial)
+        tutorials.append(tutorial)
         
         completion(nil)
     }
@@ -155,26 +152,48 @@ private extension CTXTutorialEngine {
     }
 }
 
-extension CTXTutorialEngine: CTXTutorialObserver {
-    
+extension CTXTutorialEngine: CTXTutorialDelegate {
     func tutorialWillShow(_ tutorial: CTXTutorial) {
+        delegate?.engineWillShow(self, tutorial: tutorial)
         
-        if !self.stoppedByUser {
-            self.stop()
-            self.stoppedByUser = false
+        //prevent handling possible incoming events by stopping polling
+        if !stoppedByUser {
+            stop()
+            stoppedByUser = false
         }
     }
     
-    func tutorialDidFinish(_ tutorial: CTXTutorial) {
+    func tutorialDidEndShow(_ tutorial: CTXTutorial) {
+        delegate?.engineDidEndShow(self, tutorial: tutorial)
         
-        self.tutorials.removeAll(where: { $0 === tutorial })
-        self.bus.remove(tutorial)
+        tutorials.removeAll(where: { $0 === tutorial })
+        bus.remove(tutorial)
         
-        if self.tutorials.isEmpty {
-            self.stop()
-            self.stoppedByUser = false
-        } else if !self.stoppedByUser {
-            self.start()
+        if tutorials.isEmpty {
+            stop()
+            stoppedByUser = false
+        } else if !stoppedByUser {
+            start()
         }
+    }
+    
+    func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
+                                     with stepInfo: CTXTutorialStepPresentationInfo) {
+        
+        delegate?.engineDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
+    }
+    
+    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
+        return delegate?.cornerRadiusForModalViewSnapshot()
+    }
+    
+    func tutorialOverlayColor() -> UIColor? {
+        return delegate?.tutorialOverlayColor()
+    }
+    
+    func tutorialHintView(_ tutorial: CTXTutorial,
+                          with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+        
+        return delegate?.engine(self, hintViewFor: tutorial, with: currentStepModel)
     }
 }

@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let blueView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
     let greenView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
     let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
+    let button = UIButton(type: .custom)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -27,29 +28,39 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         self.view.backgroundColor = .white
         
-        self.redView.backgroundColor = .red
-        self.blueView.backgroundColor = .blue
-        self.greenView.backgroundColor = .green
-        self.customView.backgroundColor = .brown
+        redView.backgroundColor = .red
+        blueView.backgroundColor = .blue
+        greenView.backgroundColor = .green
+        customView.backgroundColor = .brown
         
         
-        self.redView.layer.mask = self.makeMaskShape()
+        redView.layer.mask = makeMaskShape()
         
-        self.redView.accessibilityIdentifier = "redView"
-        self.blueView.accessibilityIdentifier = "blueView"
-        self.greenView.accessibilityIdentifier = "greenView"
-        self.customView.accessibilityIdentifier = "myCustomView"
+        redView.accessibilityIdentifier = "redView"
+        blueView.accessibilityIdentifier = "blueView"
+        greenView.accessibilityIdentifier = "greenView"
+        customView.accessibilityIdentifier = "myCustomView"
+        button.accessibilityIdentifier = "button"
         
-        self.view.addSubview(self.redView)
-        self.view.addSubview(self.blueView)
-        self.view.addSubview(self.greenView)
-        self.view.addSubview(self.customView)
+        button.backgroundColor =  UIColor(red: 100 / 255.0, green: 151 / 255.0, blue: 177 / 255.0, alpha: 1.0)
+        button.setTitle("Tap me", for: .normal)
+        button.titleLabel?.textColor = .white
+        button.frame.size = CGSize(width: 100, height: 50)
+        button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
-        self.greenView.isHidden = true
-        self.customView.alpha = 0
+        self.view.addSubview(redView)
+        self.view.addSubview(blueView)
+        self.view.addSubview(greenView)
+        self.view.addSubview(customView)
+        self.view.addSubview(button)
+        
+        button.center = view.center
+        
+        greenView.isHidden = true
+        customView.alpha = 0
         
         CTXTutorialEngine.shared.observe(self, contentType: .dynamic)
         CTXTutorialEngine.shared.delegate = self
@@ -66,20 +77,27 @@ class ViewController: UIViewController {
     }
 }
 
+private extension ViewController {
+    
+    @objc func tap() {
+        CTXTutorialEventBus.shared.push(MyEvent.tapButton)
+    }
+}
+
 extension ViewController: CTXTutorialEngineDelegate {
     
-    func engineDidEndShow(tutorial: CTXTutorial) {
+    func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         
         if tutorial.id == 0 {
-            self.greenView.isHidden = false
+            greenView.isHidden = false
         }
 
         
         if tutorial.id == 1 {
-            self.customView.alpha = 1
+            customView.alpha = 1
         }
         
-        if tutorial.id == 100 {
+        if tutorial.id == 2 {
             CTXTutorialEngine.shared.unobserve(self)
         }
     }

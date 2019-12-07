@@ -2,29 +2,11 @@
 //  Copyright © 2019 Andrey Medvedev. All rights reserved.
 //
 
-import Foundation
-
-protocol CTXTutorialObserver: AnyObject {
-    
-    func tutorialWillShow(_ tutorial: CTXTutorial)
-    func tutorialDidFinish(_ tutorial: CTXTutorial)
-}
-
-
-protocol CTXTutorialSubject {
-    
-    func add(_ observer: CTXTutorialObserver)
-    func remove(_ observer: CTXTutorialObserver)
-}
-
+import UIKit
 
 public protocol CTXTutorialProtocol {
     var id: Int {get}
     var name: String? {get}
-}
-
-class sss: CTXTutorial {
-    
 }
 
 public class CTXTutorial: CTXTutorialProtocol {
@@ -32,9 +14,8 @@ public class CTXTutorial: CTXTutorialProtocol {
     public let id: Int
     public var name: String?
     
-    var delegate: CTXTutorialEngineDelegate?
+    weak var delegate: CTXTutorialDelegate?
     
-    var observers = [CTXTutorialObserver]()
     
     private var eventsChain = [CTXTutorialEvent]()
     private var poppedEventsChain = [CTXTutorialEvent]()
@@ -75,21 +56,6 @@ extension CTXTutorial: CTXTutorialEventObserver {
                 
                 self.show(with: event)
             }
-        }
-    }
-}
-
-extension CTXTutorial: CTXTutorialSubject {
-    
-    func add(_ observer: CTXTutorialObserver) {
-        
-        self.observers.append(observer)
-    }
-    
-    func remove(_ observer: CTXTutorialObserver) {
-        
-        if let index = self.observers.firstIndex(where: { $0 === observer}) {
-            self.observers.remove(at: index)
         }
     }
 }
@@ -142,14 +108,40 @@ private extension CTXTutorial {
             
             let module = CTXTutorialModule()
             
-            self.delegate?.engineWillShow(tutorial: self)
-            
-            self.observers.forEach{ $0.tutorialWillShow(self) }
-            
-            module.present(self, with: models, and: self.delegate) { [weak self] in
-                guard let self = self else {return}
-                self.observers.forEach { $0.tutorialDidFinish(self) }
+            self.delegate?.tutorialWillShow(self)
+                        
+            module.present(self, with: models) { [weak self] in
+                if let self = self {
+                    self.delegate?.tutorialDidEndShow(self)
+                }
             }
         }
+    }
+}
+
+extension CTXTutorial: CTXTutorialModuleDelegate {
+    
+    func moduleDidEndShow(_ module: CTXTutorialModule, tutorial: CTXTutorial) {
+        delegate?.tutorialDidEndShow(self)
+    }
+    
+    func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
+                                   tutorial: CTXTutorial,
+                                   with stepInfo: CTXTutorialStepPresentationInfo) {
+        delegate?.tutorialDidShowTutorialStep(self, with: stepInfo)
+    }
+    
+    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
+        return delegate?.cornerRadiusForModalViewSnapshot()
+    }
+    
+    func tutorialOverlayColor() -> UIColor? {
+        return delegate?.tutorialOverlayColor()
+    }
+    
+    func module(_ module: CTXTutorialModule,
+                hintViewFor tutorial: CTXTutorial,
+                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+        return delegate?.tutorialHintView(self, with: currentStepModel)
     }
 }

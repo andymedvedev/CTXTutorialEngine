@@ -8,7 +8,9 @@ final class CTXTutorialViewVisibilityChecker {
     
     func isVisible(_ view: UIView, inSafeArea: Bool = true) -> Bool {
         
-        if view.isHidden || view.superview == nil {
+        if view.isHidden
+            || view.alpha == 0
+            || view.superview == nil {
             return false
         }
         

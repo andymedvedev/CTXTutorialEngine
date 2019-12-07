@@ -53,6 +53,37 @@
                     }
                 }
             ]
+        },
+        
+        {
+            "id": 2,
+            "name": "tapButtonTutorial",
+            "events": [
+                {
+                    "MyEvent": {
+                        "event": "launch"
+                    }
+                },
+                
+                {
+                    "MyEvent": {
+                        "event": "tapButton"
+                    }
+                },
+                
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps":[
+                                {
+                                    "text": "User tapped button and it shown on screen",
+                                    "accessibilityIdentifier": "button"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     ]
 }
