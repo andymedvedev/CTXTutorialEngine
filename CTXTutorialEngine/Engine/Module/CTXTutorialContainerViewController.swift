@@ -7,7 +7,6 @@ import UIKit
 enum SnapshotError: Error {
     
     case snapshotFailed
-    
 }
 
 
@@ -19,7 +18,6 @@ final class CTXTutorialContainerViewController: UIViewController {
     
     private var snapshotStepModels = [CTXTutorialStepModel]()
     
-    private var tutorial: CTXTutorial?
     private let tutorialContainer = CTXTutorialContainerView()
     private var currentStep = 0
     private var totalStepsCount = 1
@@ -30,7 +28,7 @@ final class CTXTutorialContainerViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return self.statusBarStyle ?? .default
+        return statusBarStyle ?? .default
     }
     
     override func loadView() {
@@ -42,11 +40,9 @@ final class CTXTutorialContainerViewController: UIViewController {
 
 extension CTXTutorialContainerViewController: CTXTutorialView {
     
-    func show(_ tutorial: CTXTutorial,
-              with stepModels: [CTXTutorialStepModel]) {
+    func show(with stepModels: [CTXTutorialStepModel]) {
         
-        self.tutorial = tutorial
-        self.totalStepsCount = stepModels.count
+        totalStepsCount = stepModels.count
 
         let window = UIApplication.shared.keyWindow
         
@@ -103,9 +99,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
                                            },
                                            cleaningBlock: { [weak self, weak window] in
                                                 if let self = self {
-                                                    if let tutorial = self.tutorial {
-                                                        self.delegate?.containerDidEndShow(self, tutorial: tutorial)
-                                                    }
+                                                    self.delegate?.containerDidEndShowTutorial(self)
                                                 }
                                                 
                                                 self?.presenter = nil
@@ -158,15 +152,12 @@ private extension CTXTutorialContainerViewController {
     }
     
     func onNextStep() {
-        
-        guard let tutorial = self.tutorial else { return }
-        
+                
         let snapshotStepModel = self.snapshotStepModels.removeFirst()
         
         let hintView: CTXTutorialHintViewType
         
-        if let customHintView = self.delegate?.container(self, hintViewFor: tutorial, with: snapshotStepModel) {
-            
+        if let customHintView = self.delegate?.container(self, hintViewForTutorialWith: snapshotStepModel) {
             hintView = customHintView
         } else {
             
@@ -191,7 +182,7 @@ private extension CTXTutorialContainerViewController {
                                                                    stepModel: snapshotStepModel)
         
         self.tutorialContainer.showNextStep(with: hintView, snapshots: snapshotStepModel.views)
-        self.delegate?.containerDidShowTutorialStep(self, tutorial: tutorial, with: stepPresentationInfo)
+        self.delegate?.containerDidShowTutorialStep(self, with: stepPresentationInfo)
         self.currentStep += 1
     }
 }

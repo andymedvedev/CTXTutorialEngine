@@ -11,10 +11,9 @@ import UIKit
 
 protocol CTXTutorialModuleDelegate: AnyObject {
     
-    func moduleDidEndShow(_ module: CTXTutorialModule, tutorial: CTXTutorial)
+    func moduleDidEndShowTutorial(_ module: CTXTutorialModule)
     
     func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
-                                   tutorial: CTXTutorial,
                                    with stepInfo: CTXTutorialStepPresentationInfo)
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat?
@@ -22,16 +21,14 @@ protocol CTXTutorialModuleDelegate: AnyObject {
     func tutorialOverlayColor() -> UIColor?
     
     func module(_ module: CTXTutorialModule,
-                hintViewFor tutorial: CTXTutorial,
-                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
+                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
 }
 
 extension CTXTutorialModuleDelegate {
     
-    func moduleDidEndShow(_ module: CTXTutorialModule, tutorial: CTXTutorial) {}
+    func moduleDidEndShowTutorial(_ module: CTXTutorialModule) {}
     
     func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
-                                   tutorial: CTXTutorial,
                                    with stepInfo: CTXTutorialStepPresentationInfo) {}
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat? {
@@ -43,8 +40,7 @@ extension CTXTutorialModuleDelegate {
     }
     
     func module(_ module: CTXTutorialModule,
-                hintViewFor tutorial: CTXTutorial,
-                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
         return nil
     }
 }

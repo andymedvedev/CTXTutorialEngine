@@ -10,24 +10,22 @@ final class CTXTutorialPresenterImpl: CTXTutorialPresenter {
     var view: CTXTutorialView?
     var completion: (() -> ())?
     
-    func present(_ tutorial: CTXTutorial,
-                 with models: [CTXTutorialStepModel],
-                 completion: @escaping () -> ()) {
+    func presentTutorial(with models: [CTXTutorialStepModel],
+                         completion: @escaping () -> ()) {
         
         CTXTutorialEventBus.shared.isLocked = true
         
         self.completion = completion
-        self.view?.show(tutorial,
-                        with: models)
+        self.view?.show(with: models)
     }
     
     func onTutorialPrepared(startHandler: @escaping () -> (),
                             cleaningBlock: @escaping () -> ()) {
         
         self.router?.showTutorial(startHandler: startHandler,
-                                  hideCompletion: {
+                                  hideCompletion: { [weak self] in
             cleaningBlock()
-            self.completion?()
+            self?.completion?()
         })
     }
     

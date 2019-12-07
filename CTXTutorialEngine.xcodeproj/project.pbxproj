@@ -248,9 +248,9 @@
 				2C1601C123358AC1000D0FBA /* CTXTutorialModuleContract.swift */,
 				2C1601C423358AC1000D0FBA /* CTXTutorialModule.swift */,
 				2C1601C523358AC1000D0FBA /* CTXTutorialContainer.swift */,
+				2C1601BF23358AC1000D0FBA /* CTXTutoriarPresenterImpl.swift */,
 				2C1601C623358AC1000D0FBA /* CTXTutorialContainerViewController.swift */,
 				2C1601C223358AC1000D0FBA /* CTXTutorialRouterImpl.swift */,
-				2C1601BF23358AC1000D0FBA /* CTXTutoriarPresenterImpl.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";

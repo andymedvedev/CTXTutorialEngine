@@ -17,8 +17,8 @@ final class CTXTutorialContainerView: UIView {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(closeTutorial))
         
-        self.darkOverlay.addGestureRecognizer(tapGesture)
-        self.darkOverlay.translatesAutoresizingMaskIntoConstraints = false
+        darkOverlay.addGestureRecognizer(tapGesture)
+        darkOverlay.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,16 +30,17 @@ final class CTXTutorialContainerView: UIView {
                    closeHandler: @escaping () -> Void) {
         
         self.closeHandler = closeHandler
-        self.darkOverlay.backgroundColor = overlayColor
-        self.addSubview(backgroundSnapshot)
-        self.addSubview(self.darkOverlay)
+        darkOverlay.backgroundColor = overlayColor
+        
+        addSubview(backgroundSnapshot)
+        addSubview(darkOverlay)
         
         NSLayoutConstraint.activate([
-            self.darkOverlay.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.darkOverlay.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.darkOverlay.topAnchor.constraint(equalTo: self.topAnchor),
-            self.darkOverlay.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ])
+            darkOverlay.leadingAnchor.constraint(equalTo: leadingAnchor),
+            darkOverlay.trailingAnchor.constraint(equalTo: trailingAnchor),
+            darkOverlay.topAnchor.constraint(equalTo: topAnchor),
+            darkOverlay.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     func showNextStep(with hintView: CTXTutorialHintViewType, snapshots: [UIView]) {
@@ -51,12 +52,12 @@ final class CTXTutorialContainerView: UIView {
         self.snapshots = snapshots
         
         if let snapshots = self.snapshots {
-            snapshots.forEach{ self.addSubview($0) }
+            snapshots.forEach{ addSubview($0) }
         }
         
         if let hintView = self.hintView {
-            self.addSubview(hintView)
-            hintView.center = self.center
+            addSubview(hintView)
+            hintView.center = center
         }
     }
 }
@@ -64,113 +65,6 @@ final class CTXTutorialContainerView: UIView {
 private extension CTXTutorialContainerView {
     
     @objc func closeTutorial() {
-        self.closeHandler?()
-    }
-    
-    func centerHintViewX() {
-//        guard let hintView = self.hintView else { return }
-//
-//        if self.destinationSnapshot.center.x -
-//            hintView.frame.width / 2 -
-//            16 <= self.frame.minX {
-//
-//            hintView.frame.origin.x = 16
-//        } else if self.destinationSnapshot.center.x +
-//            hintView.frame.width / 2 +
-//            16 >= self.frame.maxX {
-//
-//            hintView.frame.origin.x = self.frame.maxX -
-//                                           hintView.frame.width - 16
-//        } else {
-//
-//            hintView.center.x = self.destinationSnapshot.center.x
-//        }
-    }
-    
-    func centerHintViewY() {
-//        self.hintView?.center.y = self.destinationSnapshot.center.y
-    }
-    
-    func placeTextContainer() {
-        
-//        guard let (topSafeArea, bottomSafeArea) = self.safeAreaGetter?() else { return }
-//        guard let hintView = self.hintView else { return }
-//
-//        if hintView.frame.width > self.frame.width - 32 {
-//            hintView.fitSize(with: self.frame.width - 32)
-//            return
-//        }
-//
-//        let height = hintView.frame.height
-//        let width = hintView.frame.width
-//        let minX = self.destinationSnapshot.frame.minX
-//        let maxX = self.destinationSnapshot.frame.maxX
-//        let minY = self.destinationSnapshot.frame.minY
-//        let maxY = self.destinationSnapshot.frame.maxY
-//        var arrowStart: CGPoint = .zero
-//        var arrowEnd: CGPoint = .zero
-//
-//        let minSpaceAddition: CGFloat = 64
-//        let topSpace = minY - topSafeArea
-//        let bottomSpace = self.frame.maxY - bottomSafeArea - maxY
-//        let leftSpace = minX
-//        let rightSpace = self.frame.maxX - maxX
-//        var needArrow = true
-//
-//        defer {
-//            if needArrow {
-//                let arrowLayer = ArrowLayer(start: arrowStart, end: arrowEnd)
-//
-//                self.layer.addSublayer(arrowLayer)
-//            }
-//        }
-//
-//        if topSpace > bottomSpace && topSpace >= height + minSpaceAddition {
-//
-//            hintView.frame.origin.y = minY - height - 48
-//            self.centerHintViewX()
-//
-//            arrowStart = CGPoint(x: hintView.midX,
-//                                 y: hintView.maxY)
-//            arrowEnd = CGPoint(x: self.destinationSnapshot.frame.midX,
-//                               y: self.destinationSnapshot.frame.minY)
-//            return
-//        } else if bottomSpace >= height + minSpaceAddition {
-//
-//            hintView.frame.origin.y = maxY + 48
-//            self.centerHintViewX()
-//
-//            arrowStart = CGPoint(x: hintView.midX,
-//                                 y: hintView.minY)
-//            arrowEnd = CGPoint(x: self.destinationSnapshot.frame.midX,
-//                               y: self.destinationSnapshot.frame.maxY)
-//            return
-//        }
-//
-//        if leftSpace > rightSpace && leftSpace >= width + minSpaceAddition {
-//
-//            hintView.frame.origin.x = minX - width - 48
-//            self.centerHintViewY()
-//
-//            arrowStart = CGPoint(x: hintView.maxX,
-//                                 y: hintView.midY)
-//            arrowEnd = CGPoint(x: self.destinationSnapshot.frame.minX,
-//                               y: self.destinationSnapshot.frame.midY)
-//            return
-//        } else if rightSpace >= width + minSpaceAddition {
-//
-//            hintView.frame.origin.x = maxX + 48
-//            self.centerHintViewY()
-//
-//            arrowStart = CGPoint(x: hintView.minX,
-//                                 y: hintView.midY)
-//            arrowEnd = CGPoint(x: self.destinationSnapshot.frame.maxX,
-//                               y: self.destinationSnapshot.frame.midY)
-//            return
-//        }
-//
-//        needArrow = false
-//
-//        hintView.center = self.destinationSnapshot.center
+        closeHandler?()
     }
 }

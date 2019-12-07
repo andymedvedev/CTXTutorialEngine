@@ -39,22 +39,22 @@ extension CTXTutorial: CTXTutorialEventObserver {
     
     func push(_ event: CTXTutorialEvent) {
         
-        if let currentEvent = self.eventsChain.first {
+        if let currentEvent = eventsChain.first {
             
-            if let index = self.poppedEventsChain.firstIndex(where: {
+            if let index = poppedEventsChain.firstIndex(where: {
                 $0.compare(with: event) == .mutuallyExclusive}) {
                 
-                self.eventsChain = self.poppedEventsChain.dropFirst(index) + self.eventsChain
+                eventsChain = poppedEventsChain.dropFirst(index) + eventsChain
             }
             
             if currentEvent.compare(with: event) == .equal {
                 
-                self.poppedEventsChain.append(self.eventsChain.removeFirst())
+                poppedEventsChain.append(eventsChain.removeFirst())
             }
             
-            if self.eventsChain.isEmpty {
+            if eventsChain.isEmpty {
                 
-                self.show(with: event)
+                show(with: event)
             }
         }
     }
@@ -66,7 +66,7 @@ private extension CTXTutorial {
         
         guard let eventTypes = CTXTutorialEngine.shared.eventTypes else { return }
         
-        self.eventsChain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
+        eventsChain = config.eventConfigs.array.compactMap{ eventConfig -> CTXTutorialEvent? in
             
             //TODO: remove this guard somehow
             guard let eventConfig = eventConfig as? CTXTutorialEventConfig else {
@@ -108,9 +108,9 @@ private extension CTXTutorial {
             
             let module = CTXTutorialModule()
             
-            self.delegate?.tutorialWillShow(self)
+            delegate?.tutorialWillShow(self)
                         
-            module.present(self, with: models) { [weak self] in
+            module.presentTutorial(with: models) { [weak self] in
                 if let self = self {
                     self.delegate?.tutorialDidEndShow(self)
                 }
@@ -121,12 +121,11 @@ private extension CTXTutorial {
 
 extension CTXTutorial: CTXTutorialModuleDelegate {
     
-    func moduleDidEndShow(_ module: CTXTutorialModule, tutorial: CTXTutorial) {
+    func moduleDidEndShowTutorial(_ module: CTXTutorialModule) {
         delegate?.tutorialDidEndShow(self)
     }
     
     func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
-                                   tutorial: CTXTutorial,
                                    with stepInfo: CTXTutorialStepPresentationInfo) {
         delegate?.tutorialDidShowTutorialStep(self, with: stepInfo)
     }
@@ -140,8 +139,7 @@ extension CTXTutorial: CTXTutorialModuleDelegate {
     }
     
     func module(_ module: CTXTutorialModule,
-                hintViewFor tutorial: CTXTutorial,
-                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
         return delegate?.tutorialHintView(self, with: currentStepModel)
     }
 }

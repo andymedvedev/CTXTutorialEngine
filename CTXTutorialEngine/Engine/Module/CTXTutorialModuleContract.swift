@@ -8,16 +8,14 @@ protocol CTXTutorialView: AnyObject {
     
     var delegate: CTXTutorialContainerDelegate? { get set }
     
-    func show(_ tutorial: CTXTutorial,
-              with stepModels: [CTXTutorialStepModel])
+    func show(with stepModels: [CTXTutorialStepModel])
 }
 
 
 protocol CTXTutorialPresenter: AnyObject {
     
-    func present(_ tutorial: CTXTutorial,
-                 with stepModels: [CTXTutorialStepModel],
-                 completion: @escaping () -> ())
+    func presentTutorial(with stepModels: [CTXTutorialStepModel],
+                         completion: @escaping () -> ())
     
     func onTutorialPrepared(startHandler: @escaping () -> (),
                             cleaningBlock: @escaping () -> ())

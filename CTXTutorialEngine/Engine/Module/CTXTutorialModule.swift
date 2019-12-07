@@ -24,27 +24,24 @@ class CTXTutorialModule {
         self.presenter = presenter
     }
     
-    func present(_ tutorial: CTXTutorial,
-                 with stepModels: [CTXTutorialStepModel],
-                 completion: @escaping () -> ()) {
+    func presentTutorial(with stepModels: [CTXTutorialStepModel],
+                         completion: @escaping () -> ()) {
         
-        self.presenter?.present(tutorial,
-                                with: stepModels,
-                                completion: completion)
+        presenter?.presentTutorial(with: stepModels,
+                                   completion: completion)
     }
 }
 
 extension CTXTutorialModule: CTXTutorialContainerDelegate {
     
-    func containerDidEndShow(_ container: CTXTutorialContainerViewController, tutorial: CTXTutorial) {
-        delegate?.moduleDidEndShow(self, tutorial: tutorial)
+    func containerDidEndShowTutorial(_ container: CTXTutorialContainerViewController) {
+        delegate?.moduleDidEndShowTutorial(self)
     }
     
     func containerDidShowTutorialStep(_ container: CTXTutorialContainerViewController,
-                                      tutorial: CTXTutorial,
                                       with stepInfo: CTXTutorialStepPresentationInfo) {
         
-        delegate?.moduleDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
+        delegate?.moduleDidShowTutorialStep(self, with: stepInfo)
     }
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat? {
@@ -56,9 +53,8 @@ extension CTXTutorialModule: CTXTutorialContainerDelegate {
     }
     
     func container(_ container: CTXTutorialContainerViewController,
-                   hintViewFor tutorial: CTXTutorial,
-                   with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+                   hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
     
-        return delegate?.module(self, hintViewFor: tutorial, with: currentStepModel)
+        return delegate?.module(self, hintViewForTutorialWith: currentStepModel)
     }
 }
