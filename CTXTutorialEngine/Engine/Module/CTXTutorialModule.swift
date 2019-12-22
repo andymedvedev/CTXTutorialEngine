@@ -17,6 +17,7 @@ class CTXTutorialModule {
         let router = CTXTutorialRouterImpl()
         
         view.presenter = presenter
+        view.delegate = self
         router.rootViewController = view
         presenter.view = view
         presenter.router = router
@@ -53,8 +54,15 @@ extension CTXTutorialModule: CTXTutorialContainerDelegate {
     }
     
     func container(_ container: CTXTutorialContainerViewController,
-                   hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+                   hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
+                   previousStepHandler: VoidClosure?,
+                   nextStepHandler: VoidClosure?,
+                   closehandler: VoidClosure?) -> UIView? {
     
-        return delegate?.module(self, hintViewForTutorialWith: currentStepModel)
+        return delegate?.module(self,
+                                hintViewForTutorialWith: currentStepModel,
+                                previousStepHandler: previousStepHandler,
+                                nextStepHandler: nextStepHandler,
+                                closehandler: closehandler)
     }
 }

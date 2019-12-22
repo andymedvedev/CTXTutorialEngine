@@ -8,12 +8,11 @@
 
 import UIKit
 
-
-
 class ViewController: UIViewController {
     
     let redView = UIView(frame: CGRect(x: 16, y: 50, width: 50, height: 50))
     let blueView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
+    let pinkView = UIView(frame: CGRect(x: 230, y : 50, width: 70, height: 50))
     let greenView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
     let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
     let button = UIButton(type: .custom)
@@ -33,6 +32,7 @@ class ViewController: UIViewController {
         
         redView.backgroundColor = .red
         blueView.backgroundColor = .blue
+        pinkView.backgroundColor = UIColor(red: 1.0, green: 182/255.0, blue: 193/255.0, alpha: 1.0)
         greenView.backgroundColor = .green
         customView.backgroundColor = .brown
         
@@ -41,6 +41,7 @@ class ViewController: UIViewController {
         
         redView.accessibilityIdentifier = "redView"
         blueView.accessibilityIdentifier = "blueView"
+        pinkView.accessibilityIdentifier = "pinkView"
         greenView.accessibilityIdentifier = "greenView"
         customView.accessibilityIdentifier = "myCustomView"
         button.accessibilityIdentifier = "button"
@@ -53,6 +54,7 @@ class ViewController: UIViewController {
         
         self.view.addSubview(redView)
         self.view.addSubview(blueView)
+        self.view.addSubview(pinkView)
         self.view.addSubview(greenView)
         self.view.addSubview(customView)
         self.view.addSubview(button)
@@ -85,13 +87,36 @@ private extension ViewController {
 }
 
 extension ViewController: CTXTutorialEngineDelegate {
+
+    func engine(_ engine: CTXTutorialEngine,
+                hintViewFor tutorial: CTXTutorial,
+                with currentStepModel: CTXTutorialStepModel,
+                previousStepHandler: VoidClosure?,
+                nextStepHandler: VoidClosure?,
+                closehandler: VoidClosure?) -> UIView? {
+        
+        let anchor = CGPoint(x: currentStepModel.views[0].frame.midX,
+                             y: currentStepModel.views[0].frame.maxY + 16)
+        let hintView = MyHintView(anchor: anchor)
+        
+        hintView.configure(with: currentStepModel.text,
+                           snapshottedViews: currentStepModel.views,
+                           previousStepHandler: previousStepHandler,
+                           nextStepHandler: nextStepHandler,
+                           closeTutorialHandler: closehandler)
+        
+        hintView.frame = CGRect(origin: anchor, size: hintView.sizeThatFits(view.bounds.size))
+        
+        hintView.center.x = view.center.x
+        
+        return hintView
+    }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         
         if tutorial.id == 0 {
             greenView.isHidden = false
         }
-
         
         if tutorial.id == 1 {
             customView.alpha = 1

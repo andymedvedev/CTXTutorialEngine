@@ -4,7 +4,7 @@
 
 import UIKit
 
-
+public typealias VoidClosure = () -> Void
 
 public final class CTXTutorialEngine {
     
@@ -192,8 +192,16 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     }
     
     func tutorialHintView(_ tutorial: CTXTutorial,
-                          with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+                          with currentStepModel: CTXTutorialStepModel,
+                          previousStepHandler: VoidClosure?,
+                          nextStepHandler: VoidClosure?,
+                          closehandler: VoidClosure?) -> UIView? {
         
-        return delegate?.engine(self, hintViewFor: tutorial, with: currentStepModel)
+        return delegate?.engine(self,
+                                hintViewFor: tutorial,
+                                with: currentStepModel,
+                                previousStepHandler: previousStepHandler,
+                                nextStepHandler: nextStepHandler,
+                                closehandler: closehandler)
     }
 }

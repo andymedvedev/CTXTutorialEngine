@@ -22,6 +22,11 @@
                                 {
                                     "text": "Blue View Tutorial step",
                                     "accessibilityIdentifier": "blueView"
+                                },
+                                
+                                {
+                                    "text": "Pink View Tutorial step",
+                                    "accessibilityIdentifier": "pinkView"
                                 }
                             ]
                         }

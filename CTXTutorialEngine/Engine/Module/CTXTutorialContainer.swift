@@ -8,7 +8,7 @@ final class CTXTutorialContainerView: UIView {
     
     private var safeAreaGetter: (() -> (CGFloat, CGFloat))?
     private var closeHandler: (() -> Void)?
-    private var hintView: CTXTutorialHintViewType?
+    private var hintView: UIView?
     private var snapshots: [UIView]?
     private let darkOverlay = UIView()
     
@@ -25,6 +25,12 @@ final class CTXTutorialContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        darkOverlay.frame = self.bounds
+    }
+    
     func configure(backgroundSnapshot: UIView,
                    overlayColor: UIColor,
                    closeHandler: @escaping () -> Void) {
@@ -34,16 +40,9 @@ final class CTXTutorialContainerView: UIView {
         
         addSubview(backgroundSnapshot)
         addSubview(darkOverlay)
-        
-        NSLayoutConstraint.activate([
-            darkOverlay.leadingAnchor.constraint(equalTo: leadingAnchor),
-            darkOverlay.trailingAnchor.constraint(equalTo: trailingAnchor),
-            darkOverlay.topAnchor.constraint(equalTo: topAnchor),
-            darkOverlay.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
     }
     
-    func showNextStep(with hintView: CTXTutorialHintViewType, snapshots: [UIView]) {
+    func showStep(with hintView: UIView, snapshots: [UIView]) {
         
         self.hintView?.removeFromSuperview()
         self.snapshots?.forEach{ $0.removeFromSuperview() }
@@ -57,7 +56,6 @@ final class CTXTutorialContainerView: UIView {
         
         if let hintView = self.hintView {
             addSubview(hintView)
-            hintView.center = center
         }
     }
 }

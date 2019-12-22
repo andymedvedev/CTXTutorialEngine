@@ -10,7 +10,7 @@ import Foundation
 
 public struct CTXTutorialStepPresentationInfo {
     
-    let step: Int
+    let stepIndex: Int
     let stepsCount: Int
     let stepModel: CTXTutorialStepModel
 }

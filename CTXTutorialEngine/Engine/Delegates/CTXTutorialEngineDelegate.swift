@@ -16,7 +16,10 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
     
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
-                with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
+                with currentStepModel: CTXTutorialStepModel,
+                previousStepHandler: VoidClosure?,
+                nextStepHandler: VoidClosure?,
+                closehandler: VoidClosure?) -> UIView?
     
     func tutorialOverlayColor() -> UIColor?
     
@@ -33,7 +36,12 @@ public extension CTXTutorialEngineDelegate {
     
     func engineDidShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {}
     
-    func engine(_ engine: CTXTutorialEngine, hintViewFor tutorial: CTXTutorial, with currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
+    func engine(_ engine: CTXTutorialEngine,
+                hintViewFor tutorial: CTXTutorial,
+                with currentStepModel: CTXTutorialStepModel,
+                previousStepHandler: VoidClosure?,
+                nextStepHandler: VoidClosure?,
+                closehandler: VoidClosure?) -> UIView? {
         return nil
     }
     

@@ -16,9 +16,9 @@ public class CTXTutorial: CTXTutorialProtocol {
     
     weak var delegate: CTXTutorialDelegate?
     
-    
     private var eventsChain = [CTXTutorialEvent]()
     private var poppedEventsChain = [CTXTutorialEvent]()
+    private var module: CTXTutorialModule?
     
     init<M: Meta>(with config: CTXTutorialConfig<M>) {
         
@@ -108,6 +108,8 @@ private extension CTXTutorial {
             
             let module = CTXTutorialModule()
             
+            module.delegate = self
+            
             delegate?.tutorialWillShow(self)
                         
             module.presentTutorial(with: models) { [weak self] in
@@ -115,6 +117,8 @@ private extension CTXTutorial {
                     self.delegate?.tutorialDidEndShow(self)
                 }
             }
+            
+            self.module = module
         }
     }
 }
@@ -139,7 +143,13 @@ extension CTXTutorial: CTXTutorialModuleDelegate {
     }
     
     func module(_ module: CTXTutorialModule,
-                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
-        return delegate?.tutorialHintView(self, with: currentStepModel)
+                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
+                previousStepHandler: VoidClosure?,
+                nextStepHandler: VoidClosure?,
+                closehandler: VoidClosure?) -> UIView? {
+        return delegate?.tutorialHintView(self, with: currentStepModel,
+                                          previousStepHandler: previousStepHandler,
+                                          nextStepHandler: nextStepHandler,
+                                          closehandler: closehandler)
     }
 }

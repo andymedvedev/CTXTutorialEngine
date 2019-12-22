@@ -21,26 +21,8 @@ protocol CTXTutorialModuleDelegate: AnyObject {
     func tutorialOverlayColor() -> UIColor?
     
     func module(_ module: CTXTutorialModule,
-                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType?
-}
-
-extension CTXTutorialModuleDelegate {
-    
-    func moduleDidEndShowTutorial(_ module: CTXTutorialModule) {}
-    
-    func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
-                                   with stepInfo: CTXTutorialStepPresentationInfo) {}
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
-        return nil
-    }
-    
-    func tutorialOverlayColor() -> UIColor? {
-        return nil
-    }
-    
-    func module(_ module: CTXTutorialModule,
-                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel) -> CTXTutorialHintViewType? {
-        return nil
-    }
+                hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
+                previousStepHandler: VoidClosure?,
+                nextStepHandler: VoidClosure?,
+                closehandler: VoidClosure?) -> UIView?
 }
