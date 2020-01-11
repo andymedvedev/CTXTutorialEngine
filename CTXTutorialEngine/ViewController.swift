@@ -126,4 +126,8 @@ extension ViewController: CTXTutorialEngineDelegate {
             CTXTutorialEngine.shared.unobserve(self)
         }
     }
+    
+    func preferredStatusBarStyle() -> UIStatusBarStyle? {
+        return .lightContent
+    }
 }

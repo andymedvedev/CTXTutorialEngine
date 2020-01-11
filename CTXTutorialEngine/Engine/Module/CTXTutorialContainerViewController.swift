@@ -21,7 +21,11 @@ final class CTXTutorialContainerViewController: UIViewController {
     private let tutorialContainer = CTXTutorialContainerView()
     private var currentStepIndex = 0
     private var totalStepsCount = 1
-    private var statusBarStyle: UIStatusBarStyle?
+    private var statusBarStyle: UIStatusBarStyle? {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     override var shouldAutorotate: Bool {
         return false
@@ -52,7 +56,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         
         window?.pause()
         
-        statusBarStyle = backgroundVC.preferredStatusBarStyle
+        statusBarStyle =  delegate?.preferredStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
         
         snapshotStepModels = getSnapshotsModels(by: stepModels)
         
@@ -76,8 +80,6 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
                                          self?.presenter = nil
                                          window?.resume()
                                       })
-        
-        
     }
 }
 
@@ -111,7 +113,7 @@ private extension CTXTutorialContainerViewController {
                 presentedViewSnapshot.layer.cornerRadius = cornerRadius
                 presentedViewSnapshot.layer.masksToBounds = true
                 
-                statusBarStyle = topPresentedVC.preferredStatusBarStyle
+                statusBarStyle = delegate?.preferredStatusBarStyle() ?? topPresentedVC.preferredStatusBarStyle
                 
                 backgroundSnapshot.addSubview(presentedViewSnapshot)
             }

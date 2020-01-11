@@ -18,6 +18,8 @@ protocol CTXTutorialModuleDelegate: AnyObject {
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat?
     
+    func preferredStatusBarStyle() -> UIStatusBarStyle?
+    
     func tutorialOverlayColor() -> UIColor?
     
     func module(_ module: CTXTutorialModule,
