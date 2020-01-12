@@ -32,15 +32,7 @@ final class CTXTutorialContainerViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        let defaultStyle: UIStatusBarStyle
-        
-        if #available(iOS 13.0, *) {
-            defaultStyle = .darkContent
-        } else {
-            defaultStyle = .default
-        }
-        
-        return statusBarStyle ?? defaultStyle
+        return statusBarStyle ?? .default
     }
     
     override func loadView() {
