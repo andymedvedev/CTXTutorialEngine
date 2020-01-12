@@ -60,7 +60,6 @@ public final class MyHintView: UIView {
     }
     
     public func configure(with text: String?,
-                          snapshottedViews: [UIView],
                           previousStepHandler: VoidClosure?,
                           nextStepHandler: VoidClosure?,
                           closeTutorialHandler: VoidClosure?) {

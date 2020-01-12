@@ -17,6 +17,14 @@ class ViewController: UIViewController {
     let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
     let button = UIButton(type: .custom)
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
+    }
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -100,7 +108,6 @@ extension ViewController: CTXTutorialEngineDelegate {
         let hintView = MyHintView(anchor: anchor)
         
         hintView.configure(with: currentStepModel.text,
-                           snapshottedViews: currentStepModel.views,
                            previousStepHandler: previousStepHandler,
                            nextStepHandler: nextStepHandler,
                            closeTutorialHandler: closehandler)
@@ -113,6 +120,8 @@ extension ViewController: CTXTutorialEngineDelegate {
     }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         if tutorial.id == 0 {
             greenView.isHidden = false
@@ -127,7 +136,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         }
     }
     
-    func preferredStatusBarStyle() -> UIStatusBarStyle? {
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
         return .lightContent
     }
 }

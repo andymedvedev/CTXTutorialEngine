@@ -49,8 +49,8 @@ extension CTXTutorialModule: CTXTutorialContainerDelegate {
         return delegate?.cornerRadiusForModalViewSnapshot()
     }
     
-    func preferredStatusBarStyle() -> UIStatusBarStyle? {
-         return delegate?.preferredStatusBarStyle()
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
+         return delegate?.preferredTutorialStatusBarStyle()
     }
     
     func tutorialOverlayColor() -> UIColor? {

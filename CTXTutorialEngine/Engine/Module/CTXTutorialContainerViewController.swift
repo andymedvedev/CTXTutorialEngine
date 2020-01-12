@@ -32,7 +32,15 @@ final class CTXTutorialContainerViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle ?? .default
+        let defaultStyle: UIStatusBarStyle
+        
+        if #available(iOS 13.0, *) {
+            defaultStyle = .darkContent
+        } else {
+            defaultStyle = .default
+        }
+        
+        return statusBarStyle ?? defaultStyle
     }
     
     override func loadView() {
@@ -56,7 +64,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         
         window?.pause()
         
-        statusBarStyle =  delegate?.preferredStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
+        statusBarStyle =  delegate?.preferredTutorialStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
         
         snapshotStepModels = getSnapshotsModels(by: stepModels)
         
@@ -113,7 +121,7 @@ private extension CTXTutorialContainerViewController {
                 presentedViewSnapshot.layer.cornerRadius = cornerRadius
                 presentedViewSnapshot.layer.masksToBounds = true
                 
-                statusBarStyle = delegate?.preferredStatusBarStyle() ?? topPresentedVC.preferredStatusBarStyle
+                statusBarStyle = delegate?.preferredTutorialStatusBarStyle() ?? topPresentedVC.preferredStatusBarStyle
                 
                 backgroundSnapshot.addSubview(presentedViewSnapshot)
             }

@@ -18,7 +18,7 @@ protocol CTXTutorialContainerDelegate: AnyObject {
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat?
     
-    func preferredStatusBarStyle() -> UIStatusBarStyle?
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle?
     
     func tutorialOverlayColor() -> UIColor?
     

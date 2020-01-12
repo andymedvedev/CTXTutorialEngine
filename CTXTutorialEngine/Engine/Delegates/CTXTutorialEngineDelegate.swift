@@ -21,7 +21,7 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
                 nextStepHandler: VoidClosure?,
                 closehandler: VoidClosure?) -> UIView?
 
-    func preferredStatusBarStyle() -> UIStatusBarStyle?
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle?
     
     func tutorialOverlayColor() -> UIColor?
     
@@ -47,7 +47,7 @@ public extension CTXTutorialEngineDelegate {
         return nil
     }
     
-    func preferredStatusBarStyle() -> UIStatusBarStyle? {
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
         return nil
     }
     
