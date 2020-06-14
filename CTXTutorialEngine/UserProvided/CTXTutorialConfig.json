@@ -2,7 +2,7 @@
     "tutorials": [
         {
             "id": 0,
-            "name": "redBlueViewsTutorial",
+            "name": "redBluePinkViewsTutorial",
             "events": [
                 {
                     "MyEvent": {
@@ -13,7 +13,7 @@
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
-                            "steps":[
+                            "steps": [
                                 {
                                     "text": "Red View Tutorial step",
                                     "accessibilityIdentifier": "redView"
@@ -48,7 +48,7 @@
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
-                            "steps":[
+                            "steps": [
                                 {
                                     "text": "Green View Tutorial step",
                                     "accessibilityIdentifier": "greenView"
@@ -79,7 +79,7 @@
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
-                            "steps":[
+                            "steps": [
                                 {
                                     "text": "User tapped button and it shown on screen",
                                     "accessibilityIdentifier": "button"

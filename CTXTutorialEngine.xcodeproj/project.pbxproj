@@ -46,6 +46,7 @@
 		2C802558239B8F8B00B2C454 /* CTXTutiralModuleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C802557239B8F8B00B2C454 /* CTXTutiralModuleDelegate.swift */; };
 		2C80255A239B922F00B2C454 /* CTXTutorialDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C802559239B922F00B2C454 /* CTXTutorialDelegate.swift */; };
 		2CC3C924233F7FC500E1EB77 /* CTXTutorialAdditionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3C923233F7FC500E1EB77 /* CTXTutorialAdditionError.swift */; };
+		2CE53E9E24961E07000221CF /* CTXTutotialHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE53E9D24961E07000221CF /* CTXTutotialHintView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		2C802557239B8F8B00B2C454 /* CTXTutiralModuleDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutiralModuleDelegate.swift; sourceTree = "<group>"; };
 		2C802559239B922F00B2C454 /* CTXTutorialDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialDelegate.swift; sourceTree = "<group>"; };
 		2CC3C923233F7FC500E1EB77 /* CTXTutorialAdditionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialAdditionError.swift; sourceTree = "<group>"; };
+		2CE53E9D24961E07000221CF /* CTXTutotialHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutotialHintView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 				2C1601C723358AC1000D0FBA /* CTXTutorialEvent.swift */,
 				2C1601C323358AC1000D0FBA /* CTXTutorial.swift */,
 				2C2B9E83233CF18D009F0E57 /* CTXTutorialConstants.swift */,
+				2CE53E9D24961E07000221CF /* CTXTutotialHintView.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				2C19A116233C801700F1AE09 /* CTXTutorialEventConfigMetaType.swift in Sources */,
 				2C20EDB62335C63A00CC57A1 /* CTXTutorialViewVisiblityChecker.swift in Sources */,
 				2C80255A239B922F00B2C454 /* CTXTutorialDelegate.swift in Sources */,
+				2CE53E9E24961E07000221CF /* CTXTutotialHintView.swift in Sources */,
 				2C20EDAF2335B03900CC57A1 /* CTXTutorialStepModel.swift in Sources */,
 				2C2B9E82233CED32009F0E57 /* UIApplicationExtension.swift in Sources */,
 				2C1601D123358AC1000D0FBA /* CTXTutorialEvent.swift in Sources */,

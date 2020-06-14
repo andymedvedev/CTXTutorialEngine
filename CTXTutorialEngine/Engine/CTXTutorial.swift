@@ -148,12 +148,11 @@ extension CTXTutorial: CTXTutorialModuleDelegate {
     
     func module(_ module: CTXTutorialModule,
                 hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
-                previousStepHandler: VoidClosure?,
-                nextStepHandler: VoidClosure?,
-                closehandler: VoidClosure?) -> UIView? {
-        return delegate?.tutorialHintView(self, with: currentStepModel,
-                                          previousStepHandler: previousStepHandler,
-                                          nextStepHandler: nextStepHandler,
-                                          closehandler: closehandler)
+                isHavePreviousStep: Bool,
+                isHaveNextStep: Bool) -> CTXTutorialHintView? {
+        return delegate?.tutorialHintView(self,
+                                          with: currentStepModel,
+                                          isHavePreviousStep: isHavePreviousStep,
+                                          isHaveNextStep: isHaveNextStep)
     }
 }

@@ -8,29 +8,17 @@
 
 import UIKit
 
-public final class MyHintView: UIView {
+public final class MyHintView: UIView, CTXTutorialHintView {
 
-    private var previousStepHandler: VoidClosure?
-    private var nextStepHandler: VoidClosure?
-    private var closeTutorialHandler: VoidClosure?
+    public var previousStepHandler: VoidClosure?
+    public var nextStepHandler: VoidClosure?
+    public var closeTutorialHandler: VoidClosure?
 
     private let textLabel = UILabel()
     private let buttonsStackView = UIStackView()
     private let horizontalInset: CGFloat = 16
     private let topInset: CGFloat = 8
     private let verticalSpacing: CGFloat = 16
-
-    let anchor: CGPoint
-    
-    init(anchor: CGPoint) {
-        self.anchor = anchor
-        
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -60,14 +48,9 @@ public final class MyHintView: UIView {
     }
     
     public func configure(with text: String?,
-                          previousStepHandler: VoidClosure?,
-                          nextStepHandler: VoidClosure?,
-                          closeTutorialHandler: VoidClosure?) {
-        
-        self.previousStepHandler = previousStepHandler
-        self.nextStepHandler = nextStepHandler
-        self.closeTutorialHandler = closeTutorialHandler
-        
+                          isHavePreviousStep: Bool,
+                          isHaveNextStep: Bool,
+                          isHaveCloseButton: Bool) {
         textLabel.text = text
         textLabel.numberOfLines = 0
         textLabel.font = .systemFont(ofSize: 13)
@@ -92,9 +75,9 @@ public final class MyHintView: UIView {
             buttonsStackView.addArrangedSubview($0)
         }
         
-        previousButton.isHidden = previousStepHandler == nil
-        nextButton.isHidden = nextStepHandler == nil
-        closeButton.isHidden = closeTutorialHandler == nil
+        previousButton.isHidden = !isHavePreviousStep
+        nextButton.isHidden = !isHaveNextStep
+        closeButton.isHidden = !isHaveCloseButton
         
         buttonsStackView.axis = .horizontal
         buttonsStackView.addArrangedSubview(closeButton)

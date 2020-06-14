@@ -124,7 +124,7 @@ private extension CTXTutorialContainerViewController {
         
         let snapshotsModels = stepModels.map { model -> CTXTutorialStepModel in
             
-            let snapshots = model.views.compactMap{ view -> UIView? in
+            let snapshots = model.views.compactMap { view -> UIView? in
                 
                 let snapshot = view.snapshotView(afterScreenUpdates: true)
 
@@ -157,14 +157,21 @@ private extension CTXTutorialContainerViewController {
     
     func handleStep() {
         let snapshotStepModel = snapshotStepModels[currentStepIndex]
-
+        let isHavePreviousStep = totalStepsCount > 1 && currentStepIndex > 0
+        let isHaveNextStep = totalStepsCount > 1 && currentStepIndex < totalStepsCount - 1
+        
         let customHintView = delegate?.container(self,
                                                  hintViewForTutorialWith: snapshotStepModel,
-                                                 previousStepHandler: previousStepHandler(),
-                                                 nextStepHandler: nextStepHandler(),
-                                                 closehandler:{ [weak self] in
-                                                    self?.presenter?.onHideTutorial()
-                                                 })
+                                                 isHavePreviousStep: isHavePreviousStep,
+                                                 isHaveNextStep: isHaveNextStep)
+        
+        customHintView?.previousStepHandler = previousStepHandler()
+        customHintView?.nextStepHandler = nextStepHandler()
+        customHintView?.closeTutorialHandler = {
+            [weak self] in
+            
+            self?.presenter?.onHideTutorial()
+        }
         
         if let customHintView = customHintView {
             tutorialContainer.showStep(with: customHintView, snapshots: snapshotStepModel.views)

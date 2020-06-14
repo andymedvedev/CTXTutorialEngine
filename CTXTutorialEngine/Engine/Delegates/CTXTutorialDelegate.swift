@@ -24,7 +24,6 @@ protocol CTXTutorialDelegate: AnyObject {
     
     func tutorialHintView(_ tutorial: CTXTutorial,
                           with currentStepModel: CTXTutorialStepModel,
-                          previousStepHandler: VoidClosure?,
-                          nextStepHandler: VoidClosure?,
-                          closehandler: VoidClosure?) -> UIView?
+                          isHavePreviousStep: Bool,
+                          isHaveNextStep: Bool) -> CTXTutorialHintView?
 }

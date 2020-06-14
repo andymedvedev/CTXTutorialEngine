@@ -17,9 +17,8 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
                 with currentStepModel: CTXTutorialStepModel,
-                previousStepHandler: VoidClosure?,
-                nextStepHandler: VoidClosure?,
-                closehandler: VoidClosure?) -> UIView?
+                isHavePreviousStep: Bool,
+                isHaveNextStep: Bool) -> CTXTutorialHintView?
 
     func preferredTutorialStatusBarStyle() -> UIStatusBarStyle?
     
@@ -41,9 +40,8 @@ public extension CTXTutorialEngineDelegate {
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
                 with currentStepModel: CTXTutorialStepModel,
-                previousStepHandler: VoidClosure?,
-                nextStepHandler: VoidClosure?,
-                closehandler: VoidClosure?) -> UIView? {
+                isHavePreviousStep: Bool,
+                isHaveNextStep: Bool) -> CTXTutorialHintView? {
         return nil
     }
     

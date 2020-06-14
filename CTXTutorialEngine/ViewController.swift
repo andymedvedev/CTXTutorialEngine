@@ -25,14 +25,6 @@ class ViewController: UIViewController {
         }
     }
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,20 +91,19 @@ extension ViewController: CTXTutorialEngineDelegate {
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
                 with currentStepModel: CTXTutorialStepModel,
-                previousStepHandler: VoidClosure?,
-                nextStepHandler: VoidClosure?,
-                closehandler: VoidClosure?) -> UIView? {
+                isHavePreviousStep: Bool,
+                isHaveNextStep: Bool) -> CTXTutorialHintView? {
         
-        let anchor = CGPoint(x: currentStepModel.views[0].frame.midX,
+        let origin = CGPoint(x: currentStepModel.views[0].frame.midX,
                              y: currentStepModel.views[0].frame.maxY + 16)
-        let hintView = MyHintView(anchor: anchor)
+        let hintView = MyHintView()
         
         hintView.configure(with: currentStepModel.text,
-                           previousStepHandler: previousStepHandler,
-                           nextStepHandler: nextStepHandler,
-                           closeTutorialHandler: closehandler)
+                           isHavePreviousStep: isHavePreviousStep,
+                           isHaveNextStep: isHaveNextStep,
+                           isHaveCloseButton: true)
         
-        hintView.frame = CGRect(origin: anchor, size: hintView.sizeThatFits(view.bounds.size))
+        hintView.frame = CGRect(origin: origin, size: hintView.sizeThatFits(view.bounds.size))
         
         hintView.center.x = view.center.x
         

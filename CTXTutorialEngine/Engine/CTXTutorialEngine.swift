@@ -197,15 +197,13 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     
     func tutorialHintView(_ tutorial: CTXTutorial,
                           with currentStepModel: CTXTutorialStepModel,
-                          previousStepHandler: VoidClosure?,
-                          nextStepHandler: VoidClosure?,
-                          closehandler: VoidClosure?) -> UIView? {
+                          isHavePreviousStep: Bool,
+                          isHaveNextStep: Bool) -> CTXTutorialHintView? {
         
         return delegate?.engine(self,
                                 hintViewFor: tutorial,
                                 with: currentStepModel,
-                                previousStepHandler: previousStepHandler,
-                                nextStepHandler: nextStepHandler,
-                                closehandler: closehandler)
+                                isHavePreviousStep: isHavePreviousStep,
+                                isHaveNextStep: isHaveNextStep)
     }
 }
