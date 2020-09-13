@@ -41,14 +41,14 @@ pod 'CTXTutorialEngine'
 
 Assuming that you want:
 * show tutorial with three steps when all three views with `accessibilityIdentifier`s:
-  `redView`
-  `greenView`
-  `blueView`
+  - `redView`
+  - `greenView`
+  - `blueView`
   
   and show texts for them, for example:
-  `This view is red and its hot`
-  `This view is green like a grass`
-  `This view is looks like deep sea or sky`
+  - `This view is red and its hot`
+  - `This view is green like a grass`
+  - `This view is looks like deep sea or sky`
   
   in that sequance.
   
