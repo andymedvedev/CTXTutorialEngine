@@ -54,7 +54,9 @@ Assuming that you want:
   
 Then you need to do following setup:
   
-1. Add this code to your project somewhere:
+1. Add `MyHintView` class that conforms to `CTXTutorialHintView` protocol.
+
+2. Add this code to your project somewhere:
 
 ``` swift
   import CTXTutorialEngine
@@ -162,9 +164,8 @@ Then you need to do following setup:
      }
  ```
 
-2. Add `MyHintView` class that conforms to `CTXTutorialHintView` protocol.
-
 3. Add `CTXTutorialConfig.json` to your project with content:
+
 ```
 {
     "tutorials": [
