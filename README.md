@@ -1,13 +1,11 @@
-# Product Name
-> Short blurb about what your product does.
+# CTXTutorialEngine
+> Show contextual hints or event tutorials for your views
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-One to two paragraph statement about your product and what it does.
 
 ![](header.png)
 
@@ -16,11 +14,10 @@ One to two paragraph statement about your product and what it does.
 - [x] Engine can read configuration file for tutorials setup or you can add tutrials to engine manually.
 - [x] You can add custom events that will be handled by engine
 - [x] Can set polling interval
-- [x] 
 
 ## Requirements
 
-- iOS 10.0+
+- iOS 11.0+
 - Xcode 10.0+
 
 ## Installation
@@ -29,22 +26,9 @@ One to two paragraph statement about your product and what it does.
 You can use [CocoaPods](http://cocoapods.org/) to install `YourLibrary` by adding it to your `Podfile`:
 
 ```ruby
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 pod 'CTXTutorialEngine'
-```
-
-To get the full benefits import `YourLibrary` wherever you import UIKit
-
-``` swift
-import UIKit
-import CTXTutorialEngine
-```
-#### Carthage
-Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/YourLibrary.framework` to an iOS project.
-
-```
-github "andertsk/CTXTutorialEngine"
 ```
 
 ## The engine is based on the following provisions:
@@ -72,7 +56,7 @@ Then you need to do following setup:
   
 1. Add this code to your project somewhere:
 
-  ```
+``` swift
   import CTXTutorialEngine
   
   enum MyEvent: CTXTutorialEvent {
@@ -116,7 +100,7 @@ Then you need to do following setup:
  
  then
  
-  ```
+``` swift
   import CTXTutorialEngine
   
   struct MyEventConfig: CTXTutorialEventConfig {
@@ -126,7 +110,7 @@ Then you need to do following setup:
  
  then
  
- ```
+``` swift
  final class MyEventConfigMetatype: CTXTutorialEventConfigMetaType {
      
      enum ConfigType: String{
@@ -149,7 +133,7 @@ Then you need to do following setup:
  
  and at `AppDelegate.swift` make code to look like this:
  
- ```
+``` swift
  import UIKit
  import CTXTutorialEngine
  
@@ -223,7 +207,7 @@ Then you need to do following setup:
 
 and your ViewCotroller's code should looks like this:
 
-```
+``` swift
 import CTXTutorialEngine
 
 class ViewController: UIViewController {
@@ -288,7 +272,7 @@ For more details see example.
 
 ## With carefull
 
-- If you want rename `MyEvent` class with different one then replace all occurences of this string in your project.
+If you want to rename `MyEvent` class with different one then replace all occurences of this string in your project.
 
 ## Contribute
 
