@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
     let button = UIButton(type: .custom)
     
+    private let engine = CTXTutorialEngine.shared
+    private let eventsBus = CTXTutorialEventBus.shared
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
             return .darkContent
@@ -63,9 +66,9 @@ class ViewController: UIViewController {
         pinkView.isHidden = true
         customView.alpha = 0
         
-        CTXTutorialEngine.shared.observe(self, contentType: .dynamic)
-        CTXTutorialEngine.shared.delegate = self
-        CTXTutorialEngine.shared.start()
+        engine.shared.observe(self, contentType: .dynamic)
+        engine.shared.delegate = self
+        engine.shared.start()
     }
     
     func makeMaskShape() -> CAShapeLayer {
@@ -81,7 +84,7 @@ class ViewController: UIViewController {
 private extension ViewController {
     
     @objc func tap() {
-        CTXTutorialEventBus.shared.push(MyEvent.tapButton)
+        eventsBus.push(MyEvent.tapButton)
     }
 }
 
@@ -122,7 +125,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         }
         
         if tutorial.id == 2 {
-            CTXTutorialEngine.shared.unobserve(self)
+            engine.unobserve(self)
         }
     }
     

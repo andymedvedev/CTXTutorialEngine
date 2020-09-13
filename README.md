@@ -143,7 +143,8 @@ Then you need to do following setup:
      var window: UIWindow?
 
      let engine = CTXTutorialEngine.shared
-
+     let eventBus = CTXTutorialEventBus.shared
+     
      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
          window = UIWindow(frame: UIScreen.main.bounds)
@@ -155,7 +156,7 @@ Then you need to do following setup:
              }
          }
          
-         CTXTutorialEventBus.shared.push(MyEvent.launch)
+         eventBus.push(MyEvent.launch)
          
          return true
      }
@@ -259,6 +260,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         
         setNeedsStatusBarAppearanceUpdate()
         
+        engine.unobserve(self)
         engine.stop()
     }
     
