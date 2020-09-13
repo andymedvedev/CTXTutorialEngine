@@ -8,7 +8,7 @@ import Foundation
 final class MyEventConfigMetatype: CTXTutorialEventConfigMetaType {
     
     enum ConfigType: String{
-        case myBasicEvent = "MyEvent"
+        case myEvent = "MyEvent"
     }
     
     override var type: Decodable.Type {
@@ -16,7 +16,7 @@ final class MyEventConfigMetatype: CTXTutorialEventConfigMetaType {
         let configType = ConfigType(rawValue: rawValue)
         
         switch configType {
-        case .myBasicEvent?:
+        case .myEvent?:
             return MyEventConfig.self
         default:
             return super.type

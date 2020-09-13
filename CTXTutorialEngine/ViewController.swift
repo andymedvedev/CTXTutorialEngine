@@ -11,9 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
     let redView = UIView(frame: CGRect(x: 16, y: 50, width: 50, height: 50))
-    let blueView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
-    let pinkView = UIView(frame: CGRect(x: 230, y : 50, width: 70, height: 50))
-    let greenView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
+    let greenView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
+    let blueView = UIView(frame: CGRect(x: 230, y : 50, width: 70, height: 50))
+    let pinkView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
     let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
     let button = UIButton(type: .custom)
     
@@ -32,17 +32,16 @@ class ViewController: UIViewController {
         
         redView.backgroundColor = .red
         blueView.backgroundColor = .blue
-        pinkView.backgroundColor = UIColor(red: 1.0, green: 182/255.0, blue: 193/255.0, alpha: 1.0)
         greenView.backgroundColor = .green
+        pinkView.backgroundColor = UIColor(red: 1.0, green: 182/255.0, blue: 193/255.0, alpha: 1.0)
         customView.backgroundColor = .brown
-        
         
         redView.layer.mask = makeMaskShape()
         
         redView.accessibilityIdentifier = "redView"
+        greenView.accessibilityIdentifier = "greenView"
         blueView.accessibilityIdentifier = "blueView"
         pinkView.accessibilityIdentifier = "pinkView"
-        greenView.accessibilityIdentifier = "greenView"
         customView.accessibilityIdentifier = "myCustomView"
         button.accessibilityIdentifier = "button"
         
@@ -53,15 +52,15 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
         self.view.addSubview(redView)
+        self.view.addSubview(greenView)
         self.view.addSubview(blueView)
         self.view.addSubview(pinkView)
-        self.view.addSubview(greenView)
         self.view.addSubview(customView)
         self.view.addSubview(button)
         
         button.center = view.center
         
-        greenView.isHidden = true
+        pinkView.isHidden = true
         customView.alpha = 0
         
         CTXTutorialEngine.shared.observe(self, contentType: .dynamic)
@@ -115,7 +114,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         setNeedsStatusBarAppearanceUpdate()
         
         if tutorial.id == 0 {
-            greenView.isHidden = false
+            pinkView.isHidden = false
         }
         
         if tutorial.id == 1 {

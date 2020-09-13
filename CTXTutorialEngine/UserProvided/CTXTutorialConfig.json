@@ -15,18 +15,18 @@
                         "event": {
                             "steps": [
                                 {
-                                    "text": "Red View Tutorial step",
+                                    "text": "This view is red and its hot",
                                     "accessibilityIdentifier": "redView"
                                 },
                                 
                                 {
-                                    "text": "Blue View Tutorial step",
-                                    "accessibilityIdentifier": "blueView"
+                                    "text": "This view is green like grass",
+                                    "accessibilityIdentifier": "greenView"
                                 },
                                 
                                 {
-                                    "text": "Pink View Tutorial step",
-                                    "accessibilityIdentifier": "pinkView"
+                                    "text": "This view is looks like deep sea or sky",
+                                    "accessibilityIdentifier": "blueView"
                                 }
                             ]
                         }
@@ -50,8 +50,8 @@
                         "event": {
                             "steps": [
                                 {
-                                    "text": "Green View Tutorial step",
-                                    "accessibilityIdentifier": "greenView"
+                                    "text": "Pink View Tutorial step",
+                                    "accessibilityIdentifier": "pinkView"
                                 }
                             ]
                         }
