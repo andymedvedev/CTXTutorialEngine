@@ -280,6 +280,10 @@ extension ViewController: CTXTutorialEngineDelegate {
 
 For more details see example.
 
+## Note
+
+If you are using `SceneDelegate` then conform it to `CTXTutorialWindowContainable`, because engine needs to save current `keyWindow`.
+
 ## With carefull
 
 If you want to rename `MyEvent` class with different one then replace all occurences of this string in your project.
