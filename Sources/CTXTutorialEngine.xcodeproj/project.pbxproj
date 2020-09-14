@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6A74B5250F5DB100471F1B /* CTXTutorialWindowContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A74B4250F5DB100471F1B /* CTXTutorialWindowContainable.swift */; };
 		2C81368A250E7317002DF54C /* CTXTutorialEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C813688250E7317002DF54C /* CTXTutorialEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C8136B3250E794D002DF54C /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C813691250E794D002DF54C /* UIApplicationExtension.swift */; };
 		2C8136B4250E794D002DF54C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C813692250E794D002DF54C /* UIViewExtension.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C6A74B4250F5DB100471F1B /* CTXTutorialWindowContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialWindowContainable.swift; sourceTree = "<group>"; };
 		2C813685250E7317002DF54C /* CTXTutorialEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CTXTutorialEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C813688250E7317002DF54C /* CTXTutorialEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTXTutorialEngine.h; sourceTree = "<group>"; };
 		2C813689250E7317002DF54C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				2C8136B0250E794D002DF54C /* CTXTutorial.swift */,
 				2C8136B1250E794D002DF54C /* CTXTutorialEventBus.swift */,
 				2C8136B2250E794D002DF54C /* CTXTutotialHintView.swift */,
+				2C6A74B4250F5DB100471F1B /* CTXTutorialWindowContainable.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				2C8136CF250E794D002DF54C /* CTXTutotialHintView.swift in Sources */,
 				2C8136C2250E794D002DF54C /* CTXTutoriarPresenterImpl.swift in Sources */,
 				2C8136B5250E794D002DF54C /* CTXTutorialEngineDelegate.swift in Sources */,
+				2C6A74B5250F5DB100471F1B /* CTXTutorialWindowContainable.swift in Sources */,
 				2C8136BC250E794D002DF54C /* CTXTutorialStepModel.swift in Sources */,
 				2C8136C1250E794D002DF54C /* CTXTutorialAdditionError.swift in Sources */,
 				2C8136C5250E794D002DF54C /* CTXTutorialRouterImpl.swift in Sources */,

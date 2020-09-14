@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class CTXTutorialRouterImpl: CTXTutorialRouter {
+public class CTXTutorialRouterImpl: CTXTutorialRouter {
     
     weak var rootViewController: CTXTutorialContainerViewController?
     
@@ -17,8 +17,20 @@ final class CTXTutorialRouterImpl: CTXTutorialRouter {
         
         self.hideCompletion = hideCompletion
         
-        appWindow = UIApplication.shared.keyWindow
-        window = UIWindow(frame: UIScreen.main.bounds)
+        if #available(iOS 13, *) {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let windowContainable = windowScene.delegate as? CTXTutorialWindowContainable {
+                appWindow = windowContainable.window
+                window = UIWindow(windowScene: windowScene)
+            } else {
+                appWindow  = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+                window = UIWindow(frame: UIScreen.main.bounds)
+            }
+        } else {
+            appWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
+        
         window?.rootViewController = self.rootViewController
         window?.windowLevel = .alert
         window?.makeKeyAndVisible()

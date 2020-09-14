@@ -12,13 +12,10 @@ import CTXTutorialEngine
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
     let engine = CTXTutorialEngine.shared
-
+    let eventBus = CTXTutorialEventBus.shared
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        window = UIWindow(frame: UIScreen.main.bounds)
         
         engine.addTutorials(with: [MyEvent.self],
                             eventConfigMetaType: MyEventConfigMetatype.self) { error in
@@ -44,10 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        CTXTutorialEventBus.shared.push(MyEvent.launch)
-        
-        self.window?.rootViewController = ViewController()
-        self.window?.makeKeyAndVisible()
+        eventBus.push(MyEvent.launch)
         
         return true
     }

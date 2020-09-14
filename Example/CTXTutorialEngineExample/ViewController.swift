@@ -29,6 +29,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var w: UIWindow?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,6 +68,10 @@ class ViewController: UIViewController {
         
         pinkView.isHidden = true
         customView.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         engine.observe(self, contentType: .dynamic)
         engine.delegate = self

@@ -7,7 +7,7 @@ import UIKit
 public typealias VoidClosure = () -> Void
 
 public final class CTXTutorialEngine {
-    
+
     public static let shared = CTXTutorialEngine()
     
     public weak var delegate: CTXTutorialEngineDelegate?
