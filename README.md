@@ -1,5 +1,5 @@
 # CTXTutorialEngine
-> Show contextual hints or event tutorials for your views
+> Show contextual hints or even whole tutorials for your views
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
@@ -23,12 +23,11 @@
 ## Installation
 
 #### CocoaPods
-You can use [CocoaPods](http://cocoapods.org/) to install `YourLibrary` by adding it to your `Podfile`:
 
 ```ruby
 platform :ios, '11.0'
 use_frameworks!
-pod 'CTXTutorialEngine'
+pod 'CTXTutorialEngine', '~> 0.0.1'
 ```
 
 ## The engine is based on the following provisions:
@@ -56,7 +55,8 @@ Then you need to do following setup:
   
 1. Add `MyHintView` class that conforms to `CTXTutorialHintView` protocol.
 
-2. Add this code to your project somewhere:
+2. Add this code to your project somewhere,
+where you define your events that engine will handle.
 
 ``` swift
   import CTXTutorialEngine
@@ -99,8 +99,9 @@ Then you need to do following setup:
       }
   }
  ```
+
  
- then
+ then add
  
 ``` swift
   import CTXTutorialEngine
@@ -110,7 +111,7 @@ Then you need to do following setup:
   }
  ```
  
- then
+then add
  
 ``` swift
  final class MyEventConfigMetatype: CTXTutorialEventConfigMetaType {
@@ -132,6 +133,8 @@ Then you need to do following setup:
      }
  }
  ```
+ 
+ this is special metadata class for your events.
  
  and at `AppDelegate.swift` make code to look like this:
  
@@ -207,7 +210,11 @@ Then you need to do following setup:
 }
 ```
 
-and your ViewCotroller's code should looks like this:
+In that config file we have one custom event from class `MyEvent`: `launch`
+and one predefined event `CTXTutorialViewsShownEvent`.
+This config describes that when `launch` event occurs and then three views with corresponding `accessiblityIdentifier`s will show then show tutorial.
+
+And your ViewCotroller's code should looks like this:
 
 ``` swift
 import CTXTutorialEngine
