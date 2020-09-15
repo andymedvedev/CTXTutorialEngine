@@ -17,20 +17,14 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         
         self.hideCompletion = hideCompletion
         
-        if #available(iOS 13, *) {
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                let windowContainable = windowScene.delegate as? CTXTutorialWindowContainable {
-                appWindow = windowContainable.window
-                window = UIWindow(windowScene: windowScene)
-            } else {
-                appWindow  = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
-                window = UIWindow(frame: UIScreen.main.bounds)
-            }
-        } else {
-            appWindow = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
-            window = UIWindow(frame: UIScreen.main.bounds)
-        }
+        appWindow  = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+        window = UIWindow(frame: UIScreen.main.bounds)
         
+        if #available(iOS 13, *) {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                window = UIWindow(windowScene: windowScene)
+            }
+        }
         window?.rootViewController = self.rootViewController
         window?.windowLevel = .alert
         window?.makeKeyAndVisible()
