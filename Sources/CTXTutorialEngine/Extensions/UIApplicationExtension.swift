@@ -10,7 +10,7 @@ import UIKit
 
 extension UIApplication {
     
-    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    class func getTopViewController(base: UIViewController? = UIApplication.keyWindow()?.rootViewController) -> UIViewController? {
         
         if let nav = base as? UINavigationController {
             return getTopViewController(base: nav.visibleViewController)
@@ -21,5 +21,9 @@ extension UIApplication {
         }
         
         return base
+    }
+    
+    class func keyWindow() -> UIWindow? {
+        return UIApplication.shared.windows.filter { $0.isKeyWindow }.first
     }
 }

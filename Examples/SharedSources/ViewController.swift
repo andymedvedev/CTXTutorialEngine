@@ -21,6 +21,8 @@ class ViewController: UIViewController {
     private let engine = CTXTutorialEngine.shared
     private let eventsBus = CTXTutorialEventBus.shared
     
+    var manager: CTXTutorialViewManager?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
             return .darkContent
@@ -74,6 +76,15 @@ class ViewController: UIViewController {
         engine.observe(self, contentType: .dynamic)
         engine.delegate = self
         engine.start()
+        
+        manager = .init(for: view)
+        
+        UIView.animate(withDuration: 2,
+                       delay: .zero,
+                        options: [.autoreverse, .curveEaseInOut, .repeat],
+                        animations: {
+                         self.pinkView.transform = CGAffineTransform.init(translationX: 150, y: 0)
+         })
     }
     
     private func makeRoundShapeLayer() -> CAShapeLayer {
@@ -107,9 +118,13 @@ class ViewController: UIViewController {
     }
 }
 
+var isPaused = false
+
 private extension ViewController {
     
     @objc func tap() {
+        manager?.pause()
+        
         eventsBus.push(MyEvent.tapButton)
     }
 }
@@ -143,17 +158,12 @@ extension ViewController: CTXTutorialEngineDelegate {
         setNeedsStatusBarAppearanceUpdate()
         
         if tutorial.id == 0 {
-            UIView.animate(withDuration: 2,
-                           delay: .zero,
-                            options: [.autoreverse, .curveEaseInOut, .repeat],
-                            animations: {
-                             self.pinkView.transform = CGAffineTransform.init(translationX: 100, y: 0)
-             })
+
             
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
                 _ in
                 
-                self.eventsBus.push(MyEvent.handlePinkView)
+                //self.eventsBus.push(MyEvent.handlePinkView)
             }
         }
         
@@ -162,6 +172,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         }
         
         if tutorial.id == 2 {
+            manager?.resume()
             engine.unobserve(self)
         }
     }

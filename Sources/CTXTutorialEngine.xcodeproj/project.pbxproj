@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C51F31B2510CD7800E37538 /* CTXTutorialViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F31A2510CD7700E37538 /* CTXTutorialViewManager.swift */; };
 		2C6A74B5250F5DB100471F1B /* CTXTutorialWindowContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A74B4250F5DB100471F1B /* CTXTutorialWindowContainable.swift */; };
 		2C81368A250E7317002DF54C /* CTXTutorialEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C813688250E7317002DF54C /* CTXTutorialEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C8136B3250E794D002DF54C /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C813691250E794D002DF54C /* UIApplicationExtension.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C51F31A2510CD7700E37538 /* CTXTutorialViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewManager.swift; sourceTree = "<group>"; };
 		2C6A74B4250F5DB100471F1B /* CTXTutorialWindowContainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialWindowContainable.swift; sourceTree = "<group>"; };
 		2C813685250E7317002DF54C /* CTXTutorialEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CTXTutorialEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C813688250E7317002DF54C /* CTXTutorialEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTXTutorialEngine.h; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		2C8136AA250E794D002DF54C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2C51F31A2510CD7700E37538 /* CTXTutorialViewManager.swift */,
 				2C8136AB250E794D002DF54C /* CTXTutorialEngine.swift */,
 				2C8136AC250E794D002DF54C /* CTXTutorialConstants.swift */,
 				2C8136AD250E794D002DF54C /* CTXTutorialViewVisiblityChecker.swift */,
@@ -283,6 +286,7 @@
 				2C8136BA250E794D002DF54C /* CTXTutorialEventConfigMetaType.swift in Sources */,
 				2C8136CB250E794D002DF54C /* CTXTutorialWeakViewController.swift in Sources */,
 				2C8136B9250E794D002DF54C /* CTXTutorialEventConfigsArray.swift in Sources */,
+				2C51F31B2510CD7800E37538 /* CTXTutorialViewManager.swift in Sources */,
 				2C8136B3250E794D002DF54C /* UIApplicationExtension.swift in Sources */,
 				2C8136C8250E794D002DF54C /* CTXTutorialEngine.swift in Sources */,
 				2C8136BB250E794D002DF54C /* CTXTutorialConfigLoader.swift in Sources */,

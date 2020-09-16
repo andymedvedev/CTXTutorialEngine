@@ -41,29 +41,4 @@ extension UIView {
         
         return true
     }
-    
-    func pause() {
-        
-        let pausedTime: CFTimeInterval = self.layer.convertTime(CACurrentMediaTime(), from: nil)
-        
-        self.layer.speed = 0.0
-        self.layer.timeOffset = pausedTime
-        
-        self.isUserInteractionEnabled = false
-    }
-    
-    func resume() {
-        
-        let pausedTime: CFTimeInterval = self.layer.timeOffset
-        
-        self.layer.speed = 1.0
-        self.layer.timeOffset = 0.0
-        self.layer.beginTime = 0.0
-        
-        let timeSincePause: CFTimeInterval = self.layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
-        
-        self.layer.beginTime = timeSincePause
-        
-        self.isUserInteractionEnabled = true
-    }
 }

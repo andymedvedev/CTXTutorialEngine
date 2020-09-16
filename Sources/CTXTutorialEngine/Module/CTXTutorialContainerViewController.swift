@@ -45,16 +45,11 @@ final class CTXTutorialContainerViewController: UIViewController {
 extension CTXTutorialContainerViewController: CTXTutorialView {
     
     func show(with stepModels: [CTXTutorialStepModel]) {
-        
         totalStepsCount = stepModels.count
-
-        let window = UIApplication.shared.keyWindow
         
         guard let backgroundVC = UIApplication.getTopViewController(),
             let backgroundView = backgroundVC.view,
             let backgroundSnapshot = backgroundView.snapshotView(afterScreenUpdates: true) else { return }
-        
-        window?.pause()
         
         statusBarStyle =  delegate?.preferredTutorialStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
         
@@ -70,7 +65,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         }
         
         presenter?.onTutorialPrepared(startHandler: { [weak self] in
-                                         self?.handleStep()
+                                        self?.handleStep()
                                       },
                                       cleaningBlock: { [weak self] in
                                          if let self = self {
@@ -78,7 +73,6 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
                                          }
                                                 
                                          self?.presenter = nil
-                                         window?.resume()
                                       })
     }
 }
@@ -101,7 +95,6 @@ private extension CTXTutorialContainerViewController {
     
     func configure(backgroundSnapshot: UIView, by backgroundVC: UIViewController) {
         if let topPresentedVC = topPresentedVC(by: backgroundVC) {
-            
             let presentedViewSnapshot = topPresentedVC.view.snapshotView(afterScreenUpdates: true)
             
             if let presentedViewSnapshot = presentedViewSnapshot,
