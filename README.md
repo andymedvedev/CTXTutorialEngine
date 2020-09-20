@@ -29,7 +29,7 @@ CTXTutorialEngine is library provides ability to display hints or even tutorials
 platform :ios, '11.0'
 use_frameworks!
 
-pod 'CTXTutorialEngine', '~> 0.0.1'
+pod 'CTXTutorialEngine', '~> 1.0.0'
 ```
 
 ## The engine is based on the following provisions:
