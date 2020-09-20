@@ -13,7 +13,7 @@ final class CTXTutorialViewVisibilityChecker {
             return false
         }
         
-        let window = UIApplication.shared.keyWindow
+        let window = UIApplication.keyWindow()
         
         if let rootViewController = window?.rootViewController,
             let rootView = rootViewController.view,
