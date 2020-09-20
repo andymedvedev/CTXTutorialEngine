@@ -33,6 +33,12 @@ use_frameworks!
 pod 'CTXTutorialEngine', '~> 1.0.0'
 ```
 
+#### Carthage
+
+```ruby
+github "andymedvedev/CTXTutorialEngine" ~> 1.0.0
+```
+
 ## The engine is based on the following provisions:
 
 - Engine uses `accessibilityIdentifier` of `UIView` to parse view hierarchy
