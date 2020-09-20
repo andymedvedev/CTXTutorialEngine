@@ -7,20 +7,20 @@
 
 import UIKit
 
-public final class CTXTutorialViewManager {
+final class CTXTutorialViewManager {
     
     private let view: UIView
     private var layersSpeeds = [Float]()
     
-    public init(for view: UIView) {
+    init(for view: UIView) {
         self.view = view
     }
     
-    public func pause() {
+    func pause() {
         CALayer.pauseAll(on: view.layer, layerSpeeds: &layersSpeeds)
     }
     
-    public func resume() {
+    func resume() {
         CALayer.resumeAll(on: view.layer, layerSpeeds: &layersSpeeds)
     }
 }

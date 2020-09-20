@@ -121,10 +121,12 @@ private extension CTXTutorialContainerViewController {
                 
                 let snapshot = view.snapshotView(afterScreenUpdates: true)
 
-                snapshot?.accessibilityIdentifier = view.accessibilityIdentifier
-                snapshot?.frame.origin = view.convert(CGPoint.zero, to: nil)
-                snapshot?.layer.cornerRadius = view.layer.cornerRadius
-                snapshot?.layer.masksToBounds = true
+                if let presentationLayer = view.layer.presentation() {
+                    snapshot?.accessibilityIdentifier = view.accessibilityIdentifier
+                    snapshot?.frame = presentationLayer.convert(presentationLayer.bounds, to: nil)
+                    snapshot?.layer.cornerRadius = view.layer.cornerRadius
+                    snapshot?.layer.masksToBounds = true
+                }
 
                 return snapshot
             }

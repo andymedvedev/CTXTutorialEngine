@@ -7,7 +7,6 @@ import UIKit
 final class CTXTutorialViewVisibilityChecker {
     
     func isVisible(_ view: UIView, inSafeArea: Bool = true) -> Bool {
-        
         if view.isHidden
             || view.alpha == 0
             || view.superview == nil {
@@ -17,9 +16,10 @@ final class CTXTutorialViewVisibilityChecker {
         let window = UIApplication.shared.keyWindow
         
         if let rootViewController = window?.rootViewController,
-            let rootView = rootViewController.view {
+            let rootView = rootViewController.view,
+            let presentationLayer = view.layer.presentation() {
 
-            let viewFrame = view.convert(view.bounds, to: nil)
+            let viewFrame = presentationLayer.convert(presentationLayer.bounds, to: nil)
             
             let safeAreaInsets: UIEdgeInsets
             

@@ -11,13 +11,21 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     private var window: UIWindow?
     private var appWindow: UIWindow?
     private var hideCompletion: (() -> Void)?
+    private var viewManager: CTXTutorialViewManager?
     
     func showTutorial(startHandler: @escaping () -> (),
                       hideCompletion: @escaping () -> Void) {
+        guard let appWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
+            print("CTXTutorianEngine: can't find app keyWindow")
+            return
+        }
+        
+        viewManager = CTXTutorialViewManager(for: appWindow)
+        viewManager?.pause()
         
         self.hideCompletion = hideCompletion
         
-        appWindow  = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
+        self.appWindow = appWindow
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if #available(iOS 13, *) {
@@ -25,6 +33,7 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
                 window = UIWindow(windowScene: windowScene)
             }
         }
+        
         window?.rootViewController = self.rootViewController
         window?.windowLevel = .alert
         window?.makeKeyAndVisible()
@@ -33,8 +42,10 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     }
     
     func hideTutorial() {
+        viewManager?.resume()
         window?.windowLevel = .normal
         appWindow?.makeKeyAndVisible()
         hideCompletion?()
+        UIApplication.getTopViewController()?.setNeedsStatusBarAppearanceUpdate()
     }
 }

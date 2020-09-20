@@ -11,17 +11,14 @@ import CTXTutorialEngine
 
 class ViewController: UIViewController {
     
-    private let redView = UIView(frame: CGRect(x: 16, y: 50, width: 50, height: 50))
-    private let greenView = UIView(frame: CGRect(x: 100, y: 50, width: 100, height: 50))
-    private let blueView = UIView(frame: CGRect(x: 230, y : 50, width: 70, height: 50))
-    private let pinkView = UIView(frame: CGRect(x: 16, y: 150, width: 150, height: 100))
-    private let customView = UIView(frame: CGRect(x: 16, y: 300, width: 40, height: 60))
+    private let redView = UIView(frame: CGRect(x: -50, y: 50, width: 50, height: 50))
+    private let greenView = UIView(frame: CGRect(x: -150, y: 150, width: 50, height: 50))
+    private let blueView = UIView(frame: CGRect(x: -250, y : 250, width: 50, height: 50))
+    private let customView = UIView(frame: CGRect(x: 0, y: 350, width: 40, height: 60))
     private let button = UIButton(type: .custom)
     
     private let engine = CTXTutorialEngine.shared
     private let eventsBus = CTXTutorialEventBus.shared
-    
-    var manager: CTXTutorialViewManager?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
@@ -39,16 +36,14 @@ class ViewController: UIViewController {
         redView.backgroundColor = .red
         blueView.backgroundColor = .blue
         greenView.backgroundColor = .green
-        pinkView.backgroundColor = UIColor(red: 1.0, green: 182/255.0, blue: 193/255.0, alpha: 1.0)
-        customView.backgroundColor = .brown
+        customView.backgroundColor = .systemPink
         
-        redView.layer.mask = makeRoundShapeLayer()
-        pinkView.layer.mask = makeStarShapeLayer()
+        redView.layer.mask = roundLayer()
+        greenView.layer.mask = triangleLayer()
         
         redView.accessibilityIdentifier = "redView"
         greenView.accessibilityIdentifier = "greenView"
         blueView.accessibilityIdentifier = "blueView"
-        pinkView.accessibilityIdentifier = "pinkView"
         customView.accessibilityIdentifier = "myCustomView"
         button.accessibilityIdentifier = "button"
         
@@ -61,11 +56,12 @@ class ViewController: UIViewController {
         self.view.addSubview(redView)
         self.view.addSubview(greenView)
         self.view.addSubview(blueView)
-        self.view.addSubview(pinkView)
         self.view.addSubview(customView)
         self.view.addSubview(button)
         
-        button.center = view.center
+        customView.center.x = view.center.x
+        button.center.x = view.center.x
+        button.frame.origin.y = customView.frame.maxY + 50
         
         customView.alpha = 0
     }
@@ -77,17 +73,17 @@ class ViewController: UIViewController {
         engine.delegate = self
         engine.start()
         
-        manager = .init(for: view)
-        
         UIView.animate(withDuration: 2,
-                       delay: .zero,
-                        options: [.autoreverse, .curveEaseInOut, .repeat],
-                        animations: {
-                         self.pinkView.transform = CGAffineTransform.init(translationX: 150, y: 0)
-         })
+                      delay: .zero,
+                       options: [.autoreverse, .curveEaseInOut, .repeat],
+                       animations: {
+                        self.redView.transform = CGAffineTransform(translationX: 100, y: 0)
+                        self.greenView.transform = CGAffineTransform(translationX: 200, y: 0)
+                        self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
+        })
     }
     
-    private func makeRoundShapeLayer() -> CAShapeLayer {
+    private func roundLayer() -> CAShapeLayer {
         let layer = CAShapeLayer()
         
         layer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 50, height: 50), cornerRadius: 50).cgPath
@@ -95,22 +91,14 @@ class ViewController: UIViewController {
         return layer
     }
     
-    private func makeStarShapeLayer() -> CAShapeLayer {
+    private func triangleLayer() -> CAShapeLayer {
         let layer = CAShapeLayer()
         let path = UIBezierPath()
         
-        path.move(to: CGPoint(x: 45.25, y: 0))
-        path.addLine(to: CGPoint(x: 61.13, y: 23))
-        path.addLine(to: CGPoint(x: 88.29, y: 30.75))
-        path.addLine(to: CGPoint(x: 70.95, y: 52.71))
-        path.addLine(to: CGPoint(x: 71.85, y: 80.5))
-        path.addLine(to: CGPoint(x: 45.25, y: 71.07))
-        path.addLine(to: CGPoint(x: 18.65, y: 80.5))
-        path.addLine(to: CGPoint(x: 19.55, y: 52.71))
-        path.addLine(to: CGPoint(x: 2.21, y: 30.75))
-        path.addLine(to: CGPoint(x: 29.37, y: 23))
+        path.move(to: CGPoint(x: 0, y: 50))
+        path.addLine(to: CGPoint(x: 25, y: 0))
+        path.addLine(to: CGPoint(x: 50, y: 50))
         path.close()
-        path.stroke()
         path.fill()
         layer.path = path.cgPath
         
@@ -118,19 +106,19 @@ class ViewController: UIViewController {
     }
 }
 
-var isPaused = false
-
 private extension ViewController {
     
     @objc func tap() {
-        manager?.pause()
-        
         eventsBus.push(MyEvent.tapButton)
     }
 }
 
 extension ViewController: CTXTutorialEngineDelegate {
 
+    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
+        return .lightContent
+    }
+    
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
                 with currentStepModel: CTXTutorialStepModel,
@@ -154,30 +142,12 @@ extension ViewController: CTXTutorialEngineDelegate {
     }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
         if tutorial.id == 0 {
-
-            
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
-                _ in
-                
-                //self.eventsBus.push(MyEvent.handlePinkView)
-            }
-        }
-        
-        if tutorial.id == 1 {
             customView.alpha = 1
         }
         
-        if tutorial.id == 2 {
-            manager?.resume()
+        if tutorial.id == 1 {
             engine.unobserve(self)
         }
-    }
-    
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
-        return .lightContent
     }
 }
