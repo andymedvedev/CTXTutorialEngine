@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.author                = { "Andrey Medvedev" => "andertsk@gmail.com" }
   spec.source                = { :git => "https://github.com/andymedvedev/CTXTutorialEngine.git", :tag => "#{spec.version}" }
 
-  spec.swift_version         = '5.0' 
+  spec.swift_version         = '4.2' 
   spec.source_files          = 'Sources/**/*.{swift,h}'
   spec.platform              = :ios, '11.0'
 end
