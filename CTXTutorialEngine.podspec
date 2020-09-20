@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name                  = "CTXTutorialEngine"
-  spec.version               = "0.0.1"
+  spec.version               = "1.0.0"
   spec.summary               = "CTXTutorialEngine lets to create contextual hints and tutorials."
   spec.description           = "CTXTutorialEngine is the framework that allows to show contextual hints and tutorials."
 
