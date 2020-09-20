@@ -144,6 +144,12 @@ extension ViewController: CTXTutorialEngineDelegate {
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         if tutorial.id == 0 {
             customView.alpha = 1
+            UIView.animate(withDuration: 2,
+                          delay: .zero,
+                           options: [.curveEaseInOut],
+                           animations: {
+                            self.customView.transform = CGAffineTransform(translationX: 0, y: 400)
+            })
         }
         
         if tutorial.id == 1 {

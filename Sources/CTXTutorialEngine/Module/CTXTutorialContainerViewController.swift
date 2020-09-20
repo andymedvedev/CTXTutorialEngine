@@ -48,8 +48,13 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         totalStepsCount = stepModels.count
         
         guard let backgroundVC = UIApplication.getTopViewController(),
-            let backgroundView = backgroundVC.view,
-            let backgroundSnapshot = backgroundView.snapshotView(afterScreenUpdates: true) else { return }
+            let backgroundPresentationLayer = backgroundVC.view.layer.presentation() else { return }
+        
+        let backgroundViewForSnapshot = UIView(frame: backgroundVC.view.frame)
+        let backgroundModelLayer = CALayer(layer: backgroundPresentationLayer)
+        backgroundViewForSnapshot.layer.addSublayer(backgroundModelLayer)
+        
+        guard let backgroundSnapshot = backgroundViewForSnapshot.snapshotView(afterScreenUpdates: true) else { return }
         
         statusBarStyle =  delegate?.preferredTutorialStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
         
