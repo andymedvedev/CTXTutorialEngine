@@ -83,6 +83,12 @@ class ViewController: UIViewController {
         })
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        engine.unobserve(self)
+    }
+    
     private func roundLayer() -> CAShapeLayer {
         let layer = CAShapeLayer()
         
@@ -150,10 +156,6 @@ extension ViewController: CTXTutorialEngineDelegate {
                            animations: {
                             self.customView.transform = CGAffineTransform(translationX: 0, y: 400)
             })
-        }
-        
-        if tutorial.id == 1 {
-            engine.unobserve(self)
         }
     }
 }
