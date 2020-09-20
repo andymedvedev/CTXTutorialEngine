@@ -71,15 +71,14 @@ class ViewController: UIViewController {
         
         engine.observe(self, contentType: .dynamic)
         engine.delegate = self
-        engine.start()
         
         UIView.animate(withDuration: 2,
                       delay: .zero,
                        options: [.autoreverse, .curveEaseInOut, .repeat],
                        animations: {
-                        self.redView.transform = CGAffineTransform(translationX: 100, y: 0)
-                        self.greenView.transform = CGAffineTransform(translationX: 200, y: 0)
-                        self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
+                        self.redView.transform = CGAffineTransform(translationX: 300, y: 0)
+                        self.greenView.transform = CGAffineTransform(translationX: 400, y: 0)
+                        self.blueView.transform = CGAffineTransform(translationX: 500, y: 0)
         })
     }
     
@@ -154,7 +153,7 @@ extension ViewController: CTXTutorialEngineDelegate {
                           delay: .zero,
                            options: [.curveEaseInOut],
                            animations: {
-                            self.customView.transform = CGAffineTransform(translationX: 0, y: 400)
+                            self.customView.transform = CGAffineTransform(translationX: 0, y: 200)
             })
         }
     }

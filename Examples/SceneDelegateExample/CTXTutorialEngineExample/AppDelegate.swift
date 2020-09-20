@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        engine.start()
+        
         eventBus.push(MyEvent.launch)
         
         return true
