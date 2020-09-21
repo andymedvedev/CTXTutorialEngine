@@ -1,6 +1,6 @@
 language: swift
 xcode_sdk: iphonesimulator13.7
-osx_image: xcode11.7
+osx_image: xcode11.6
 env:
   global:
     - PROJECT=CTXTutorialEngine.xcodeproj
