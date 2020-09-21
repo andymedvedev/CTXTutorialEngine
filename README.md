@@ -2,7 +2,7 @@ CTXTutorialEngine
 ========
 
 [![Travis CI](https://travis-ci.org/andymedvedev/CTXTutorialEngine.svg?branch=master)](https://travis-ci.org/Swinject/Swinject)
-[![Swift Version](https://img.shields.io/badge/Swift-4.2--5.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift Version](https://img.shields.io/badge/Swift-5.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 [![License](https://img.shields.io/cocoapods/l/CTXTutorialEngine.svg?style=flat)](http://cocoapods.org/pods/CTXTutorialEngine)
 [![SPM Compatible](https://img.shields.io/badge/SPM-compatible-brightgreen)](https://img.shields.io/badge/SPM-compatible-brightgreen)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
