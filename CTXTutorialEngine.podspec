@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name                  = "CTXTutorialEngine"
-  spec.version               = "1.0.1"
+  spec.version               = "1.0.2"
   spec.summary               = "CTXTutorialEngine lets to create contextual hints and tutorials."
   spec.description           = "CTXTutorialEngine is the framework that allows to show contextual hints and tutorials."
 
@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.author                = { "Andrey Medvedev" => "andertsk@gmail.com" }
   spec.source                = { :git => "https://github.com/andymedvedev/CTXTutorialEngine.git", :tag => "#{spec.version}" }
 
-  spec.swift_version         = '4.2' 
+  spec.swift_version         = '5.2' 
   spec.source_files          = 'Sources/**/*.{swift,h}'
   spec.platform              = :ios, '11.0'
 end

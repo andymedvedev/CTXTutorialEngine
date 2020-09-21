@@ -37,7 +37,7 @@ public final class CTXTutorialEngine {
     private var tutorials = [CTXTutorial]()
     private var pollingTimer: Timer?
     private var stoppedByUser = false
-    
+
     private init() {}
     
     public func addTutorials<M: Meta>(from configName: String = "CTXTutorialConfig",
@@ -144,6 +144,10 @@ private extension CTXTutorialEngine {
                     visibleViewsDict.forEach { (_, viewsArr) in
                         viewsToProcess.append(viewsArr[0][0])
                     }
+                }
+                
+                guard !viewsToProcess.isEmpty else {
+                    return
                 }
                     
                 bus.push(CTXTutorialViewsShownEvent(with: viewsToProcess))

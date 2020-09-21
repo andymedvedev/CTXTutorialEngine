@@ -15,6 +15,8 @@ public final class CTXTutorialWeakViewController {
     
     weak var viewController: UIViewController?
     var provideSortedViewsSlices = true
+    var warningIsProcessed = false
+    
     var visibleAccessibilityViewsDict: [String: [[UIView]]] {
         
         switch contentType {
@@ -55,6 +57,10 @@ public final class CTXTutorialWeakViewController {
             
             let views = viewController.view.accessibilityViews().filter{ visibilityChecker.isVisible($0) }
 
+            if views.isEmpty {
+                print("CTXTutorialEngine Warning: possible you call CTXTutorialEngine.observe(_:, contentType:) with .static contentType before viewDidAppear(_:). No views shown events will be processed.")
+            }
+            
             staticAccessibilityViewsDict = makeDict(from: views)
         default: break
         }

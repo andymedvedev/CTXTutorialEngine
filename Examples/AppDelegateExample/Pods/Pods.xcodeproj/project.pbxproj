@@ -589,6 +589,43 @@
 			};
 			name = Release;
 		};
+		2642410C4FBF6F07BA7C1CC257298F86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A3C0CACE275474EBAB4EFC8705BB038 /* CTXTutorialEngine.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine.modulemap";
+				PRODUCT_MODULE_NAME = CTXTutorialEngine;
+				PRODUCT_NAME = CTXTutorialEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8E7CE826F0C3E4886C3FCB213F64C0EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C595C9804E61B6A9B149566C1B59D4D /* Pods-CTXTutorialEngineExample.debug.xcconfig */;
@@ -621,42 +658,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9244581CD7057DCC5563DF0AB09B7ABE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69BD21C0ACE614E47B35A9BA053998B4 /* CTXTutorialEngine.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine.modulemap";
-				PRODUCT_MODULE_NAME = CTXTutorialEngine;
-				PRODUCT_NAME = CTXTutorialEngine;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -727,9 +728,9 @@
 			};
 			name = Debug;
 		};
-		E936FC2A049460E0EB9683AF8CD47777 /* Release */ = {
+		ED50A52879A6FCF6312318EFA993E7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A3C0CACE275474EBAB4EFC8705BB038 /* CTXTutorialEngine.release.xcconfig */;
+			baseConfigurationReference = 69BD21C0ACE614E47B35A9BA053998B4 /* CTXTutorialEngine.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -756,13 +757,12 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -788,8 +788,8 @@
 		68CCD5B955FD8436A328F0BC4CCBE2CB /* Build configuration list for PBXNativeTarget "CTXTutorialEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9244581CD7057DCC5563DF0AB09B7ABE /* Debug */,
-				E936FC2A049460E0EB9683AF8CD47777 /* Release */,
+				ED50A52879A6FCF6312318EFA993E7E9 /* Debug */,
+				2642410C4FBF6F07BA7C1CC257298F86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
