@@ -20,7 +20,7 @@ matrix:
     - env: JOB="POD_LINT"
       before_install:
       script:
-        - pod libt lint
+        - pod lib lint
     #- env: JOB="XCODE" DEST="OS=11.0,name=iPhone6" SCHEME="CTXTutorialEngine" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
     #  osx_image: xcode11.7
 before_install:
