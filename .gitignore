@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 *.xcworkspacedata
+push_travis_update.sh
