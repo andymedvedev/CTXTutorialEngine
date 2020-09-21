@@ -1,5 +1,6 @@
-language: objective-c
+language: swift
 xcode_sdk: iphonesimulator13.7
+osx_image: xcode11.7
 env:
   global:
     - PROJECT=CTXTutorialEngine.xcodeproj
@@ -7,21 +8,15 @@ git:
   submodules: false
 matrix:
   include:
-    #- env: JOB="SPM" SWIFT_VERSION="5.0"
-    #  language: Swift
-    #  sudo: required
-    #  dist: trustly
-    #  before_install:
-    #    - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
-    #  script:
-    #    - mv .Package.Test.swift Package.swift
-    #    - swift build
-    #    - swift test
+    - env: JOB="SPM" SWIFT_VERSION="5.0"
+      sudo: required
+      dist: trustly
+      script:
+        - swift build
     - env: JOB="XCODE" DEST="OS=11.0,name=iPhone6" SCHEME="CTXTutorialEngine" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
-      osx_image: xcode11.7
 before_install:
-  #- brew update
-  #- brew outdated carthage || brew upgrade carthage
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
 script:
   - set -o pipefail
   - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=NO | xcpretty
