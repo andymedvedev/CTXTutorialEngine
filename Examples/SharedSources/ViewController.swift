@@ -9,6 +9,22 @@
 import UIKit
 import CTXTutorialEngine
 
+class VC: UIViewController {
+    
+    let myView = UIView(frame: CGRect(x: 100, y: 500, width: 200, height: 100))
+    let engine = CTXTutorialEngine.shared
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        myView.backgroundColor = .red
+        myView.accessibilityIdentifier = "myCustomView"
+        engine.observe(self, contentType: .static)
+        view.addSubview(myView)
+    }
+}
+
 class ViewController: UIViewController {
     
     private let redView = UIView(frame: CGRect(x: -50, y: 50, width: 50, height: 50))
@@ -44,7 +60,7 @@ class ViewController: UIViewController {
         redView.accessibilityIdentifier = "redView"
         greenView.accessibilityIdentifier = "greenView"
         blueView.accessibilityIdentifier = "blueView"
-        customView.accessibilityIdentifier = "myCustomView"
+//        customView.accessibilityIdentifier = "myCustomView"
         button.accessibilityIdentifier = "button"
         
         button.backgroundColor =  UIColor(red: 100 / 255.0, green: 151 / 255.0, blue: 177 / 255.0, alpha: 1.0)
@@ -114,7 +130,10 @@ class ViewController: UIViewController {
 private extension ViewController {
     
     @objc func tap() {
-        eventsBus.push(MyEvent.tapButton)
+        
+        let vc = VC()
+        self.present(vc, animated: true)
+        //eventsBus.push(MyEvent.tapButton)
     }
 }
 

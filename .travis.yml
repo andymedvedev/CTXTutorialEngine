@@ -9,7 +9,7 @@ jobs:
       script:
         - set -o pipefail
         - swift build
-    - name "Carthage Build"
+    - name: "Carthage Build"
       before_script:
         - carthage bootstrap
       script:
