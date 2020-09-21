@@ -10,14 +10,12 @@ jobs:
         - set -o pipefail
         - swift build
     - name: "Carthage Build"
-      before_script:
-        - carthage bootstrap
+      before_install:
+        - brew update
+        - brew outdated carthage || brew upgrade carthage
       script:
         - set -o pipefail
         - carthage build --no-skip-current
-before_install:
-    - brew update
-    - brew outdated carthage || brew upgrade carthage
 notifications:
   email:
     on_success: never
