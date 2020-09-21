@@ -8,7 +8,7 @@ git:
   submodules: false
 matrix:
   include:
-    - env: JOB="SPM" SWIFT_VERSION="5.0"
+    - env: JOB="LINUX_SPM" SWIFT_VERSION="5.0"
       sudo: required
       dist: trustly
       script:
@@ -19,7 +19,7 @@ before_install:
   - brew outdated carthage || brew upgrade carthage
 script:
   - set -o pipefail
-  - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release ENABLE_TESTABILITY=NO | xcpretty
+  - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release | xcpretty
 notifications:
   email:
     on_success: never
