@@ -13,13 +13,10 @@ matrix:
       dist: trustly
       script:
         - swift build
-    - env: JOB="XCODE" DEST="OS=11.0,name=iPhone6" SCHEME="CTXTutorialEngine" SDK="iphonesimulator" ACTION="test" PLATFORM="iOS"
-before_install:
-  - brew update
-  - brew outdated carthage || brew upgrade carthage
+    - env: JOB="XCODE" DEST="OS=11.0,name=iPhone6" SCHEME="CTXTutorialEngine" SDK="iphonesimulator" PLATFORM="iOS"
 script:
   - set -o pipefail
-  - xcodebuild "$ACTION" -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release | xcpretty
+  - xcodebuild -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DEST" -configuration Release | xcpretty
 notifications:
   email:
     on_success: never
