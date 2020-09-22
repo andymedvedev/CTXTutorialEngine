@@ -18,9 +18,9 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     public struct ViewModel {
         
         let step: CTXTutorialStepModel
-        let isHavePreviousStep: Bool
-        let isHaveNextStep: Bool
-        let isHaveCloseButton: Bool
+        let showBackButton: Bool
+        let showNextButton: Bool
+        let showCloseButton: Bool
     }
     
     private enum AnchorDirection {
@@ -124,38 +124,33 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             break
         }
         
-        bubleHeight += !closeButton.isHidden ? closeButton.frame.height : .zero
+        if !closeButton.isHidden {
+            bubleHeight += closeButton.frame.height + bubleInnerSpacing
+        }
+        
         let labelSize = textLabel.sizeThatFits(CGSize(width: availableWidthForLabel,
                                                       height: .greatestFiniteMagnitude))
         textLabel.frame = CGRect(origin: CGPoint(x: bubleInsets.left,
-                                                 y: bubleHeight + bubleInnerSpacing),
+                                                 y: bubleHeight),
                                  size: labelSize)
-        bubleHeight += bubleInnerSpacing + labelSize.height
+        bubleHeight += labelSize.height
         
         let width = labelSize.width + bubleInsets.left + bubleInsets.right
-        let rightBottomOrigin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
-                                        y: bubleHeight + bubleInnerSpacing)
         
         if !closeButton.isHidden {
             closeButton.frame.origin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
                                                y: bubleInsets.top)
         }
         
-        switch (backButton.isHidden, nextButton.isHidden) {
-        case (false, false):
-            nextButton.frame.origin = rightBottomOrigin
-            backButton.frame.origin = CGPoint(x: nextButton.frame.minX - buttonSize.width - bubleInnerSpacing,
+        if backButton.isHidden && nextButton.isHidden {
+            bubleHeight += bubleInsets.bottom
+        } else {
+            
+            nextButton.frame.origin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
+                                              y: bubleHeight + bubleInnerSpacing)
+            backButton.frame.origin = CGPoint(x: bubleInsets.left,
                                               y: bubleHeight + bubleInnerSpacing)
             bubleHeight += backButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
-        case (true, false):
-            nextButton.frame.origin = rightBottomOrigin
-            bubleHeight += nextButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
-        case (false, true):
-            backButton.frame.origin = rightBottomOrigin
-            bubleHeight += backButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
-        case (true, true):
-            bubleHeight += bubleInsets.bottom
-            break
         }
         
         selfHeight += bubleHeight
@@ -170,9 +165,9 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             fatalError("Step model doesn't contains any snapshots")
         }
         
-        backButton.isHidden = !viewModel.isHavePreviousStep
-        nextButton.isHidden = !viewModel.isHaveNextStep
-        closeButton.isHidden = !viewModel.isHaveCloseButton
+        backButton.isHidden = !viewModel.showBackButton
+        nextButton.isHidden = !viewModel.showNextButton
+        closeButton.isHidden = !viewModel.showCloseButton
         textLabel.text = viewModel.step.text
         
         let bounds = UIScreen.main.bounds

@@ -131,9 +131,9 @@ extension ViewController: CTXTutorialEngineDelegate {
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView? {
         return MyHintView(with: .init(step: currentStepModel,
-                                      isHavePreviousStep: false,
-                                      isHaveNextStep: false,
-                                      isHaveCloseButton: false))
+                                      showBackButton: isHavePreviousStep,
+                                      showNextButton: isHaveNextStep,
+                                      showCloseButton: true))
     }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
