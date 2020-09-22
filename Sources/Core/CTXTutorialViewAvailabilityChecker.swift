@@ -4,12 +4,13 @@
 
 import UIKit
 
-final class CTXTutorialViewVisibilityChecker {
+final class CTXTutorialViewAvailabilityChecker {
     
-    func isVisible(_ view: UIView, inSafeArea: Bool = true) -> Bool {
-        if view.isHidden
-            || view.alpha == 0
-            || view.superview == nil {
+    func isAvailable(_ view: UIView, inSafeArea: Bool = true) -> Bool {
+        guard !view.isHidden
+            && view.alpha != .zero
+            && view.superview != nil
+            && view.layer.animationKeys()?.isEmpty ?? true else {
             return false
         }
         

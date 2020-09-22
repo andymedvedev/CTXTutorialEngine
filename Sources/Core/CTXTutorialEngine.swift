@@ -32,7 +32,7 @@ public final class CTXTutorialEngine {
     var eventConfigTypes: [CTXTutorialEventConfig.Type]?
     
     private let bus = CTXTutorialEventBus.shared
-    private let visibilityChecker = CTXTutorialViewVisibilityChecker()
+    private let availabilityChecker = CTXTutorialViewAvailabilityChecker()
     private var weakViewControllers = [CTXTutorialWeakViewController]()
     private var tutorials = [CTXTutorial]()
     private var pollingTimer: Timer?
@@ -108,7 +108,7 @@ public final class CTXTutorialEngine {
         
         let weakVC = CTXTutorialWeakViewController(with: viewController,
                                                    contentType: contentType,
-                                                   visibilityChecker: visibilityChecker)
+                                                   availabilityChecker: availabilityChecker)
         
         weakViewControllers.append(weakVC)
     }
@@ -131,7 +131,7 @@ private extension CTXTutorialEngine {
             
             if vc.view.window != nil
                 && vc.presentedViewController == nil
-                && visibilityChecker.isVisible(vc.view, inSafeArea: false) {//vc currently on screen and visible
+                && availabilityChecker.isAvailable(vc.view, inSafeArea: false) {//vc currently on screen and visible
                 
                 let visibleViewsDict = weakVC.visibleAccessibilityViewsDict
                 var viewsToProcess = [UIView]()

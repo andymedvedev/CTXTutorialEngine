@@ -7,44 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		018740B71CE88BB066B1702B8C9D80AC /* CTXTutorialModuleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D48EB77DCC617A8AA5EC2D79109BEE7 /* CTXTutorialModuleContract.swift */; };
 		0381313F362E59F9225C8B985E7BF604 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		057EBB026A7DF0D8059C175E8116B1F7 /* CTXTutorialModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCD833BA354C5CC21B6195723685FA /* CTXTutorialModule.swift */; };
-		1A9DF233B144BCF671BD8067F91C26FB /* CTXTutorialConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65066502D370E7300606F3720FCD43E6 /* CTXTutorialConstants.swift */; };
-		383D7EA8420F3FD45518C877AA27C451 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9671BB219A827594AA9F65807E93B486 /* UIApplicationExtension.swift */; };
-		3DF04EF8A31B62302E61DCAD82B8398E /* CTXTutorialEventConfigsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE5F3FF8268866D349B34D450345F0 /* CTXTutorialEventConfigsArray.swift */; };
-		42006B0B44B8CE4CB0A04D2C21DDD8FC /* CTXTutorialViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D8597F95EE08E0DE8098F3606A617 /* CTXTutorialViewManager.swift */; };
-		5314FFD2735EF0634434A419BD6F00CA /* CTXTutorialRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38E07650EDB8301299B53037E7DD48 /* CTXTutorialRouterImpl.swift */; };
-		59EC60ACE43C5905DA81ADB563A6BC85 /* CTXTutorialEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 8808162D016ED5E6EB183DAE4762361C /* CTXTutorialEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A945085815F0477D1593A05EFFC7A1F /* CTXTutorialContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1133ACF3B0473F9832C4C2CA5614DE4 /* CTXTutorialContainerDelegate.swift */; };
-		6F2D05B508768B84D8BA41BA4CA3E241 /* CTXTutorialAdditionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6856400D0FE804C34211D804337F59 /* CTXTutorialAdditionError.swift */; };
-		7440B9FD74C3BF4E126E7B78DF1015AD /* CTXTutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F705A9917A5D6E5E1808A92E53D1A023 /* CTXTutorialContainerViewController.swift */; };
-		784875C0ED6128C4A204C7D63B08E977 /* CTXTutorialDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8650B93694375179D5EE295901848F8 /* CTXTutorialDelegate.swift */; };
-		791439A910B1B03B46F1298F4D015172 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F5A2F8BE7AD568D3F71F79F240317E /* UIViewExtension.swift */; };
-		7C3DAF6A9D3482158BB75A9FB064E788 /* CTXTutorialViewsShownEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A146EB1DE95BEA19E5B2491EB28456 /* CTXTutorialViewsShownEventConfig.swift */; };
-		83DE7E33F013217360DB1C6D40CAD7B9 /* CTXTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB041D806208DD4E990CE2C8DA1231B /* CTXTutorial.swift */; };
-		8DD4F62657D39113017C3955952CE10A /* CTXTutorialWeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C50D9F9F572A6EA274F67469934E2 /* CTXTutorialWeakViewController.swift */; };
-		924823F589640F9864A4A0325FF140D4 /* CTXTutorialEventConfigMetaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AF9E41D81D03C93FB27D8EFE542C6 /* CTXTutorialEventConfigMetaType.swift */; };
-		9262C7B4EC09BD1B5C456057186A6AC7 /* CTXTutorialViewVisiblityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7C5ECD7AEE89D081FC1C8312AA425 /* CTXTutorialViewVisiblityChecker.swift */; };
-		9A469F9D03180762FD274947E36E39C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		A40A9BF5BC08903D90F977539AF712F7 /* CTXTutotialHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E191CBF4B0345702D25501833C7B5F1 /* CTXTutotialHintView.swift */; };
-		A7559EE22E161BE21C56FD3410144C4A /* CTXTutorialEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E67F676EFA6E85D6AD1702EACD5ED /* CTXTutorialEngine.swift */; };
-		ABCF26B009284CE071731E2230CEBAF7 /* CTXTutorialEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B4F1BBBFB258C85E07EC422F9B53B /* CTXTutorialEventBus.swift */; };
-		AFC488BF80767F9B5726824CF62EA886 /* CTXTutoriarPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B5BF6BE219506D88DFA09151ACFF5 /* CTXTutoriarPresenterImpl.swift */; };
-		B7ACC3E880F27B1CFDAA379769B7D616 /* CTXTutorialEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A54EFE74B4E40A0EBFCC2193D477688 /* CTXTutorialEngineDelegate.swift */; };
-		B9C63CF0FBCC20E00BAC93EE4BFF54E0 /* CTXTutorialStepConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007408BBF33CB9177E07E14D4D757AA5 /* CTXTutorialStepConfig.swift */; };
-		CB5DDA5D2B3409D909BB7E91B31EE5B0 /* CTXTutiralModuleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6878026DB205C5F71838E3A87C8762 /* CTXTutiralModuleDelegate.swift */; };
-		CDC12C034AF0C6A2F147550B3688298F /* CTXTutorialConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92F2E196D135CDBD6C35CA2A073A3 /* CTXTutorialConfigLoader.swift */; };
-		CE7B91AA57E708A7CFAB89D74E7FA62E /* CTXTutorialEngine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DB774BCCB6FCDFFEA7F4C7C07369838F /* CTXTutorialEngine-dummy.m */; };
-		DB3D38752EE33FD6678166AA3868CC35 /* CTXTutorialEngine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FA2CB86450226590BCDCD78C02D8B7A8 /* CTXTutorialEngine-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E775DC43D6D5CB07F72965BB75429775 /* CTXTutorialConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC4571CADF30B8981E4EF46604DC13 /* CTXTutorialConfig.swift */; };
+		0D3CD0001BD1B690EE614B0104E3DEEA /* CTXTutorialEventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1FDDDEDD17982C9D73B0363FF2964 /* CTXTutorialEventBus.swift */; };
+		0E75FD3C7E058CA29E7A55342D66DB7C /* CTXTutorialEventConfigsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CCBAF818CC8B82BF64BBDD0D9EE9B /* CTXTutorialEventConfigsArray.swift */; };
+		10073097DEE0499002F4DE19ADDD43D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		17DEE5DA0B5709FD4DF230F0B87A5BB9 /* CTXTutorialContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED84BA00B8809F398B7F9E2A4C66B /* CTXTutorialContainerDelegate.swift */; };
+		18D93A22E46EF79CE7244192AF9BEB62 /* CTXTutorialContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4EE33336568395149865C8500F14F9 /* CTXTutorialContainer.swift */; };
+		346093A331522C9385F7FDFA32AD9714 /* CTXTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2CD7307445ADF66AAD724607722AFD /* CTXTutorial.swift */; };
+		37DBC475EFD7C2DF78C1A44E6D4A24C9 /* CTXTutorialAdditionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E220639501F3C4AC406F394BFE36FE /* CTXTutorialAdditionError.swift */; };
+		3BB2CAFD9100EA91F0819BAF0B18D815 /* CTXTutorialEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = C351F9A34F671D23A18779AB80B8FD72 /* CTXTutorialEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D0AA4DC09B0D078F717F601F7FB9CF2 /* CTXTutorialStepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1881B59E261CB39C912E5EA29631A /* CTXTutorialStepModel.swift */; };
+		6780B100CB149A76F8406270C4A56625 /* CTXTutorialEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175B6E6951A8304321071A39C7A88EF /* CTXTutorialEngineDelegate.swift */; };
+		7339D900BDF1743E0B57AD615E112DFA /* CTXTutorialEventConfigMetaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692EBC996858FA3621691EFEBEDE0F04 /* CTXTutorialEventConfigMetaType.swift */; };
+		736FDF34FD34FA38EFF411076DCBCE0A /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF41FA5FDF56C34EFF4AA7159877F488 /* UIViewExtension.swift */; };
+		74565C02D6107EC51B02E30FFAA46036 /* CTXTutorialEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C018044C09448D27254440FE66338 /* CTXTutorialEvent.swift */; };
+		88DC50BC7622826F11479D28020AA339 /* CTXTutorialEngine-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EC437C397E73A333F70A6F20EC97B6 /* CTXTutorialEngine-dummy.m */; };
+		8CACBA6B488570ACE899E264EED8F559 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6013B652228E415796197E30F45F659 /* UIApplicationExtension.swift */; };
+		98E208541C97122479A6B2EA277F8735 /* CTXTutorialModuleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B2DA5EF19DD994DD1CA57B25F7F9C /* CTXTutorialModuleContract.swift */; };
+		99D62C5A4E666C6C8EE4E0EF2005A094 /* CTXTutorialViewAvailabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EF03C1802BC5352C9054DB52457C0E /* CTXTutorialViewAvailabilityChecker.swift */; };
+		A040DD71AA23F8DE500D3D31E36C4A51 /* CTXTutoriarPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411F64C2882CD5C9B3FD81D13300B9D8 /* CTXTutoriarPresenterImpl.swift */; };
+		A06E9B0264F2CE43E079E5DB4CC01AE9 /* CTXTutorialViewsShownEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099BB267F5CE5BDF55F7FF1602DE4B1A /* CTXTutorialViewsShownEventConfig.swift */; };
+		A25AADA1407BB9A23350358FC3D6BF40 /* CTXTutorialConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E95DBCD551158D28DC30A247BA79132 /* CTXTutorialConstants.swift */; };
+		A3985D842EFA624ABF5048B228C6DF90 /* CTXTutorialConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495955023F1C9310491791433E6D007D /* CTXTutorialConfigLoader.swift */; };
+		A87655BABDCC21768B35EB339BC6F350 /* CTXTutorialStepInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28057FAFEB02205DDC3E089F0FF004 /* CTXTutorialStepInfo.swift */; };
+		AC589A4196B8AB0AF49663DD0430783B /* CTXTutorialConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084806480E0A1D8D8AA7DCB6CC04E85 /* CTXTutorialConfig.swift */; };
+		B1244AB85DC9C4E8198EE6263721AB2C /* CTXTutorialWeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEC08FA1DD93893F7F47DF07ECE2EC /* CTXTutorialWeakViewController.swift */; };
+		CABE03FDFD3DF82F5833D669F8ED96EE /* CTXTutorialEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8059EE67FAA0DFB59932A0AD8B6AE6B5 /* CTXTutorialEngine.swift */; };
+		D51B8B49115315932851AC07EE11086E /* CTXTutorialRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794E1572094D37C81C9B26901DFB46A3 /* CTXTutorialRouterImpl.swift */; };
+		D6CC1AD3E795A79631C93589FD18CD07 /* CTXTutorialDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7FB2D75ADA2D80933E72024BC36090 /* CTXTutorialDelegate.swift */; };
+		D81D37FA9F5C86C740EC97C8EA650906 /* CTXTutorialModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F0E00D153D3F1E9375B455164C186E /* CTXTutorialModule.swift */; };
+		DAE9ACE90A53979EF429E2AB03D9B19B /* CTXTutotialHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72C116FA580B9720881E6699F4E5B88 /* CTXTutotialHintView.swift */; };
+		E09680EBECAB14AAC9B75745D39B8F7E /* CTXTutorialStepConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB094C1966A02ED843C101E8B4892501 /* CTXTutorialStepConfig.swift */; };
+		E413F24457067663496CA3FD29610577 /* CTXTutiralModuleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630510C5713BC19F24C541A392E7151C /* CTXTutiralModuleDelegate.swift */; };
 		E7F2F5C04687A27375EA52C4DEB28B11 /* Pods-CTXTutorialEngineExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24351698E6BFD81371F733B242BFF375 /* Pods-CTXTutorialEngineExample-dummy.m */; };
 		EAF028B9A986EA7E6CE094379EB4B3D8 /* Pods-CTXTutorialEngineExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65041F9C320BFEDD4898B2B4875D8A29 /* Pods-CTXTutorialEngineExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB5BC429A71AEFCD5953600A5B183B9C /* CTXTutorialStepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931043E555CB2B01B639032F4D2F856F /* CTXTutorialStepModel.swift */; };
-		ED9DCED9D390BC83D64EADE01885E193 /* CTXTutorialEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8C6C5EA525C0A43E51963CF9A984E /* CTXTutorialEvent.swift */; };
-		EEA548041E12918E38850EDA46AE5844 /* CTXTutorialContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECA5837033DB871B6628C031529F99C /* CTXTutorialContainer.swift */; };
-		EF62123D0A89132F8F05A09B4E499BA9 /* CTXTutorialStepInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776205DFFB5B93DF2A10DAA000E613FD /* CTXTutorialStepInfo.swift */; };
-		EF86722E6FDC099CC94BD7C38E01EAEC /* CTXTutorialWindowContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C241EF50FCE5AE19EDA24CAD3F52A9A /* CTXTutorialWindowContainable.swift */; };
+		F3C542539E37C49D7DF20F73AAB53383 /* CTXTutorialWindowContainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A67492ED93EF76C1342EE33000477F /* CTXTutorialWindowContainable.swift */; };
+		F8F9A12D29959A4625638A75EA9EC2E4 /* CTXTutorialEngine-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA2BAD683FA55FC1622431966FF418A /* CTXTutorialEngine-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FFBEADB79FBAE167FF9EF7F7B587D9E1 /* CTXTutorialContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B787D91B455E58C4C093B08345D08 /* CTXTutorialContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,69 +57,68 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007408BBF33CB9177E07E14D4D757AA5 /* CTXTutorialStepConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepConfig.swift; sourceTree = "<group>"; };
-		0E191CBF4B0345702D25501833C7B5F1 /* CTXTutotialHintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutotialHintView.swift; sourceTree = "<group>"; };
-		0FFC4571CADF30B8981E4EF46604DC13 /* CTXTutorialConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConfig.swift; sourceTree = "<group>"; };
-		179D8597F95EE08E0DE8098F3606A617 /* CTXTutorialViewManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewManager.swift; sourceTree = "<group>"; };
-		1A54EFE74B4E40A0EBFCC2193D477688 /* CTXTutorialEngineDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEngineDelegate.swift; sourceTree = "<group>"; };
+		099BB267F5CE5BDF55F7FF1602DE4B1A /* CTXTutorialViewsShownEventConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewsShownEventConfig.swift; sourceTree = "<group>"; };
+		0D2CD7307445ADF66AAD724607722AFD /* CTXTutorial.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorial.swift; sourceTree = "<group>"; };
 		1BB42CC5B632D97C290CA0896F1C1BFC /* Pods-CTXTutorialEngineExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CTXTutorialEngineExample.modulemap"; sourceTree = "<group>"; };
+		1DCD70AD553F4E1A3C64AC41E63B59DF /* CTXTutorialEngine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CTXTutorialEngine.modulemap; sourceTree = "<group>"; };
 		1EA27CC26D369F18C031AF9553578175 /* Pods_CTXTutorialEngineExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CTXTutorialEngineExample.framework; path = "Pods-CTXTutorialEngineExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22EF03C1802BC5352C9054DB52457C0E /* CTXTutorialViewAvailabilityChecker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewAvailabilityChecker.swift; sourceTree = "<group>"; };
 		24351698E6BFD81371F733B242BFF375 /* Pods-CTXTutorialEngineExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CTXTutorialEngineExample-dummy.m"; sourceTree = "<group>"; };
-		2C8D39755D8B74E97343774A0897613F /* CTXTutorialEngine-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTXTutorialEngine-prefix.pch"; sourceTree = "<group>"; };
-		2D4E67F676EFA6E85D6AD1702EACD5ED /* CTXTutorialEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEngine.swift; sourceTree = "<group>"; };
-		2ECA5837033DB871B6628C031529F99C /* CTXTutorialContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainer.swift; sourceTree = "<group>"; };
+		264CCBAF818CC8B82BF64BBDD0D9EE9B /* CTXTutorialEventConfigsArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigsArray.swift; sourceTree = "<group>"; };
+		3175B6E6951A8304321071A39C7A88EF /* CTXTutorialEngineDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEngineDelegate.swift; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		348A3393CFD9E9126473748127CFC0BC /* Pods-CTXTutorialEngineExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTXTutorialEngineExample.release.xcconfig"; sourceTree = "<group>"; };
-		3A38E07650EDB8301299B53037E7DD48 /* CTXTutorialRouterImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialRouterImpl.swift; sourceTree = "<group>"; };
+		34F4F33D6A47E83FA45BE260D90B8C11 /* CTXTutorialEngine.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CTXTutorialEngine.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3B0B2DA5EF19DD994DD1CA57B25F7F9C /* CTXTutorialModuleContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialModuleContract.swift; sourceTree = "<group>"; };
+		3B3826D3F23471FB66089BACA6659D54 /* CTXTutorialEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTXTutorialEngine.debug.xcconfig; sourceTree = "<group>"; };
 		3C595C9804E61B6A9B149566C1B59D4D /* Pods-CTXTutorialEngineExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTXTutorialEngineExample.debug.xcconfig"; sourceTree = "<group>"; };
-		3CA92F2E196D135CDBD6C35CA2A073A3 /* CTXTutorialConfigLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConfigLoader.swift; sourceTree = "<group>"; };
-		55A8FAD4A44AC368F44328F05066797C /* CTXTutorialEngine.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CTXTutorialEngine.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5CB8C6C5EA525C0A43E51963CF9A984E /* CTXTutorialEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEvent.swift; sourceTree = "<group>"; };
+		3D4EE33336568395149865C8500F14F9 /* CTXTutorialContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainer.swift; sourceTree = "<group>"; };
+		3DEFA3FB5A7FB8C836098C9626F1B4B3 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		411F64C2882CD5C9B3FD81D13300B9D8 /* CTXTutoriarPresenterImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutoriarPresenterImpl.swift; sourceTree = "<group>"; };
+		495955023F1C9310491791433E6D007D /* CTXTutorialConfigLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConfigLoader.swift; sourceTree = "<group>"; };
+		4C8B43DEC0FFE657256AFA09C2AC74A9 /* CTXTutorialEngine-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTXTutorialEngine-prefix.pch"; sourceTree = "<group>"; };
+		630510C5713BC19F24C541A392E7151C /* CTXTutiralModuleDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutiralModuleDelegate.swift; sourceTree = "<group>"; };
+		63B1FDDDEDD17982C9D73B0363FF2964 /* CTXTutorialEventBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventBus.swift; sourceTree = "<group>"; };
 		65041F9C320BFEDD4898B2B4875D8A29 /* Pods-CTXTutorialEngineExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CTXTutorialEngineExample-umbrella.h"; sourceTree = "<group>"; };
-		65066502D370E7300606F3720FCD43E6 /* CTXTutorialConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConstants.swift; sourceTree = "<group>"; };
-		6C241EF50FCE5AE19EDA24CAD3F52A9A /* CTXTutorialWindowContainable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialWindowContainable.swift; sourceTree = "<group>"; };
-		6D48EB77DCC617A8AA5EC2D79109BEE7 /* CTXTutorialModuleContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialModuleContract.swift; sourceTree = "<group>"; };
-		776205DFFB5B93DF2A10DAA000E613FD /* CTXTutorialStepInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepInfo.swift; sourceTree = "<group>"; };
-		77F84B9006C1F3EBABB54149A908789C /* CTXTutorialEngine-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CTXTutorialEngine-Info.plist"; sourceTree = "<group>"; };
+		692EBC996858FA3621691EFEBEDE0F04 /* CTXTutorialEventConfigMetaType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigMetaType.swift; sourceTree = "<group>"; };
+		6A28057FAFEB02205DDC3E089F0FF004 /* CTXTutorialStepInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepInfo.swift; sourceTree = "<group>"; };
+		6DEA78EFFAAD02E41FF76B81DE52E9AC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		7084806480E0A1D8D8AA7DCB6CC04E85 /* CTXTutorialConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConfig.swift; sourceTree = "<group>"; };
+		74BFDACBABB32F605D2245AC5C754467 /* CTXTutorialEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTXTutorialEngine.release.xcconfig; sourceTree = "<group>"; };
+		794E1572094D37C81C9B26901DFB46A3 /* CTXTutorialRouterImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialRouterImpl.swift; sourceTree = "<group>"; };
+		7AD1881B59E261CB39C912E5EA29631A /* CTXTutorialStepModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepModel.swift; sourceTree = "<group>"; };
 		7B6A1E1BEA954B8B201325AA1C77F826 /* Pods-CTXTutorialEngineExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CTXTutorialEngineExample-acknowledgements.plist"; sourceTree = "<group>"; };
-		7E4834370E888D350EC4EC5869EDCA05 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		8747F121900D2B825E9E04D60A4F7467 /* CTXTutorialEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTXTutorialEngine.debug.xcconfig; sourceTree = "<group>"; };
-		8808162D016ED5E6EB183DAE4762361C /* CTXTutorialEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTXTutorialEngine.h; path = Sources/CTXTutorialEngine.h; sourceTree = "<group>"; };
-		8B4C50D9F9F572A6EA274F67469934E2 /* CTXTutorialWeakViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialWeakViewController.swift; sourceTree = "<group>"; };
-		8C6856400D0FE804C34211D804337F59 /* CTXTutorialAdditionError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialAdditionError.swift; sourceTree = "<group>"; };
-		8D8AF9E41D81D03C93FB27D8EFE542C6 /* CTXTutorialEventConfigMetaType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigMetaType.swift; sourceTree = "<group>"; };
-		931043E555CB2B01B639032F4D2F856F /* CTXTutorialStepModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepModel.swift; sourceTree = "<group>"; };
-		9671BB219A827594AA9F65807E93B486 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		7C6C018044C09448D27254440FE66338 /* CTXTutorialEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEvent.swift; sourceTree = "<group>"; };
+		7E95DBCD551158D28DC30A247BA79132 /* CTXTutorialConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialConstants.swift; sourceTree = "<group>"; };
+		8059EE67FAA0DFB59932A0AD8B6AE6B5 /* CTXTutorialEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEngine.swift; sourceTree = "<group>"; };
+		877ED84BA00B8809F398B7F9E2A4C66B /* CTXTutorialContainerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainerDelegate.swift; sourceTree = "<group>"; };
+		881B787D91B455E58C4C093B08345D08 /* CTXTutorialContainerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainerViewController.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0995C8C8183513D1857400A4067BA3A /* CTXTutorialEngine.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CTXTutorialEngine.modulemap; sourceTree = "<group>"; };
-		AB4E58581D898BF224423D09FD6FAB67 /* CTXTutorialEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTXTutorialEngine.release.xcconfig; sourceTree = "<group>"; };
+		A4E220639501F3C4AC406F394BFE36FE /* CTXTutorialAdditionError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialAdditionError.swift; sourceTree = "<group>"; };
+		A72C116FA580B9720881E6699F4E5B88 /* CTXTutotialHintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutotialHintView.swift; sourceTree = "<group>"; };
 		AC907005355F131B0245B1587381DC03 /* Pods-CTXTutorialEngineExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CTXTutorialEngineExample-frameworks.sh"; sourceTree = "<group>"; };
-		AD6878026DB205C5F71838E3A87C8762 /* CTXTutiralModuleDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutiralModuleDelegate.swift; sourceTree = "<group>"; };
+		B28F63232B86EB4A885606D92A16C82A /* CTXTutorialEngine-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CTXTutorialEngine-Info.plist"; sourceTree = "<group>"; };
+		B2A67492ED93EF76C1342EE33000477F /* CTXTutorialWindowContainable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialWindowContainable.swift; sourceTree = "<group>"; };
 		B6C6D5892483C445EAFEA95E200A3B55 /* Pods-CTXTutorialEngineExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CTXTutorialEngineExample-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B8650B93694375179D5EE295901848F8 /* CTXTutorialDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialDelegate.swift; sourceTree = "<group>"; };
-		CBB041D806208DD4E990CE2C8DA1231B /* CTXTutorial.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorial.swift; sourceTree = "<group>"; };
-		CC3561073E6BC17A72A30BE0231047AD /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		C351F9A34F671D23A18779AB80B8FD72 /* CTXTutorialEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CTXTutorialEngine.h; path = Sources/CTXTutorialEngine.h; sourceTree = "<group>"; };
+		C6013B652228E415796197E30F45F659 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		C6EC437C397E73A333F70A6F20EC97B6 /* CTXTutorialEngine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CTXTutorialEngine-dummy.m"; sourceTree = "<group>"; };
 		D17FABC32EBC8C9617535173BFBAA864 /* Pods-CTXTutorialEngineExample-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CTXTutorialEngineExample-Info.plist"; sourceTree = "<group>"; };
-		D1A146EB1DE95BEA19E5B2491EB28456 /* CTXTutorialViewsShownEventConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewsShownEventConfig.swift; sourceTree = "<group>"; };
-		D26B4F1BBBFB258C85E07EC422F9B53B /* CTXTutorialEventBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventBus.swift; sourceTree = "<group>"; };
-		D6F5A2F8BE7AD568D3F71F79F240317E /* UIViewExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		DB774BCCB6FCDFFEA7F4C7C07369838F /* CTXTutorialEngine-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CTXTutorialEngine-dummy.m"; sourceTree = "<group>"; };
-		DCD7C5ECD7AEE89D081FC1C8312AA425 /* CTXTutorialViewVisiblityChecker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewVisiblityChecker.swift; sourceTree = "<group>"; };
-		DCDE5F3FF8268866D349B34D450345F0 /* CTXTutorialEventConfigsArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialEventConfigsArray.swift; sourceTree = "<group>"; };
-		E1133ACF3B0473F9832C4C2CA5614DE4 /* CTXTutorialContainerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainerDelegate.swift; sourceTree = "<group>"; };
-		E22B5BF6BE219506D88DFA09151ACFF5 /* CTXTutoriarPresenterImpl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutoriarPresenterImpl.swift; sourceTree = "<group>"; };
-		F3CCD833BA354C5CC21B6195723685FA /* CTXTutorialModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialModule.swift; sourceTree = "<group>"; };
-		F705A9917A5D6E5E1808A92E53D1A023 /* CTXTutorialContainerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialContainerViewController.swift; sourceTree = "<group>"; };
-		FA2CB86450226590BCDCD78C02D8B7A8 /* CTXTutorialEngine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTXTutorialEngine-umbrella.h"; sourceTree = "<group>"; };
+		DDBEC08FA1DD93893F7F47DF07ECE2EC /* CTXTutorialWeakViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialWeakViewController.swift; sourceTree = "<group>"; };
+		DF41FA5FDF56C34EFF4AA7159877F488 /* UIViewExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E8F0E00D153D3F1E9375B455164C186E /* CTXTutorialModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialModule.swift; sourceTree = "<group>"; };
+		EAA2BAD683FA55FC1622431966FF418A /* CTXTutorialEngine-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTXTutorialEngine-umbrella.h"; sourceTree = "<group>"; };
+		EE7FB2D75ADA2D80933E72024BC36090 /* CTXTutorialDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialDelegate.swift; sourceTree = "<group>"; };
 		FA7E86ADE96C98D45B01A5EF6C7797A9 /* CTXTutorialEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CTXTutorialEngine.framework; path = CTXTutorialEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB094C1966A02ED843C101E8B4892501 /* CTXTutorialStepConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CTXTutorialStepConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		529DC2FFD0E07647009C56FEA47FE08F /* Frameworks */ = {
+		22B3F784C58659BD64377E5AC78AC47A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A469F9D03180762FD274947E36E39C1 /* Foundation.framework in Frameworks */,
+				10073097DEE0499002F4DE19ADDD43D8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +133,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012136C79268B2A5C8890CD566F422B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4E220639501F3C4AC406F394BFE36FE /* CTXTutorialAdditionError.swift */,
+				7084806480E0A1D8D8AA7DCB6CC04E85 /* CTXTutorialConfig.swift */,
+				FB094C1966A02ED843C101E8B4892501 /* CTXTutorialStepConfig.swift */,
+				6A28057FAFEB02205DDC3E089F0FF004 /* CTXTutorialStepInfo.swift */,
+				7AD1881B59E261CB39C912E5EA29631A /* CTXTutorialStepModel.swift */,
+				099BB267F5CE5BDF55F7FF1602DE4B1A /* CTXTutorialViewsShownEventConfig.swift */,
+			);
+			name = Models;
+			path = Sources/Models;
+			sourceTree = "<group>";
+		};
+		0ACB737E9E8D4C842A4EB522652142A6 /* CTXTutorialEngine */ = {
+			isa = PBXGroup;
+			children = (
+				C351F9A34F671D23A18779AB80B8FD72 /* CTXTutorialEngine.h */,
+				A6FFA7ED213FD70565567F5548D22DBF /* Core */,
+				487EE982B5612E56009ABD1E04A61BBD /* Delegates */,
+				FFD0BF73239BB38C078C0C13141CD1A7 /* Extensions */,
+				012136C79268B2A5C8890CD566F422B2 /* Models */,
+				98F1D00E10BBC5498E0E33B42A335395 /* Module */,
+				8CCE85FEC8D7B1C20C263857667F63B6 /* Pod */,
+				E7411D34E56E8B6DDDF093929C0771BD /* Support Files */,
+				7C69DEE9247FCDE08C2FFA3C057AEDB9 /* Utlis */,
+			);
+			name = CTXTutorialEngine;
+			path = ../../..;
+			sourceTree = "<group>";
+		};
 		1DE82C02F61001693021FD7DF2D33F02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,92 +173,76 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		23C3EED85EEA29802D5CDD699D505861 /* Delegates */ = {
+		487EE982B5612E56009ABD1E04A61BBD /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				AD6878026DB205C5F71838E3A87C8762 /* CTXTutiralModuleDelegate.swift */,
-				E1133ACF3B0473F9832C4C2CA5614DE4 /* CTXTutorialContainerDelegate.swift */,
-				B8650B93694375179D5EE295901848F8 /* CTXTutorialDelegate.swift */,
-				1A54EFE74B4E40A0EBFCC2193D477688 /* CTXTutorialEngineDelegate.swift */,
+				630510C5713BC19F24C541A392E7151C /* CTXTutiralModuleDelegate.swift */,
+				877ED84BA00B8809F398B7F9E2A4C66B /* CTXTutorialContainerDelegate.swift */,
+				EE7FB2D75ADA2D80933E72024BC36090 /* CTXTutorialDelegate.swift */,
+				3175B6E6951A8304321071A39C7A88EF /* CTXTutorialEngineDelegate.swift */,
 			);
 			name = Delegates;
 			path = Sources/Delegates;
 			sourceTree = "<group>";
 		};
-		327DB89D951FB6909860067A10E385EE /* Utlis */ = {
+		5FF5F93A8F30E84F527ABAF42EF13BB5 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3CA92F2E196D135CDBD6C35CA2A073A3 /* CTXTutorialConfigLoader.swift */,
-				8D8AF9E41D81D03C93FB27D8EFE542C6 /* CTXTutorialEventConfigMetaType.swift */,
-				DCDE5F3FF8268866D349B34D450345F0 /* CTXTutorialEventConfigsArray.swift */,
+				0ACB737E9E8D4C842A4EB522652142A6 /* CTXTutorialEngine */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		7C69DEE9247FCDE08C2FFA3C057AEDB9 /* Utlis */ = {
+			isa = PBXGroup;
+			children = (
+				495955023F1C9310491791433E6D007D /* CTXTutorialConfigLoader.swift */,
+				692EBC996858FA3621691EFEBEDE0F04 /* CTXTutorialEventConfigMetaType.swift */,
+				264CCBAF818CC8B82BF64BBDD0D9EE9B /* CTXTutorialEventConfigsArray.swift */,
 			);
 			name = Utlis;
 			path = Sources/Utlis;
 			sourceTree = "<group>";
 		};
-		356D1BBC7FA3CCA984B67B5D58F7257C /* Support Files */ = {
+		8CCE85FEC8D7B1C20C263857667F63B6 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				A0995C8C8183513D1857400A4067BA3A /* CTXTutorialEngine.modulemap */,
-				DB774BCCB6FCDFFEA7F4C7C07369838F /* CTXTutorialEngine-dummy.m */,
-				77F84B9006C1F3EBABB54149A908789C /* CTXTutorialEngine-Info.plist */,
-				2C8D39755D8B74E97343774A0897613F /* CTXTutorialEngine-prefix.pch */,
-				FA2CB86450226590BCDCD78C02D8B7A8 /* CTXTutorialEngine-umbrella.h */,
-				8747F121900D2B825E9E04D60A4F7467 /* CTXTutorialEngine.debug.xcconfig */,
-				AB4E58581D898BF224423D09FD6FAB67 /* CTXTutorialEngine.release.xcconfig */,
+				34F4F33D6A47E83FA45BE260D90B8C11 /* CTXTutorialEngine.podspec */,
+				3DEFA3FB5A7FB8C836098C9626F1B4B3 /* LICENSE.md */,
+				6DEA78EFFAAD02E41FF76B81DE52E9AC /* README.md */,
 			);
-			name = "Support Files";
-			path = "Examples/SceneDelegateExample/Pods/Target Support Files/CTXTutorialEngine";
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		3F6E617D67B67A80843B2D4583A036E0 /* Module */ = {
+		98F1D00E10BBC5498E0E33B42A335395 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				2ECA5837033DB871B6628C031529F99C /* CTXTutorialContainer.swift */,
-				F705A9917A5D6E5E1808A92E53D1A023 /* CTXTutorialContainerViewController.swift */,
-				F3CCD833BA354C5CC21B6195723685FA /* CTXTutorialModule.swift */,
-				6D48EB77DCC617A8AA5EC2D79109BEE7 /* CTXTutorialModuleContract.swift */,
-				3A38E07650EDB8301299B53037E7DD48 /* CTXTutorialRouterImpl.swift */,
-				E22B5BF6BE219506D88DFA09151ACFF5 /* CTXTutoriarPresenterImpl.swift */,
+				3D4EE33336568395149865C8500F14F9 /* CTXTutorialContainer.swift */,
+				881B787D91B455E58C4C093B08345D08 /* CTXTutorialContainerViewController.swift */,
+				E8F0E00D153D3F1E9375B455164C186E /* CTXTutorialModule.swift */,
+				3B0B2DA5EF19DD994DD1CA57B25F7F9C /* CTXTutorialModuleContract.swift */,
+				794E1572094D37C81C9B26901DFB46A3 /* CTXTutorialRouterImpl.swift */,
+				411F64C2882CD5C9B3FD81D13300B9D8 /* CTXTutoriarPresenterImpl.swift */,
 			);
 			name = Module;
 			path = Sources/Module;
 			sourceTree = "<group>";
 		};
-		598A61286507E38FCD8089E50E9DC8A2 /* Core */ = {
+		A6FFA7ED213FD70565567F5548D22DBF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				CBB041D806208DD4E990CE2C8DA1231B /* CTXTutorial.swift */,
-				65066502D370E7300606F3720FCD43E6 /* CTXTutorialConstants.swift */,
-				2D4E67F676EFA6E85D6AD1702EACD5ED /* CTXTutorialEngine.swift */,
-				5CB8C6C5EA525C0A43E51963CF9A984E /* CTXTutorialEvent.swift */,
-				D26B4F1BBBFB258C85E07EC422F9B53B /* CTXTutorialEventBus.swift */,
-				179D8597F95EE08E0DE8098F3606A617 /* CTXTutorialViewManager.swift */,
-				DCD7C5ECD7AEE89D081FC1C8312AA425 /* CTXTutorialViewVisiblityChecker.swift */,
-				8B4C50D9F9F572A6EA274F67469934E2 /* CTXTutorialWeakViewController.swift */,
-				6C241EF50FCE5AE19EDA24CAD3F52A9A /* CTXTutorialWindowContainable.swift */,
-				0E191CBF4B0345702D25501833C7B5F1 /* CTXTutotialHintView.swift */,
+				0D2CD7307445ADF66AAD724607722AFD /* CTXTutorial.swift */,
+				7E95DBCD551158D28DC30A247BA79132 /* CTXTutorialConstants.swift */,
+				8059EE67FAA0DFB59932A0AD8B6AE6B5 /* CTXTutorialEngine.swift */,
+				7C6C018044C09448D27254440FE66338 /* CTXTutorialEvent.swift */,
+				63B1FDDDEDD17982C9D73B0363FF2964 /* CTXTutorialEventBus.swift */,
+				22EF03C1802BC5352C9054DB52457C0E /* CTXTutorialViewAvailabilityChecker.swift */,
+				DDBEC08FA1DD93893F7F47DF07ECE2EC /* CTXTutorialWeakViewController.swift */,
+				B2A67492ED93EF76C1342EE33000477F /* CTXTutorialWindowContainable.swift */,
+				A72C116FA580B9720881E6699F4E5B88 /* CTXTutotialHintView.swift */,
 			);
 			name = Core;
 			path = Sources/Core;
-			sourceTree = "<group>";
-		};
-		5FF5F93A8F30E84F527ABAF42EF13BB5 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D5DE84D14CEB5DE19C3EDB1DFBE655E7 /* CTXTutorialEngine */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		A4F365FFB9FECAF943AA1D012BD0A202 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				55A8FAD4A44AC368F44328F05066797C /* CTXTutorialEngine.podspec */,
-				CC3561073E6BC17A72A30BE0231047AD /* LICENSE.md */,
-				7E4834370E888D350EC4EC5869EDCA05 /* README.md */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -259,23 +272,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D5DE84D14CEB5DE19C3EDB1DFBE655E7 /* CTXTutorialEngine */ = {
-			isa = PBXGroup;
-			children = (
-				8808162D016ED5E6EB183DAE4762361C /* CTXTutorialEngine.h */,
-				598A61286507E38FCD8089E50E9DC8A2 /* Core */,
-				23C3EED85EEA29802D5CDD699D505861 /* Delegates */,
-				FF0B809D51D4C103BE468F414A8A471F /* Extensions */,
-				DDB1418E4916CF63FB26584648EE4C42 /* Models */,
-				3F6E617D67B67A80843B2D4583A036E0 /* Module */,
-				A4F365FFB9FECAF943AA1D012BD0A202 /* Pod */,
-				356D1BBC7FA3CCA984B67B5D58F7257C /* Support Files */,
-				327DB89D951FB6909860067A10E385EE /* Utlis */,
-			);
-			name = CTXTutorialEngine;
-			path = ../../..;
-			sourceTree = "<group>";
-		};
 		D8790A1A30FC093870D4C7DCEAB52E23 /* Pods-CTXTutorialEngineExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,20 +289,6 @@
 			path = "Target Support Files/Pods-CTXTutorialEngineExample";
 			sourceTree = "<group>";
 		};
-		DDB1418E4916CF63FB26584648EE4C42 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8C6856400D0FE804C34211D804337F59 /* CTXTutorialAdditionError.swift */,
-				0FFC4571CADF30B8981E4EF46604DC13 /* CTXTutorialConfig.swift */,
-				007408BBF33CB9177E07E14D4D757AA5 /* CTXTutorialStepConfig.swift */,
-				776205DFFB5B93DF2A10DAA000E613FD /* CTXTutorialStepInfo.swift */,
-				931043E555CB2B01B639032F4D2F856F /* CTXTutorialStepModel.swift */,
-				D1A146EB1DE95BEA19E5B2491EB28456 /* CTXTutorialViewsShownEventConfig.swift */,
-			);
-			name = Models;
-			path = Sources/Models;
-			sourceTree = "<group>";
-		};
 		E45BEA3C546B295DA1E7B525E4146325 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,11 +297,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FF0B809D51D4C103BE468F414A8A471F /* Extensions */ = {
+		E7411D34E56E8B6DDDF093929C0771BD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9671BB219A827594AA9F65807E93B486 /* UIApplicationExtension.swift */,
-				D6F5A2F8BE7AD568D3F71F79F240317E /* UIViewExtension.swift */,
+				1DCD70AD553F4E1A3C64AC41E63B59DF /* CTXTutorialEngine.modulemap */,
+				C6EC437C397E73A333F70A6F20EC97B6 /* CTXTutorialEngine-dummy.m */,
+				B28F63232B86EB4A885606D92A16C82A /* CTXTutorialEngine-Info.plist */,
+				4C8B43DEC0FFE657256AFA09C2AC74A9 /* CTXTutorialEngine-prefix.pch */,
+				EAA2BAD683FA55FC1622431966FF418A /* CTXTutorialEngine-umbrella.h */,
+				3B3826D3F23471FB66089BACA6659D54 /* CTXTutorialEngine.debug.xcconfig */,
+				74BFDACBABB32F605D2245AC5C754467 /* CTXTutorialEngine.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Examples/SceneDelegateExample/Pods/Target Support Files/CTXTutorialEngine";
+			sourceTree = "<group>";
+		};
+		FFD0BF73239BB38C078C0C13141CD1A7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C6013B652228E415796197E30F45F659 /* UIApplicationExtension.swift */,
+				DF41FA5FDF56C34EFF4AA7159877F488 /* UIViewExtension.swift */,
 			);
 			name = Extensions;
 			path = Sources/Extensions;
@@ -336,12 +333,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7E248967EA463273BFBDFC46C2B4077 /* Headers */ = {
+		61227DF933CC8673D695D7992331DA4E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3D38752EE33FD6678166AA3868CC35 /* CTXTutorialEngine-umbrella.h in Headers */,
-				59EC60ACE43C5905DA81ADB563A6BC85 /* CTXTutorialEngine.h in Headers */,
+				F8F9A12D29959A4625638A75EA9EC2E4 /* CTXTutorialEngine-umbrella.h in Headers */,
+				3BB2CAFD9100EA91F0819BAF0B18D815 /* CTXTutorialEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,12 +347,12 @@
 /* Begin PBXNativeTarget section */
 		C0E3174738D08972EE2E106FB1674046 /* CTXTutorialEngine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68CCD5B955FD8436A328F0BC4CCBE2CB /* Build configuration list for PBXNativeTarget "CTXTutorialEngine" */;
+			buildConfigurationList = B1272F264E73757339F62C51F349B3F7 /* Build configuration list for PBXNativeTarget "CTXTutorialEngine" */;
 			buildPhases = (
-				C7E248967EA463273BFBDFC46C2B4077 /* Headers */,
-				6C2680D69D4DBE901787B67A125C9588 /* Sources */,
-				529DC2FFD0E07647009C56FEA47FE08F /* Frameworks */,
-				5A6E09287F080A81D8692D02BA01D5C2 /* Resources */,
+				61227DF933CC8673D695D7992331DA4E /* Headers */,
+				B4641CB412741BDC0F2D73296F5879C5 /* Sources */,
+				22B3F784C58659BD64377E5AC78AC47A /* Frameworks */,
+				6641CD1C21F2F2C814A8DB54D24E4A13 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -414,7 +411,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5A6E09287F080A81D8692D02BA01D5C2 /* Resources */ = {
+		6641CD1C21F2F2C814A8DB54D24E4A13 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,50 +428,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6C2680D69D4DBE901787B67A125C9588 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CB5DDA5D2B3409D909BB7E91B31EE5B0 /* CTXTutiralModuleDelegate.swift in Sources */,
-				83DE7E33F013217360DB1C6D40CAD7B9 /* CTXTutorial.swift in Sources */,
-				6F2D05B508768B84D8BA41BA4CA3E241 /* CTXTutorialAdditionError.swift in Sources */,
-				E775DC43D6D5CB07F72965BB75429775 /* CTXTutorialConfig.swift in Sources */,
-				CDC12C034AF0C6A2F147550B3688298F /* CTXTutorialConfigLoader.swift in Sources */,
-				1A9DF233B144BCF671BD8067F91C26FB /* CTXTutorialConstants.swift in Sources */,
-				EEA548041E12918E38850EDA46AE5844 /* CTXTutorialContainer.swift in Sources */,
-				5A945085815F0477D1593A05EFFC7A1F /* CTXTutorialContainerDelegate.swift in Sources */,
-				7440B9FD74C3BF4E126E7B78DF1015AD /* CTXTutorialContainerViewController.swift in Sources */,
-				784875C0ED6128C4A204C7D63B08E977 /* CTXTutorialDelegate.swift in Sources */,
-				CE7B91AA57E708A7CFAB89D74E7FA62E /* CTXTutorialEngine-dummy.m in Sources */,
-				A7559EE22E161BE21C56FD3410144C4A /* CTXTutorialEngine.swift in Sources */,
-				B7ACC3E880F27B1CFDAA379769B7D616 /* CTXTutorialEngineDelegate.swift in Sources */,
-				ED9DCED9D390BC83D64EADE01885E193 /* CTXTutorialEvent.swift in Sources */,
-				ABCF26B009284CE071731E2230CEBAF7 /* CTXTutorialEventBus.swift in Sources */,
-				924823F589640F9864A4A0325FF140D4 /* CTXTutorialEventConfigMetaType.swift in Sources */,
-				3DF04EF8A31B62302E61DCAD82B8398E /* CTXTutorialEventConfigsArray.swift in Sources */,
-				057EBB026A7DF0D8059C175E8116B1F7 /* CTXTutorialModule.swift in Sources */,
-				018740B71CE88BB066B1702B8C9D80AC /* CTXTutorialModuleContract.swift in Sources */,
-				5314FFD2735EF0634434A419BD6F00CA /* CTXTutorialRouterImpl.swift in Sources */,
-				B9C63CF0FBCC20E00BAC93EE4BFF54E0 /* CTXTutorialStepConfig.swift in Sources */,
-				EF62123D0A89132F8F05A09B4E499BA9 /* CTXTutorialStepInfo.swift in Sources */,
-				EB5BC429A71AEFCD5953600A5B183B9C /* CTXTutorialStepModel.swift in Sources */,
-				42006B0B44B8CE4CB0A04D2C21DDD8FC /* CTXTutorialViewManager.swift in Sources */,
-				7C3DAF6A9D3482158BB75A9FB064E788 /* CTXTutorialViewsShownEventConfig.swift in Sources */,
-				9262C7B4EC09BD1B5C456057186A6AC7 /* CTXTutorialViewVisiblityChecker.swift in Sources */,
-				8DD4F62657D39113017C3955952CE10A /* CTXTutorialWeakViewController.swift in Sources */,
-				EF86722E6FDC099CC94BD7C38E01EAEC /* CTXTutorialWindowContainable.swift in Sources */,
-				AFC488BF80767F9B5726824CF62EA886 /* CTXTutoriarPresenterImpl.swift in Sources */,
-				A40A9BF5BC08903D90F977539AF712F7 /* CTXTutotialHintView.swift in Sources */,
-				383D7EA8420F3FD45518C877AA27C451 /* UIApplicationExtension.swift in Sources */,
-				791439A910B1B03B46F1298F4D015172 /* UIViewExtension.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		ACD9CC67F4C7ADA365EA8585C5B86DF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E7F2F5C04687A27375EA52C4DEB28B11 /* Pods-CTXTutorialEngineExample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4641CB412741BDC0F2D73296F5879C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E413F24457067663496CA3FD29610577 /* CTXTutiralModuleDelegate.swift in Sources */,
+				346093A331522C9385F7FDFA32AD9714 /* CTXTutorial.swift in Sources */,
+				37DBC475EFD7C2DF78C1A44E6D4A24C9 /* CTXTutorialAdditionError.swift in Sources */,
+				AC589A4196B8AB0AF49663DD0430783B /* CTXTutorialConfig.swift in Sources */,
+				A3985D842EFA624ABF5048B228C6DF90 /* CTXTutorialConfigLoader.swift in Sources */,
+				A25AADA1407BB9A23350358FC3D6BF40 /* CTXTutorialConstants.swift in Sources */,
+				18D93A22E46EF79CE7244192AF9BEB62 /* CTXTutorialContainer.swift in Sources */,
+				17DEE5DA0B5709FD4DF230F0B87A5BB9 /* CTXTutorialContainerDelegate.swift in Sources */,
+				FFBEADB79FBAE167FF9EF7F7B587D9E1 /* CTXTutorialContainerViewController.swift in Sources */,
+				D6CC1AD3E795A79631C93589FD18CD07 /* CTXTutorialDelegate.swift in Sources */,
+				88DC50BC7622826F11479D28020AA339 /* CTXTutorialEngine-dummy.m in Sources */,
+				CABE03FDFD3DF82F5833D669F8ED96EE /* CTXTutorialEngine.swift in Sources */,
+				6780B100CB149A76F8406270C4A56625 /* CTXTutorialEngineDelegate.swift in Sources */,
+				74565C02D6107EC51B02E30FFAA46036 /* CTXTutorialEvent.swift in Sources */,
+				0D3CD0001BD1B690EE614B0104E3DEEA /* CTXTutorialEventBus.swift in Sources */,
+				7339D900BDF1743E0B57AD615E112DFA /* CTXTutorialEventConfigMetaType.swift in Sources */,
+				0E75FD3C7E058CA29E7A55342D66DB7C /* CTXTutorialEventConfigsArray.swift in Sources */,
+				D81D37FA9F5C86C740EC97C8EA650906 /* CTXTutorialModule.swift in Sources */,
+				98E208541C97122479A6B2EA277F8735 /* CTXTutorialModuleContract.swift in Sources */,
+				D51B8B49115315932851AC07EE11086E /* CTXTutorialRouterImpl.swift in Sources */,
+				E09680EBECAB14AAC9B75745D39B8F7E /* CTXTutorialStepConfig.swift in Sources */,
+				A87655BABDCC21768B35EB339BC6F350 /* CTXTutorialStepInfo.swift in Sources */,
+				4D0AA4DC09B0D078F717F601F7FB9CF2 /* CTXTutorialStepModel.swift in Sources */,
+				99D62C5A4E666C6C8EE4E0EF2005A094 /* CTXTutorialViewAvailabilityChecker.swift in Sources */,
+				A06E9B0264F2CE43E079E5DB4CC01AE9 /* CTXTutorialViewsShownEventConfig.swift in Sources */,
+				B1244AB85DC9C4E8198EE6263721AB2C /* CTXTutorialWeakViewController.swift in Sources */,
+				F3C542539E37C49D7DF20F73AAB53383 /* CTXTutorialWindowContainable.swift in Sources */,
+				A040DD71AA23F8DE500D3D31E36C4A51 /* CTXTutoriarPresenterImpl.swift in Sources */,
+				DAE9ACE90A53979EF429E2AB03D9B19B /* CTXTutotialHintView.swift in Sources */,
+				8CACBA6B488570ACE899E264EED8F559 /* UIApplicationExtension.swift in Sources */,
+				736FDF34FD34FA38EFF411076DCBCE0A /* UIViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +524,42 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		134C674EF1E77EB291FBA5993E7B28B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B3826D3F23471FB66089BACA6659D54 /* CTXTutorialEngine.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine.modulemap";
+				PRODUCT_MODULE_NAME = CTXTutorialEngine;
+				PRODUCT_NAME = CTXTutorialEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		257497152829C177993B5EC99C1D227A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -586,43 +618,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		2642410C4FBF6F07BA7C1CC257298F86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB4E58581D898BF224423D09FD6FAB67 /* CTXTutorialEngine.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/CTXTutorialEngine/CTXTutorialEngine.modulemap";
-				PRODUCT_MODULE_NAME = CTXTutorialEngine;
-				PRODUCT_NAME = CTXTutorialEngine;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -728,9 +723,9 @@
 			};
 			name = Debug;
 		};
-		ED50A52879A6FCF6312318EFA993E7E9 /* Debug */ = {
+		DE7CE1E6542E78881DAAA7D5208A1520 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8747F121900D2B825E9E04D60A4F7467 /* CTXTutorialEngine.debug.xcconfig */;
+			baseConfigurationReference = 74BFDACBABB32F605D2245AC5C754467 /* CTXTutorialEngine.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -759,10 +754,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -785,11 +781,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68CCD5B955FD8436A328F0BC4CCBE2CB /* Build configuration list for PBXNativeTarget "CTXTutorialEngine" */ = {
+		B1272F264E73757339F62C51F349B3F7 /* Build configuration list for PBXNativeTarget "CTXTutorialEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ED50A52879A6FCF6312318EFA993E7E9 /* Debug */,
-				2642410C4FBF6F07BA7C1CC257298F86 /* Release */,
+				134C674EF1E77EB291FBA5993E7B28B3 /* Debug */,
+				DE7CE1E6542E78881DAAA7D5208A1520 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

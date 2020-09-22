@@ -74,11 +74,11 @@ class ViewController: UIViewController {
         
         UIView.animate(withDuration: 2,
                       delay: .zero,
-                       options: [.autoreverse, .curveEaseInOut, .repeat],
+                       options: [.curveEaseInOut],
                        animations: {
                         self.redView.transform = CGAffineTransform(translationX: 300, y: 0)
-                        self.greenView.transform = CGAffineTransform(translationX: 400, y: 0)
-                        self.blueView.transform = CGAffineTransform(translationX: 500, y: 0)
+                        self.greenView.transform = CGAffineTransform(translationX: 300, y: 0)
+                        self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
         })
     }
     

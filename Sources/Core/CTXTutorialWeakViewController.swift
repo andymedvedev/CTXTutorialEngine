@@ -29,7 +29,7 @@ public final class CTXTutorialWeakViewController {
             
             if let vcView = viewController?.view {
                 
-                let views = vcView.accessibilityViews().filter{ visibilityChecker.isVisible($0) }
+                let views = vcView.accessibilityViews().filter{ availabilityChecker.isAvailable($0) }
                 
                 dict = makeDict(from: views)
             }
@@ -40,22 +40,22 @@ public final class CTXTutorialWeakViewController {
     
     private var staticAccessibilityViewsDict = [String: [[UIView]]]()
     private let contentType: CTXTutorialViewControllerContentType
-    private let visibilityChecker: CTXTutorialViewVisibilityChecker
+    private let availabilityChecker: CTXTutorialViewAvailabilityChecker
     
     init(with viewController: UIViewController,
          contentType: CTXTutorialViewControllerContentType,
-         visibilityChecker: CTXTutorialViewVisibilityChecker) {
+         availabilityChecker: CTXTutorialViewAvailabilityChecker) {
         
         self.viewController = viewController
         self.contentType = contentType
-        self.visibilityChecker = visibilityChecker
+        self.availabilityChecker = availabilityChecker
         
         _ = viewController.view
         
         switch contentType {
         case .static:
             
-            let views = viewController.view.accessibilityViews().filter{ visibilityChecker.isVisible($0) }
+            let views = viewController.view.accessibilityViews().filter{ availabilityChecker.isAvailable($0) }
 
             if views.isEmpty {
                 print("CTXTutorialEngine Warning: possible you call CTXTutorialEngine.observe(_:, contentType:) with .static contentType before viewDidAppear(_:). No views shown events will be processed.")

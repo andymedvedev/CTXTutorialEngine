@@ -11,7 +11,6 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     private var window: UIWindow?
     private var appWindow: UIWindow?
     private var hideCompletion: (() -> Void)?
-    private var viewManager: CTXTutorialViewManager?
     
     func showTutorial(startHandler: @escaping () -> (),
                       hideCompletion: @escaping () -> Void) {
@@ -20,9 +19,6 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
             print("CTXTutorianEngine: can't find app keyWindow")
             return
         }
-        
-        viewManager = CTXTutorialViewManager(for: rootVC.view)
-        viewManager?.pause()
         
         self.hideCompletion = hideCompletion
         
@@ -41,7 +37,6 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         tutorialViewController?.view.removeFromSuperview()
         tutorialViewController?.removeFromParent()
 
-        viewManager?.resume()
         hideCompletion?()
         UIApplication.getTopViewController()?.setNeedsStatusBarAppearanceUpdate()
     }
