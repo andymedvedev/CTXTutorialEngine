@@ -131,18 +131,11 @@ extension ViewController: CTXTutorialEngineDelegate {
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView? {
         
-        let origin = CGPoint(x: currentStepModel.views[0].frame.midX,
-                             y: currentStepModel.views[0].frame.maxY + 16)
-        let hintView = MyHintView()
+        let hintView = MyHintView(with: currentStepModel)
         
-        hintView.configure(with: currentStepModel.text,
-                           isHavePreviousStep: isHavePreviousStep,
-                           isHaveNextStep: isHaveNextStep,
-                           isHaveCloseButton: true)
-        
-        hintView.frame = CGRect(origin: origin, size: hintView.sizeThatFits(view.bounds.size))
-        
-        hintView.center.x = view.center.x
+        hintView?.configure(isHavePreviousStep: isHavePreviousStep,
+                            isHaveNextStep: isHaveNextStep,
+                            isHaveCloseButton: true)
         
         return hintView
     }
