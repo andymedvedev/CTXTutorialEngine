@@ -15,6 +15,14 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     public var nextStepHandler: VoidClosure?
     public var closeTutorialHandler: VoidClosure?
 
+    public struct ViewModel {
+        
+        let step: CTXTutorialStepModel
+        let isHavePreviousStep: Bool
+        let isHaveNextStep: Bool
+        let isHaveCloseButton: Bool
+    }
+    
     private enum AnchorDirection {
         case toTop
         case toBottom
@@ -32,44 +40,30 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     }
     
     private let textLabel = UILabel()
-    private lazy var buttonsStackView = UIStackView(arrangedSubviews: [backButton, nextButton])
-    private lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            closeButton,
-            textLabel,
-            buttonsStackView,
-        ])
-        stackView.alignment = .trailing
-        stackView.axis = .vertical
-        return stackView
-    }()
     private lazy var bubleView: UIView = {
         let view = UIView()
-        view.addSubview(mainStackView)
+        view.addSubview(closeButton)
+        view.addSubview(textLabel)
+        view.addSubview(backButton)
+        view.addSubview(nextButton)
         view.backgroundColor = .white
         view.layer.cornerRadius = cornerRadius
         return view
     }()
-    private let horizontalInset: CGFloat = 16
-    private let topInset: CGFloat = 8
-    private let verticalSpacing: CGFloat = 16
+    private let minHorizontalInset: CGFloat = 16
+    private let bubleInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    private let bubleInnerSpacing: CGFloat = 8
     private let backButton = UIButton(type: .system)
     private let nextButton = UIButton(type: .system)
     private let closeButton = UIButton(type: .system)
-    private let anchorSize: CGFloat = 32
+    private let anchorSize: CGFloat = 16
     private let cornerRadius: CGFloat = 6
-    private let snapshot: UIView
+    private let buttonSize = CGSize(width: 16, height: 16)
+    private var snapshot: UIView!
     
-    public init?(with step: CTXTutorialStepModel) {
-        guard let snapshot = step.views.first else {
-            return nil
-        }
-        
-        self.snapshot = snapshot
-        
+    public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
         
-        textLabel.text = step.text
         textLabel.font = .systemFont(ofSize: 13)
         textLabel.numberOfLines = 0
         
@@ -83,42 +77,22 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(closeTutorial), for: .touchUpInside)
         
-        backgroundColor = .clear
-        
         addSubview(bubleView)
+        
+        setup(with: viewModel)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        bubleView.frame = CGRect(x: 0, y: 0, width: 150, height: 100)
-        
-        setup()
-    }
-    
-    public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(width: 300, height: 200)
-    }
-    
-    public func configure(isHavePreviousStep: Bool,
-                          isHaveNextStep: Bool,
-                          isHaveCloseButton: Bool) {
-        backButton.isHidden = !isHavePreviousStep
-        nextButton.isHidden = !isHaveNextStep
-        closeButton.isHidden = !isHaveCloseButton
-    }
-    
-    private func centerHintViewX(anchorAlignment: inout AnchorAlignment) {
+    private func centerHintViewX(by snapshot: UIView, anchorAlignment: inout AnchorAlignment) {
         let bounds = UIScreen.main.bounds
         
-        if snapshot.center.x - bubleView.frame.width > 16 {
+        if snapshot.center.x - bubleView.frame.width > minHorizontalInset {
             frame.origin.x = snapshot.center.x - bubleView.frame.width
             anchorAlignment = .right
-        } else if snapshot.center.x + bubleView.frame.width < bounds.width - 16 {
+        } else if snapshot.center.x + bubleView.frame.width < bounds.width - minHorizontalInset {
             frame.origin.x = snapshot.center.x
             anchorAlignment = .left
         } else {
@@ -127,16 +101,74 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         }
     }
     
-    private func centerHintViewY() {
-        bubleView.center.y = snapshot.center.y
+    private func centerHintViewY(by snapshot: UIView, anchorAlignment: inout AnchorAlignment) {
         //TODO
+        bubleView.center.y = snapshot.center.y
     }
     
-    private func fitSize(with width: CGFloat) {
-        textLabel.frame.size = textLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+    private func fitAndPlace(with size: CGSize, anchorDirection: AnchorDirection) {
+        var bubleHeight = bubleInsets.top
+        var selfHeight: CGFloat = .zero
+        
+        [closeButton, backButton, nextButton].forEach { $0.frame.size = buttonSize }
+        
+        var availableWidthForLabel = size.width - bubleInsets.left - bubleInsets.right
+        
+        switch anchorDirection {
+        case .toLeft, .toRight:
+            availableWidthForLabel -= anchorSize
+        case .toTop, .toBottom:
+            selfHeight += anchorSize
+        default:
+            break
+        }
+        
+        bubleHeight += closeButton.frame.height
+        let labelSize = textLabel.sizeThatFits(CGSize(width: availableWidthForLabel,
+                                                      height: .greatestFiniteMagnitude))
+        textLabel.frame = CGRect(origin: CGPoint(x: bubleInsets.left,
+                                                 y: bubleHeight + bubleInnerSpacing),
+                                 size: labelSize)
+        bubleHeight += bubleInnerSpacing + labelSize.height
+        
+        let width = labelSize.width + bubleInsets.left + bubleInsets.right
+        let rightBottomOrigin = CGPoint(x: width - bubleInsets.right,
+                                        y: bubleHeight)
+        
+        switch (backButton.isHidden, nextButton.isHidden) {
+        case (false, false):
+            nextButton.frame.origin = rightBottomOrigin
+            backButton.frame.origin = CGPoint(x: nextButton.frame.minX - bubleInnerSpacing,
+                                              y: bubleHeight)
+            bubleHeight += backButton.bounds.height + bubleInsets.bottom
+        case (true, false):
+            nextButton.frame.origin = rightBottomOrigin
+            bubleHeight += nextButton.bounds.height + bubleInsets.bottom
+        case (false, true):
+            backButton.frame.origin = rightBottomOrigin
+            bubleHeight += backButton.bounds.height + bubleInsets.bottom
+        case (true, true):
+            bubleHeight += bubleInsets.bottom
+            break
+        }
+        
+        selfHeight += bubleHeight
+        
+        bounds.size = CGSize(width: width, height: selfHeight)
+        
+        bubleView.frame.size = CGSize(width: width, height: bubleHeight)
     }
     
-    private func setup() {
+    private func setup(with viewModel: ViewModel) {
+        guard let snapshot = viewModel.step.views.first else {
+            fatalError("Step model doesn't contains any snapshots")
+        }
+        
+        backButton.isHidden = !viewModel.isHavePreviousStep
+        nextButton.isHidden = !viewModel.isHaveNextStep
+        closeButton.isHidden = !viewModel.isHaveCloseButton
+        textLabel.text = viewModel.step.text
+        
         let bounds = UIScreen.main.bounds
         let safeAreaInsets: UIEdgeInsets
         
@@ -146,11 +178,6 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             safeAreaInsets = .zero
         }
         
-        if frame.width > bounds.width - 32 {
-            fitSize(with: bounds.width - 32)
-            return
-        }
-        
         let bubleHeight = bubleView.frame.height
         let bubleWidth = bubleView.frame.width
         let snapshotMinX = snapshot.frame.minX
@@ -158,6 +185,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         let snapshotMinY = snapshot.frame.minY
         let snapshotMaxY = snapshot.frame.maxY
         
+        let availableHeight = bounds.height - safeAreaInsets.bottom - safeAreaInsets.top
         let topSpace = snapshotMinY - safeAreaInsets.top
         let bottomSpace = bounds.maxY - safeAreaInsets.bottom - snapshotMaxY
         let leftSpace = snapshotMinX
@@ -165,34 +193,52 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         var anchorDirection = AnchorDirection.none
         var anchorAlignment = AnchorAlignment.center
         
+        if topSpace > bottomSpace {
+            anchorDirection = .toBottom
+            fitAndPlace(with: CGSize(width: bounds.width, height: topSpace), anchorDirection: anchorDirection)
+        } else if topSpace < bottomSpace {
+            anchorDirection = .toTop
+            fitAndPlace(with: CGSize(width: bounds.width, height: bottomSpace), anchorDirection: anchorDirection)
+        } else if leftSpace > rightSpace {
+            anchorDirection = .toRight
+            fitAndPlace(with: CGSize(width: leftSpace, height: availableHeight), anchorDirection: anchorDirection)
+        } else if leftSpace < rightSpace {
+            anchorDirection = .toLeft
+            fitAndPlace(with: CGSize(width: rightSpace, height: availableHeight), anchorDirection: anchorDirection)
+        } else {
+            anchorDirection = .none
+            fitAndPlace(with: CGSize(width: bounds.width, height: availableHeight), anchorDirection: anchorDirection)
+        }
+        
         if topSpace > bottomSpace && topSpace >= bubleHeight + anchorSize { // plate hint on the top of snapshot
             
             frame.origin.y = snapshotMinY - bubleHeight - anchorSize
             bubleView.frame.origin.y = .zero
-            centerHintViewX(anchorAlignment: &anchorAlignment)
-            anchorDirection = .toBottom
+            centerHintViewX(by: snapshot, anchorAlignment: &anchorAlignment)
+            
         } else if bottomSpace >= bubleHeight + anchorSize {
             
             frame.origin.y = snapshotMaxY
             bubleView.frame.origin.y = anchorSize
-            centerHintViewX(anchorAlignment: &anchorAlignment)
+            centerHintViewX(by: snapshot, anchorAlignment: &anchorAlignment)
             anchorDirection = .toTop
         } else if leftSpace > rightSpace && leftSpace >= bubleWidth + anchorSize {
             
             frame.origin.x = snapshotMinX - bubleWidth - anchorSize
             bubleView.frame.origin.x = .zero
-            centerHintViewY()
-            anchorDirection = .toRight
+            centerHintViewY(by: snapshot, anchorAlignment: &anchorAlignment)
+            
         } else if rightSpace >= bubleWidth + anchorSize {
             
             frame.origin.x = snapshotMaxX
             bubleView.frame.origin.x = anchorSize
-            centerHintViewY()
+            centerHintViewY(by: snapshot, anchorAlignment: &anchorAlignment)
             anchorDirection = .toLeft
         }
         
         bubleView.layer.maskedCorners = maskedCorners(for: anchorDirection, alignment: anchorAlignment)
         layer.addSublayer(anchorLayer(with: anchorDirection, alignment: anchorAlignment))
+        setNeedsLayout()
     }
     
     private func anchorLayer(with direction: AnchorDirection, alignment: AnchorAlignment) -> CALayer {
