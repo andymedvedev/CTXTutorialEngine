@@ -59,7 +59,6 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     private let anchorSize: CGFloat = 16
     private let cornerRadius: CGFloat = 6
     private let buttonSize = CGSize(width: 16, height: 16)
-    private var snapshot: UIView!
     
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
@@ -86,23 +85,25 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func centerHintViewX(by snapshot: UIView, anchorAlignment: inout AnchorAlignment) {
+    private func centerHintViewX(by layer: CALayer, anchorAlignment: inout AnchorAlignment) {
         let bounds = UIScreen.main.bounds
+        let centerX = layer.convert(layer.bounds, to: nil).midX
         
-        if snapshot.center.x - bubleView.frame.width > minHorizontalInset {
-            frame.origin.x = snapshot.center.x - bubleView.frame.width
+        if centerX - bubleView.frame.width > minHorizontalInset {
+            frame.origin.x = centerX - bubleView.frame.width
             anchorAlignment = .right
-        } else if snapshot.center.x + bubleView.frame.width < bounds.width - minHorizontalInset {
-            frame.origin.x = snapshot.center.x
+        } else if centerX + bubleView.frame.width < bounds.width - minHorizontalInset {
+            frame.origin.x = centerX
             anchorAlignment = .left
         } else {
-            center.x = snapshot.center.x
+            center.x = centerX
             anchorAlignment = .center
         }
     }
     
-    private func centerHintViewY(by snapshot: UIView, anchorAlignment: inout AnchorAlignment) {
-        center.y = snapshot.center.y
+    private func centerHintViewY(by layer: CALayer, anchorAlignment: inout AnchorAlignment) {
+        let centerY = layer.convert(layer.bounds, to: nil).midY
+        center.y = centerY
         anchorAlignment = .center
         //TODO:
     }
@@ -161,7 +162,8 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     }
     
     private func setup(with viewModel: ViewModel) {
-        guard let snapshot = viewModel.step.views.first else {
+        guard let view = viewModel.step.views.first,
+            let layer = view.layer.presentation() else {
             fatalError("Step model doesn't contains any snapshots")
         }
         
@@ -179,10 +181,10 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             safeAreaInsets = .zero
         }
         
-        let snapshotMinX = snapshot.frame.minX
-        let snapshotMaxX = snapshot.frame.maxX
-        let snapshotMinY = snapshot.frame.minY
-        let snapshotMaxY = snapshot.frame.maxY
+        let snapshotMinX = layer.frame.minX
+        let snapshotMaxX = layer.frame.maxX
+        let snapshotMinY = layer.frame.minY
+        let snapshotMaxY = layer.frame.maxY
         
         let availableHeight = bounds.height - safeAreaInsets.bottom - safeAreaInsets.top
         let topSpace = snapshotMinY - safeAreaInsets.top
@@ -216,30 +218,30 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             
             frame.origin.y = snapshotMinY - bubleHeight - anchorSize
             bubleView.frame.origin.y = .zero
-            centerHintViewX(by: snapshot, anchorAlignment: &anchorAlignment)
+            centerHintViewX(by: layer, anchorAlignment: &anchorAlignment)
             
         } else if bottomSpace >= bubleHeight + anchorSize {
             
             frame.origin.y = snapshotMaxY
             bubleView.frame.origin.y = anchorSize
-            centerHintViewX(by: snapshot, anchorAlignment: &anchorAlignment)
+            centerHintViewX(by: layer, anchorAlignment: &anchorAlignment)
             anchorDirection = .toTop
         } else if leftSpace > rightSpace && leftSpace >= bubleWidth + anchorSize {
             
             frame.origin.x = snapshotMinX - bubleWidth - anchorSize
             bubleView.frame.origin.x = .zero
-            centerHintViewY(by: snapshot, anchorAlignment: &anchorAlignment)
+            centerHintViewY(by: layer, anchorAlignment: &anchorAlignment)
             
         } else if rightSpace >= bubleWidth + anchorSize {
             
             frame.origin.x = snapshotMaxX
             bubleView.frame.origin.x = anchorSize
-            centerHintViewY(by: snapshot, anchorAlignment: &anchorAlignment)
+            centerHintViewY(by: layer, anchorAlignment: &anchorAlignment)
             anchorDirection = .toLeft
         }
         
         bubleView.layer.maskedCorners = maskedCorners(for: anchorDirection, alignment: anchorAlignment)
-        layer.addSublayer(anchorLayer(with: anchorDirection, alignment: anchorAlignment))
+        self.layer.addSublayer(anchorLayer(with: anchorDirection, alignment: anchorAlignment))
         setNeedsLayout()
     }
     

@@ -16,7 +16,7 @@ final class CTXTutorialContainerViewController: UIViewController {
     
     weak var delegate: CTXTutorialContainerDelegate?
     
-    private var snapshotStepModels = [CTXTutorialStepModel]()
+    private var stepModels = [CTXTutorialStepModel]()
     
     private let tutorialContainer = CTXTutorialContainerView()
     private var currentStepIndex = 0
@@ -46,39 +46,33 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
     
     func show(with stepModels: [CTXTutorialStepModel]) {
         totalStepsCount = stepModels.count
+        self.stepModels = stepModels
         
-        guard let backgroundVC = UIApplication.getTopViewController(),
-            let backgroundPresentationLayer = backgroundVC.view.layer.presentation() else { return }
-        
-        let backgroundViewForSnapshot = UIView(frame: backgroundVC.view.frame)
-        let backgroundModelLayer = CALayer(layer: backgroundPresentationLayer)
-        backgroundViewForSnapshot.layer.addSublayer(backgroundModelLayer)
-        
-        guard let backgroundSnapshot = backgroundViewForSnapshot.snapshotView(afterScreenUpdates: true) else { return }
+        guard let backgroundVC = UIApplication.getTopViewController() else { return }
         
         statusBarStyle =  delegate?.preferredTutorialStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
         
-        snapshotStepModels = getSnapshotsModels(by: stepModels)
-        
-        configure(backgroundSnapshot: backgroundSnapshot, by: backgroundVC)
-
         let overlayColor = delegate?.tutorialOverlayColor() ?? CTXTutorialConstants.tutorialOverlayColor
         
-        tutorialContainer.configure(backgroundSnapshot: backgroundSnapshot,
-                                    overlayColor: overlayColor) { [weak self] in
-                                        self?.presenter?.onHideTutorial()
+        tutorialContainer.configure(overlayColor: overlayColor) {
+            [weak self] in
+            
+            self?.presenter?.onHideTutorial()
         }
         
-        presenter?.onTutorialPrepared(startHandler: { [weak self] in
-                                        self?.handleStep()
-                                      },
-                                      cleaningBlock: { [weak self] in
-                                         if let self = self {
-                                             self.delegate?.containerDidEndShowTutorial(self)
-                                         }
-                                                
-                                         self?.presenter = nil
-                                      })
+        presenter?.onTutorialPrepared(startHandler: {
+            [weak self] in
+            
+            self?.handleStep()
+            },
+            cleaningBlock: {
+                [weak self] in
+                if let self = self {
+                    self.delegate?.containerDidEndShowTutorial(self)
+                }
+                
+                self?.presenter = nil
+        })
     }
 }
 
@@ -98,51 +92,6 @@ private extension CTXTutorialContainerViewController {
         return topPresentedVC
     }
     
-    func configure(backgroundSnapshot: UIView, by backgroundVC: UIViewController) {
-        if let topPresentedVC = topPresentedVC(by: backgroundVC) {
-            let presentedViewSnapshot = topPresentedVC.view.snapshotView(afterScreenUpdates: true)
-            
-            if let presentedViewSnapshot = presentedViewSnapshot,
-                let presentedView = topPresentedVC.view {
-                
-                let cornerRadius = delegate?.cornerRadiusForModalViewSnapshot() ?? CTXTutorialConstants.modalViewCornerRaius
-                
-                presentedViewSnapshot.frame.origin = presentedView.convert(CGPoint.zero, to: nil)
-                presentedViewSnapshot.layer.cornerRadius = cornerRadius
-                presentedViewSnapshot.layer.masksToBounds = true
-                
-                statusBarStyle = delegate?.preferredTutorialStatusBarStyle() ?? topPresentedVC.preferredStatusBarStyle
-                
-                backgroundSnapshot.addSubview(presentedViewSnapshot)
-            }
-        }
-    }
-    
-    func getSnapshotsModels(by stepModels: [CTXTutorialStepModel]) -> [CTXTutorialStepModel] {
-        
-        let snapshotsModels = stepModels.map { model -> CTXTutorialStepModel in
-            
-            let snapshots = model.views.compactMap { view -> UIView? in
-                
-                let snapshot = view.snapshotView(afterScreenUpdates: true)
-
-                if let presentationLayer = view.layer.presentation() {
-                    snapshot?.accessibilityIdentifier = view.accessibilityIdentifier
-                    snapshot?.frame = presentationLayer.convert(presentationLayer.bounds, to: nil)
-                    snapshot?.layer.cornerRadius = view.layer.cornerRadius
-                    snapshot?.layer.masksToBounds = true
-                }
-
-                return snapshot
-            }
-            
-            return CTXTutorialStepModel(text: model.text,
-                                        views: snapshots)
-        }
-        
-        return snapshotsModels
-    }
-    
     func onPreviousStep() {
         currentStepIndex -= 1
         
@@ -156,12 +105,12 @@ private extension CTXTutorialContainerViewController {
     }
     
     func handleStep() {
-        let snapshotStepModel = snapshotStepModels[currentStepIndex]
+        let stepModel = stepModels[currentStepIndex]
         let isHavePreviousStep = totalStepsCount > 1 && currentStepIndex > 0
         let isHaveNextStep = totalStepsCount > 1 && currentStepIndex < totalStepsCount - 1
         
         let customHintView = delegate?.container(self,
-                                                 hintViewForTutorialWith: snapshotStepModel,
+                                                 hintViewForTutorialWith: stepModel,
                                                  isHavePreviousStep: isHavePreviousStep,
                                                  isHaveNextStep: isHaveNextStep)
         
@@ -174,12 +123,12 @@ private extension CTXTutorialContainerViewController {
         }
         
         if let customHintView = customHintView {
-            tutorialContainer.showStep(with: customHintView, snapshots: snapshotStepModel.views)
+            tutorialContainer.showStep(with: customHintView, views: stepModel.views)
         }
     
         let stepPresentationInfo = CTXTutorialStepPresentationInfo(stepIndex: currentStepIndex,
                                                                    stepsCount: totalStepsCount,
-                                                                   stepModel: snapshotStepModel)
+                                                                   stepModel: stepModel)
         
         delegate?.containerDidShowTutorialStep(self, with: stepPresentationInfo)
     }

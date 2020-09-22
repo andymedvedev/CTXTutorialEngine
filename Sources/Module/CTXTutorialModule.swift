@@ -18,7 +18,7 @@ class CTXTutorialModule {
         
         view.presenter = presenter
         view.delegate = self
-        router.rootViewController = view
+        router.tutorialViewController = view
         presenter.view = view
         presenter.router = router
         

@@ -6,7 +6,7 @@ import UIKit
 
 public class CTXTutorialRouterImpl: CTXTutorialRouter {
     
-    weak var rootViewController: CTXTutorialContainerViewController?
+    weak var tutorialViewController: CTXTutorialContainerViewController?
     
     private var window: UIWindow?
     private var appWindow: UIWindow?
@@ -15,36 +15,33 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     
     func showTutorial(startHandler: @escaping () -> (),
                       hideCompletion: @escaping () -> Void) {
-        guard let appWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
+        guard let rootVC = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first?.rootViewController,
+            let tutorialVC = tutorialViewController else {
             print("CTXTutorianEngine: can't find app keyWindow")
             return
         }
         
-        viewManager = CTXTutorialViewManager(for: appWindow)
+        viewManager = CTXTutorialViewManager(for: rootVC.view)
         viewManager?.pause()
         
         self.hideCompletion = hideCompletion
         
-        self.appWindow = appWindow
-        window = UIWindow(frame: UIScreen.main.bounds)
+        tutorialVC.view.frame = rootVC.view.frame
+        tutorialVC.view.layoutIfNeeded()
+        rootVC.addChild(tutorialVC)
+        rootVC.view.addSubview(tutorialVC.view)
         
-        if #available(iOS 13, *) {
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                window = UIWindow(windowScene: windowScene)
-            }
-        }
-        
-        window?.rootViewController = self.rootViewController
-        window?.windowLevel = .alert
-        window?.makeKeyAndVisible()
+        tutorialVC.didMove(toParent: rootVC)
         
         startHandler()
     }
     
     func hideTutorial() {
+        tutorialViewController?.willMove(toParent: nil)
+        tutorialViewController?.view.removeFromSuperview()
+        tutorialViewController?.removeFromParent()
+
         viewManager?.resume()
-        window?.windowLevel = .normal
-        appWindow?.makeKeyAndVisible()
         hideCompletion?()
         UIApplication.getTopViewController()?.setNeedsStatusBarAppearanceUpdate()
     }
