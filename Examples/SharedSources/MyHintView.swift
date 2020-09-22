@@ -64,10 +64,10 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
         
-        textLabel.font = .systemFont(ofSize: 13)
+        textLabel.font = .systemFont(ofSize: 15)
         textLabel.numberOfLines = 0
         
-        backButton.setImage(UIImage(named: "arrow_back"), for: .normal)
+        backButton.setImage(UIImage(named: "arrow_backward"), for: .normal)
         nextButton.setImage(UIImage(named: "arrow_forward"), for: .normal)
         closeButton.setImage(UIImage(named: "cross"), for: .normal)
         
@@ -132,21 +132,24 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         bubleHeight += bubleInnerSpacing + labelSize.height
         
         let width = labelSize.width + bubleInsets.left + bubleInsets.right
-        let rightBottomOrigin = CGPoint(x: width - bubleInsets.right,
-                                        y: bubleHeight)
+        let rightBottomOrigin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
+                                        y: bubleHeight + bubleInnerSpacing)
+        
+        closeButton.frame.origin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
+                                           y: bubleInsets.top)
         
         switch (backButton.isHidden, nextButton.isHidden) {
         case (false, false):
             nextButton.frame.origin = rightBottomOrigin
-            backButton.frame.origin = CGPoint(x: nextButton.frame.minX - bubleInnerSpacing,
-                                              y: bubleHeight)
-            bubleHeight += backButton.bounds.height + bubleInsets.bottom
+            backButton.frame.origin = CGPoint(x: nextButton.frame.minX - buttonSize.width - bubleInnerSpacing,
+                                              y: bubleHeight + bubleInnerSpacing)
+            bubleHeight += backButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
         case (true, false):
             nextButton.frame.origin = rightBottomOrigin
-            bubleHeight += nextButton.bounds.height + bubleInsets.bottom
+            bubleHeight += nextButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
         case (false, true):
             backButton.frame.origin = rightBottomOrigin
-            bubleHeight += backButton.bounds.height + bubleInsets.bottom
+            bubleHeight += backButton.bounds.height + bubleInnerSpacing + bubleInsets.bottom
         case (true, true):
             bubleHeight += bubleInsets.bottom
             break
