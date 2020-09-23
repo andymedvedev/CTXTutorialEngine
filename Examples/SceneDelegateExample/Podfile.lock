@@ -2,15 +2,15 @@ PODS:
   - CTXTutorialEngine (1.0.2)
 
 DEPENDENCIES:
-  - CTXTutorialEngine (from `../../`)
+  - CTXTutorialEngine (from `../..`)
 
 EXTERNAL SOURCES:
   CTXTutorialEngine:
-    :path: "../../"
+    :path: "../.."
 
 SPEC CHECKSUMS:
   CTXTutorialEngine: c2d6c60bf47d0dad9080dc31340d2e8252259d21
 
-PODFILE CHECKSUM: fa958502e06fb91bb28b9ea6ff28e69f0d0d72af
+PODFILE CHECKSUM: 0039dc1d125edb90e07528b1f7d2785b1ebb0bd1
 
 COCOAPODS: 1.9.3

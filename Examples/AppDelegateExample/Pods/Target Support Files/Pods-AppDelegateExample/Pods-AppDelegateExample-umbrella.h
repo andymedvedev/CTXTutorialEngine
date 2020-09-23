@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CTXTutorialEngineExampleVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CTXTutorialEngineExampleVersionString[];
+FOUNDATION_EXPORT double Pods_AppDelegateExampleVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_AppDelegateExampleVersionString[];
 

@@ -64,9 +64,10 @@ private extension CTXTutorialContainerView {
         let maskLayer = CAShapeLayer()
         let bezierPath = UIBezierPath(rect: bounds)
         let subPath = path(for: view)
+        let convertedOrigin = view.convert(CGPoint.zero, to: self)
         
-        subPath.apply(CGAffineTransform(translationX: view.frame.origin.x,
-                                        y: view.frame.origin.y))
+        subPath.apply(CGAffineTransform(translationX: convertedOrigin.x,
+                                        y: convertedOrigin.y))
         bezierPath.append(subPath)
         maskLayer.path = bezierPath.cgPath
         maskLayer.fillRule = .evenOdd
