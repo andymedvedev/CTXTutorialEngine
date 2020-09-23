@@ -193,7 +193,7 @@ extension ViewController: CTXTutorialEngineDelegate {
                           delay: .zero,
                            options: [.curveEaseInOut],
                            animations: {
-                            self.customView.transform = CGAffineTransform(translationX: 0, y: 200)
+                            self.customView.transform = CGAffineTransform(translationX: 0, y: 100)
             })
         }
     }

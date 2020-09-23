@@ -9,7 +9,7 @@
                         "event": {
                             "steps": [
                                 {
-                                    "text": "Tap on this button to\n trigger touch events.",
+                                    "text": "Tap on this button to\nshow shapes.",
                                     "accessibilityIdentifier": "button"
                                 }
                             ]
@@ -38,7 +38,7 @@
                                 },
                                 
                                 {
-                                    "text": "This view is looks like deep sea or sky",
+                                    "text": "This view as deep sea or sky",
                                     "accessibilityIdentifier": "blueView"
                                 }
                             ]

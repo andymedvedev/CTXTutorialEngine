@@ -9,7 +9,7 @@
 import UIKit
 import CTXTutorialEngine
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, CTXTutorialWindowContainable {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
