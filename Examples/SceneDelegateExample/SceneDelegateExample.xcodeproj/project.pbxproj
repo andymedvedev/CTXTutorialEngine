@@ -11,13 +11,13 @@
 		2C031F55251B7A3000098EF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F54251B7A3000098EF8 /* SceneDelegate.swift */; };
 		2C031F5C251B7A3100098EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C031F5B251B7A3100098EF8 /* Assets.xcassets */; };
 		2C031F5F251B7A3100098EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C031F5D251B7A3100098EF8 /* LaunchScreen.storyboard */; };
-		2C031F6D251B7AD300098EF8 /* MyEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F66251B7AD300098EF8 /* MyEventConfig.swift */; };
-		2C031F6E251B7AD300098EF8 /* CTXTutorialConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C031F67251B7AD300098EF8 /* CTXTutorialConfig.json */; };
-		2C031F6F251B7AD300098EF8 /* MyHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F68251B7AD300098EF8 /* MyHintView.swift */; };
-		2C031F70251B7AD300098EF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F69251B7AD300098EF8 /* ViewController.swift */; };
-		2C031F71251B7AD300098EF8 /* MyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F6A251B7AD300098EF8 /* MyEvent.swift */; };
-		2C031F72251B7AD300098EF8 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F6B251B7AD300098EF8 /* CollectionCell.swift */; };
-		2C031F73251B7AD300098EF8 /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031F6C251B7AD300098EF8 /* MyEventConfigMetatype.swift */; };
+		2C031FBC251BA03900098EF8 /* CTXTutorialConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C031FB5251BA03900098EF8 /* CTXTutorialConfig.json */; };
+		2C031FBD251BA03900098EF8 /* MyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB6251BA03900098EF8 /* MyEvent.swift */; };
+		2C031FBE251BA03900098EF8 /* MyEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB7251BA03900098EF8 /* MyEventConfig.swift */; };
+		2C031FBF251BA03900098EF8 /* MyHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB8251BA03900098EF8 /* MyHintView.swift */; };
+		2C031FC0251BA03900098EF8 /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */; };
+		2C031FC1251BA03900098EF8 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FBA251BA03900098EF8 /* CollectionCell.swift */; };
+		2C031FC2251BA03900098EF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FBB251BA03900098EF8 /* ViewController.swift */; };
 		2E19C82674E5A1B9E5CC3170 /* Pods_SceneDelegateExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629464069233D32BDF696095 /* Pods_SceneDelegateExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,13 +28,13 @@
 		2C031F5B251B7A3100098EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C031F5E251B7A3100098EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C031F60251B7A3100098EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C031F66251B7AD300098EF8 /* MyEventConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyEventConfig.swift; path = ../../SharedSources/MyEventConfig.swift; sourceTree = "<group>"; };
-		2C031F67251B7AD300098EF8 /* CTXTutorialConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CTXTutorialConfig.json; path = ../../SharedSources/CTXTutorialConfig.json; sourceTree = "<group>"; };
-		2C031F68251B7AD300098EF8 /* MyHintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyHintView.swift; path = ../../SharedSources/MyHintView.swift; sourceTree = "<group>"; };
-		2C031F69251B7AD300098EF8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../SharedSources/ViewController.swift; sourceTree = "<group>"; };
-		2C031F6A251B7AD300098EF8 /* MyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyEvent.swift; path = ../../SharedSources/MyEvent.swift; sourceTree = "<group>"; };
-		2C031F6B251B7AD300098EF8 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionCell.swift; path = ../../SharedSources/CollectionCell.swift; sourceTree = "<group>"; };
-		2C031F6C251B7AD300098EF8 /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyEventConfigMetatype.swift; path = ../../SharedSources/MyEventConfigMetatype.swift; sourceTree = "<group>"; };
+		2C031FB5251BA03900098EF8 /* CTXTutorialConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CTXTutorialConfig.json; sourceTree = "<group>"; };
+		2C031FB6251BA03900098EF8 /* MyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEvent.swift; sourceTree = "<group>"; };
+		2C031FB7251BA03900098EF8 /* MyEventConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventConfig.swift; sourceTree = "<group>"; };
+		2C031FB8251BA03900098EF8 /* MyHintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHintView.swift; sourceTree = "<group>"; };
+		2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventConfigMetatype.swift; sourceTree = "<group>"; };
+		2C031FBA251BA03900098EF8 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		2C031FBB251BA03900098EF8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		629464069233D32BDF696095 /* Pods_SceneDelegateExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneDelegateExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B794AC936B4FFF3EE5E04AA2 /* Pods-SceneDelegateExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneDelegateExample.debug.xcconfig"; path = "Target Support Files/Pods-SceneDelegateExample/Pods-SceneDelegateExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F265123B7043249135DBB8C1 /* Pods-SceneDelegateExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneDelegateExample.release.xcconfig"; path = "Target Support Files/Pods-SceneDelegateExample/Pods-SceneDelegateExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,13 +90,13 @@
 		2C031F51251B7A3000098EF8 /* SceneDelegateExample */ = {
 			isa = PBXGroup;
 			children = (
-				2C031F67251B7AD300098EF8 /* CTXTutorialConfig.json */,
-				2C031F6A251B7AD300098EF8 /* MyEvent.swift */,
-				2C031F66251B7AD300098EF8 /* MyEventConfig.swift */,
-				2C031F6C251B7AD300098EF8 /* MyEventConfigMetatype.swift */,
-				2C031F68251B7AD300098EF8 /* MyHintView.swift */,
-				2C031F69251B7AD300098EF8 /* ViewController.swift */,
-				2C031F6B251B7AD300098EF8 /* CollectionCell.swift */,
+				2C031FBA251BA03900098EF8 /* CollectionCell.swift */,
+				2C031FB5251BA03900098EF8 /* CTXTutorialConfig.json */,
+				2C031FB6251BA03900098EF8 /* MyEvent.swift */,
+				2C031FB7251BA03900098EF8 /* MyEventConfig.swift */,
+				2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */,
+				2C031FB8251BA03900098EF8 /* MyHintView.swift */,
+				2C031FBB251BA03900098EF8 /* ViewController.swift */,
 				2C031F52251B7A3000098EF8 /* AppDelegate.swift */,
 				2C031F54251B7A3000098EF8 /* SceneDelegate.swift */,
 				2C031F5B251B7A3100098EF8 /* Assets.xcassets */,
@@ -166,9 +166,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C031FBC251BA03900098EF8 /* CTXTutorialConfig.json in Resources */,
 				2C031F5F251B7A3100098EF8 /* LaunchScreen.storyboard in Resources */,
 				2C031F5C251B7A3100098EF8 /* Assets.xcassets in Resources */,
-				2C031F6E251B7AD300098EF8 /* CTXTutorialConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +221,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C031F70251B7AD300098EF8 /* ViewController.swift in Sources */,
+				2C031FBE251BA03900098EF8 /* MyEventConfig.swift in Sources */,
 				2C031F53251B7A3000098EF8 /* AppDelegate.swift in Sources */,
-				2C031F6D251B7AD300098EF8 /* MyEventConfig.swift in Sources */,
+				2C031FBF251BA03900098EF8 /* MyHintView.swift in Sources */,
+				2C031FBD251BA03900098EF8 /* MyEvent.swift in Sources */,
+				2C031FC1251BA03900098EF8 /* CollectionCell.swift in Sources */,
 				2C031F55251B7A3000098EF8 /* SceneDelegate.swift in Sources */,
-				2C031F72251B7AD300098EF8 /* CollectionCell.swift in Sources */,
-				2C031F73251B7AD300098EF8 /* MyEventConfigMetatype.swift in Sources */,
-				2C031F71251B7AD300098EF8 /* MyEvent.swift in Sources */,
-				2C031F6F251B7AD300098EF8 /* MyHintView.swift in Sources */,
+				2C031FC2251BA03900098EF8 /* ViewController.swift in Sources */,
+				2C031FC0251BA03900098EF8 /* MyEventConfigMetatype.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
