@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C4B2701251B30E40019DDB3 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4B2700251B30E40019DDB3 /* CollectionCell.swift */; };
 		2C51F30B251097ED00E37538 /* MyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F305251097ED00E37538 /* MyEvent.swift */; };
 		2C51F30C251097ED00E37538 /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F306251097ED00E37538 /* MyEventConfigMetatype.swift */; };
 		2C51F30D251097ED00E37538 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51F307251097ED00E37538 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C4B2700251B30E40019DDB3 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		2C51F305251097ED00E37538 /* MyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyEvent.swift; path = ../../SharedSources/MyEvent.swift; sourceTree = "<group>"; };
 		2C51F306251097ED00E37538 /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyEventConfigMetatype.swift; path = ../../SharedSources/MyEventConfigMetatype.swift; sourceTree = "<group>"; };
 		2C51F307251097ED00E37538 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../SharedSources/ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				2C51F306251097ED00E37538 /* MyEventConfigMetatype.swift */,
 				2C51F30A251097ED00E37538 /* MyHintView.swift */,
 				2C51F307251097ED00E37538 /* ViewController.swift */,
+				2C4B2700251B30E40019DDB3 /* CollectionCell.swift */,
 				2C8136DC250E79EB002DF54C /* AppDelegate.swift */,
 				2C8136DE250E79EB002DF54C /* SceneDelegate.swift */,
 				2C8136E2250E79EB002DF54C /* Main.storyboard */,
@@ -225,6 +228,7 @@
 				2C51F30D251097ED00E37538 /* ViewController.swift in Sources */,
 				2C8136DD250E79EB002DF54C /* AppDelegate.swift in Sources */,
 				2C51F310251097ED00E37538 /* MyHintView.swift in Sources */,
+				2C4B2701251B30E40019DDB3 /* CollectionCell.swift in Sources */,
 				2C51F30C251097ED00E37538 /* MyEventConfigMetatype.swift in Sources */,
 				2C51F30B251097ED00E37538 /* MyEvent.swift in Sources */,
 				2C51F30E251097ED00E37538 /* MyEventConfig.swift in Sources */,

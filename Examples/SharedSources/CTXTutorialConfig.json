@@ -1,6 +1,25 @@
 {
     "tutorials": [
         {
+            "id": 0,
+            "name": "tapButtonTutorial",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "Tap on this button to\n trigger touch events.",
+                                    "accessibilityIdentifier": "button"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        
+        {
             "id": 1,
             "name": "rgbViewsTutorial",
             "events": [
@@ -28,24 +47,24 @@
                 }
             ]
         },
-        
+
         {
-            "id": 0,
-            "name": "tapButtonTutorial",
+            "id": 2,
+            "name": "cellTutorial",
             "events": [
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
                             "steps": [
                                 {
-                                    "text": "Tap on this button to\n trigger touch events.",
-                                    "accessibilityIdentifier": "button"
+                                    "text": "Orange cell",
+                                    "accessibilityIdentifier": "orangeCell"
                                 }
                             ]
                         }
                     }
                 }
             ]
-        }
+        },
     ]
 }

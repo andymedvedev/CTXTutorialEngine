@@ -11,11 +11,22 @@ import CTXTutorialEngine
 
 class ViewController: UIViewController, CTXTutorialShowing {
     
-    private let redView = UIView(frame: CGRect(x: -50, y: 50, width: 50, height: 50))
-    private let greenView = UIView(frame: CGRect(x: -150, y: 150, width: 50, height: 50))
-    private let blueView = UIView(frame: CGRect(x: -250, y : 250, width: 50, height: 50))
+    private let redView = UIView()
+    private let greenView = UIView()
+    private let blueView = UIView()
     private let customView = UIView(frame: CGRect(x: 0, y: 350, width: 40, height: 60))
     private let button = UIButton(type: .system)
+    private lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumInteritemSpacing = 2
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CollectionCell.cellSize
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
+        return collectionView
+    }()
     
     var isTutorialShowing: Bool = false
     
@@ -52,23 +63,41 @@ class ViewController: UIViewController, CTXTutorialShowing {
         button.setTitle("Tap me", for: .normal)
         button.tintColor = .yellow
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
-        button.frame.size = CGSize(width: 100, height: 50)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
         button.layer.cornerRadius = 10
         button.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
-        self.view.addSubview(redView)
-        self.view.addSubview(greenView)
-        self.view.addSubview(blueView)
-        self.view.addSubview(customView)
-        self.view.addSubview(button)
+        view.addSubview(redView)
+        view.addSubview(greenView)
+        view.addSubview(blueView)
+        view.addSubview(customView)
+        view.addSubview(button)
+        view.addSubview(collectionView)
         
         customView.center.x = view.center.x
         button.center.x = view.center.x
         button.frame.origin.y = customView.frame.maxY + 50
         
+        collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.reuseId)
+        
         customView.alpha = 0
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        redView.frame = CGRect(x: 50, y: -50, width: 50, height: 50)
+        greenView.frame = CGRect(x: view.center.x - 25, y: -150, width: 50, height: 50)
+        blueView.frame = CGRect(x: view.bounds.maxX - 100, y : -250, width: 50, height: 50)
+        button.frame.size = CGSize(width: 100, height: 50)
+        button.center = view.center
+        collectionView.frame = CGRect(x: 0,
+                                      y: view.bounds.height - view.safeAreaInsets.bottom - 150,
+                                      width: view.bounds.width,
+                                      height: 80)
+        collectionView.reloadData()
+        collectionView.layoutIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,10 +135,27 @@ class ViewController: UIViewController, CTXTutorialShowing {
     }
 }
 
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.reuseId, for: indexPath) as? CollectionCell {
+            cell.configure(by: indexPath.item)
+            return cell
+        } else {
+            fatalError("Can't dequeue cell")
+        }
+    }
+}
+
 private extension ViewController {
     
     @objc func tap() {
         engine.closeCurrentTutorial()
+        collectionView.reloadData()
+        collectionView.layoutIfNeeded()
     }
 }
 
