@@ -9,6 +9,19 @@
 import UIKit
 import CTXTutorialEngine
 
+public class CustomButton: UIButton {
+    
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let minTouchAreaSize: CGFloat = 30
+        let delta = Int(bounds.width < minTouchAreaSize ? minTouchAreaSize - bounds.width : .zero)
+        let horizontalRange = -delta...(Int(bounds.width) + delta)
+        let verticalRange = -delta...(Int(bounds.height) + delta)
+        
+        return horizontalRange.contains(Int(point.x))
+            && verticalRange.contains(Int(point.y))
+    }
+}
+
 public final class MyHintView: UIView, CTXTutorialHintView {
     
     public var previousStepHandler: VoidClosure?
@@ -53,9 +66,9 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     private let minHorizontalInset: CGFloat = 16
     private let bubleInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     private let bubleInnerSpacing: CGFloat = 8
-    private let backButton = UIButton(type: .system)
-    private let nextButton = UIButton(type: .system)
-    private let closeButton = UIButton(type: .system)
+    private let backButton = CustomButton(type: .system)
+    private let nextButton = CustomButton(type: .system)
+    private let closeButton = CustomButton(type: .system)
     private let anchorSize: CGFloat = 16
     private let cornerRadius: CGFloat = 6
     private let buttonSize = CGSize(width: 16, height: 16)
@@ -77,6 +90,10 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         closeButton.addTarget(self, action: #selector(closeTutorial), for: .touchUpInside)
         
         addSubview(bubleView)
+        
+        //preventing touches go through to dimming view
+        let tapGesture = UITapGestureRecognizer(target: self, action: nil)
+        addGestureRecognizer(tapGesture)
         
         setup(with: viewModel)
     }

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     private let greenView = UIView(frame: CGRect(x: -150, y: 150, width: 50, height: 50))
     private let blueView = UIView(frame: CGRect(x: -250, y : 250, width: 50, height: 50))
     private let customView = UIView(frame: CGRect(x: 0, y: 350, width: 40, height: 60))
-    private let button = UIButton(type: .custom)
+    private let button = UIButton(type: .system)
     
     private let engine = CTXTutorialEngine.shared
     private let eventsBus = CTXTutorialEventBus.shared
@@ -49,9 +49,13 @@ class ViewController: UIViewController {
         
         button.backgroundColor =  UIColor(red: 100 / 255.0, green: 151 / 255.0, blue: 177 / 255.0, alpha: 1.0)
         button.setTitle("Tap me", for: .normal)
-        button.titleLabel?.textColor = .white
+        button.tintColor = .yellow
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.frame.size = CGSize(width: 100, height: 50)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        
+        button.layer.cornerRadius = 10
+        button.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
         self.view.addSubview(redView)
         self.view.addSubview(greenView)
