@@ -31,6 +31,7 @@ class ViewController: UIViewController, CTXTutorialShowing {
     var isTutorialShowing: Bool = false
     
     private let engine = CTXTutorialEngine.shared
+    private var isFirstLayout = true
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if isTutorialShowing {
@@ -87,17 +88,19 @@ class ViewController: UIViewController, CTXTutorialShowing {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        redView.frame = CGRect(x: 50, y: -50, width: 50, height: 50)
-        greenView.frame = CGRect(x: view.center.x - 25, y: -150, width: 50, height: 50)
-        blueView.frame = CGRect(x: view.bounds.maxX - 100, y : -250, width: 50, height: 50)
-        button.frame.size = CGSize(width: 100, height: 50)
-        button.center = view.center
-        collectionView.frame = CGRect(x: 0,
-                                      y: view.bounds.height - view.safeAreaInsets.bottom - 150,
-                                      width: view.bounds.width,
-                                      height: 80)
-        collectionView.reloadData()
-        collectionView.layoutIfNeeded()
+        if isFirstLayout {
+            isFirstLayout = false
+            
+            redView.frame = CGRect(x: 50, y: -50, width: 50, height: 50)
+            greenView.frame = CGRect(x: view.center.x - 25, y: -150, width: 50, height: 50)
+            blueView.frame = CGRect(x: view.bounds.maxX - 100, y : -250, width: 50, height: 50)
+            button.frame.size = CGSize(width: 100, height: 50)
+            button.center = view.center
+            collectionView.frame = CGRect(x: 0,
+                                          y: view.bounds.height - view.safeAreaInsets.bottom - 150,
+                                          width: view.bounds.width,
+                                          height: CollectionCell.cellSize.height)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,8 +157,6 @@ private extension ViewController {
     
     @objc func tap() {
         engine.closeCurrentTutorial()
-        collectionView.reloadData()
-        collectionView.layoutIfNeeded()
     }
 }
 
@@ -179,13 +180,12 @@ extension ViewController: CTXTutorialEngineDelegate {
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         if tutorial.id == 0 {
-            UIView.animate(withDuration: 2,
-                          delay: .zero,
-                           options: [.curveEaseInOut],
-                           animations: {
-                            self.redView.transform = CGAffineTransform(translationX: 300, y: 0)
-                            self.greenView.transform = CGAffineTransform(translationX: 300, y: 0)
-                            self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
+            let safeAreaTop = view.safeAreaInsets.top
+            
+            UIView.animate(withDuration: 2, delay: .zero, options: [.curveEaseInOut], animations: {
+                self.redView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 100)
+                self.greenView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 200)
+                self.blueView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 300)
             })
         } else if tutorial.id == 1 {
             customView.alpha = 1

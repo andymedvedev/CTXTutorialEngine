@@ -116,12 +116,12 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             if centerX - bubleView.frame.width > minHorizontalInset {
                 anchorAlignment = .right
                 return centerX - bubleView.frame.width
-            } else if centerX + bubleView.frame.width < bounds.width - minHorizontalInset {
+            } else if centerX + bubleView.frame.width < viewModel.boundingView.bounds.width - minHorizontalInset {
                 anchorAlignment = .left
                 return centerX
             } else {
                 anchorAlignment = .center
-                return convertedFrame.minX
+                return centerX - bounds.width / 2
             }
         }
         
@@ -138,13 +138,6 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         }
         
         frame.origin = CGPoint(x: originX(), y: originY())
-    }
-    
-    private func centerHintViewY(by layer: CALayer, anchorAlignment: inout AnchorAlignment) {
-        let centerY = layer.convert(layer.bounds, to: nil).midY
-        center.y = centerY
-        anchorAlignment = .center
-        //TODO:
     }
     
     private func fitAndPlace(with size: CGSize, anchorDirection: AnchorDirection) {
@@ -203,7 +196,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         
         selfHeight += bubleHeight
         
-        bounds.size = CGSize(width: width, height: selfHeight)
+        frame.size = CGSize(width: width, height: selfHeight)
         
         bubleView.frame.size = CGSize(width: width, height: bubleHeight)
     }
@@ -263,8 +256,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         placeHint(by: viewModel, anchorDirection: anchorDirection, anchorAlignment: &anchorAlignment)
         
         bubleView.layer.maskedCorners = maskedCorners(for: anchorDirection, alignment: anchorAlignment)
-        self.layer.addSublayer(anchorLayer(with: anchorDirection, alignment: anchorAlignment))
-        setNeedsLayout()
+        layer.addSublayer(anchorLayer(with: anchorDirection, alignment: anchorAlignment))
     }
     
     private func anchorLayer(with direction: AnchorDirection, alignment: AnchorAlignment) -> CALayer {
