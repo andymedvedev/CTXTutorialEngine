@@ -17,7 +17,7 @@ public final class CTXTutorialWeakViewController {
     var provideSortedViewsSlices = true
     var warningIsProcessed = false
     
-    var visibleAccessibilityViewsDict: [String: [[UIView]]] {
+    var availableAccessibilityViewsDict: [String: [[UIView]]] {
         
         switch contentType {
         case .static:

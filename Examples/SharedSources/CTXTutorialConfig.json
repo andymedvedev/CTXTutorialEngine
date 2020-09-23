@@ -1,15 +1,9 @@
 {
     "tutorials": [
         {
-            "id": 0,
-            "name": "redBluePinkViewsTutorial",
+            "id": 1,
+            "name": "rgbViewsTutorial",
             "events": [
-                {
-                    "MyEvent": {
-                        "event": "launch"
-                    }
-                },
-                
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
@@ -36,27 +30,15 @@
         },
         
         {
-            "id": 1,
+            "id": 0,
             "name": "tapButtonTutorial",
             "events": [
-                {
-                    "MyEvent": {
-                        "event": "launch"
-                    }
-                },
-                
-                {
-                    "MyEvent": {
-                        "event": "tapButton"
-                    }
-                },
-                
                 {
                     "CTXTutorialViewsShownEvent": {
                         "event": {
                             "steps": [
                                 {
-                                    "text": "User tapped button and it shown on screen",
+                                    "text": "Tap on this button to\n trigger touch events.",
                                     "accessibilityIdentifier": "button"
                                 }
                             ]

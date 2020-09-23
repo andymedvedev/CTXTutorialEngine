@@ -47,11 +47,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
     func show(with stepModels: [CTXTutorialStepModel]) {
         totalStepsCount = stepModels.count
         self.stepModels = stepModels
-        
-        guard let backgroundVC = UIApplication.getTopViewController() else { return }
-        
-        statusBarStyle =  delegate?.preferredTutorialStatusBarStyle() ?? backgroundVC.preferredStatusBarStyle
-        
+                
         let overlayColor = delegate?.tutorialOverlayColor() ?? CTXTutorialConstants.tutorialOverlayColor
         
         tutorialContainer.configure(overlayColor: overlayColor) {

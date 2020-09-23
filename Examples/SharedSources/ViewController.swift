@@ -9,7 +9,7 @@
 import UIKit
 import CTXTutorialEngine
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CTXTutorialShowing {
     
     private let redView = UIView(frame: CGRect(x: -50, y: 50, width: 50, height: 50))
     private let greenView = UIView(frame: CGRect(x: -150, y: 150, width: 50, height: 50))
@@ -17,14 +17,15 @@ class ViewController: UIViewController {
     private let customView = UIView(frame: CGRect(x: 0, y: 350, width: 40, height: 60))
     private let button = UIButton(type: .system)
     
+    var isTutorialShowing: Bool = false
+    
     private let engine = CTXTutorialEngine.shared
-    private let eventsBus = CTXTutorialEventBus.shared
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        if #available(iOS 13.0, *) {
-            return .darkContent
+        if isTutorialShowing {
+            return .lightContent
         } else {
-            return .default
+            return .darkContent
         }
     }
     
@@ -75,15 +76,6 @@ class ViewController: UIViewController {
         
         engine.observe(self, contentType: .dynamic)
         engine.delegate = self
-        
-        UIView.animate(withDuration: 2,
-                      delay: .zero,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        self.redView.transform = CGAffineTransform(translationX: 300, y: 0)
-                        self.greenView.transform = CGAffineTransform(translationX: 300, y: 0)
-                        self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
-        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -108,7 +100,6 @@ class ViewController: UIViewController {
         path.addLine(to: CGPoint(x: 25, y: 0))
         path.addLine(to: CGPoint(x: 50, y: 50))
         path.close()
-        path.fill()
         layer.path = path.cgPath
         
         return layer
@@ -118,8 +109,7 @@ class ViewController: UIViewController {
 private extension ViewController {
     
     @objc func tap() {
-        
-        eventsBus.push(MyEvent.tapButton)
+        engine.closeCurrentTutorial()
     }
 }
 
@@ -142,6 +132,15 @@ extension ViewController: CTXTutorialEngineDelegate {
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         if tutorial.id == 0 {
+            UIView.animate(withDuration: 2,
+                          delay: .zero,
+                           options: [.curveEaseInOut],
+                           animations: {
+                            self.redView.transform = CGAffineTransform(translationX: 300, y: 0)
+                            self.greenView.transform = CGAffineTransform(translationX: 300, y: 0)
+                            self.blueView.transform = CGAffineTransform(translationX: 300, y: 0)
+            })
+        } else if tutorial.id == 1 {
             customView.alpha = 1
             UIView.animate(withDuration: 2,
                           delay: .zero,

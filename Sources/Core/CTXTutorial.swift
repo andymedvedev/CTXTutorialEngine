@@ -33,6 +33,10 @@ public class CTXTutorial: CTXTutorialProtocol {
         self.name = name
         self.eventsChain = eventsChain
     }
+    
+    func close() {
+        module?.closeTutorial()
+    }
 }
 
 extension CTXTutorial: CTXTutorialEventObserver {
@@ -136,10 +140,6 @@ extension CTXTutorial: CTXTutorialModuleDelegate {
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat? {
         return delegate?.cornerRadiusForModalViewSnapshot()
-    }
-    
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
-        return delegate?.preferredTutorialStatusBarStyle()
     }
     
     func tutorialOverlayColor() -> UIColor? {

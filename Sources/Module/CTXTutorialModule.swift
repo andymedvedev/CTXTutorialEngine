@@ -31,6 +31,10 @@ class CTXTutorialModule {
         presenter?.presentTutorial(with: stepModels,
                                    completion: completion)
     }
+    
+    func closeTutorial() {
+        presenter?.onHideTutorial()
+    }
 }
 
 extension CTXTutorialModule: CTXTutorialContainerDelegate {
@@ -47,10 +51,6 @@ extension CTXTutorialModule: CTXTutorialContainerDelegate {
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat? {
         return delegate?.cornerRadiusForModalViewSnapshot()
-    }
-    
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
-         return delegate?.preferredTutorialStatusBarStyle()
     }
     
     func tutorialOverlayColor() -> UIColor? {

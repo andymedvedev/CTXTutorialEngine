@@ -287,8 +287,6 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         path.addLine(to: middlePoint)
         path.addLine(to: CGPoint(x: anchorSize, y: anchorSize))
         path.close()
-        path.stroke()
-        path.fill()
         anchorLayer.path = path.cgPath
         anchorLayer.frame = anchorFrame(for: direction, alignment: alignment)
         anchorLayer.fillColor = UIColor.white.cgColor

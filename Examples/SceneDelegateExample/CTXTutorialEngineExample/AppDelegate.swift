@@ -13,7 +13,6 @@ import CTXTutorialEngine
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let engine = CTXTutorialEngine.shared
-    let eventBus = CTXTutorialEventBus.shared
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -33,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let customTutorial = CTXTutorial(id: 100,
                                          name: "My Custom Tutorial",
-                                         eventsChain: [MyEvent.launch, viewsShownEvent])
+                                         eventsChain: [viewsShownEvent])
         
         engine.add(customTutorial) { error in
             if let error = error {
@@ -42,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         engine.start()
-        
-        eventBus.push(MyEvent.launch)
         
         return true
     }
