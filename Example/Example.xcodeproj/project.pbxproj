@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		2C4BB3E5251C70AB0079DA4B /* MyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3DD251C70AB0079DA4B /* MyEvent.swift */; };
 		2C4BB3E6251C70AB0079DA4B /* MyEventConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3DE251C70AB0079DA4B /* MyEventConfig.swift */; };
 		2C4BB3E7251C70AB0079DA4B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3DF251C70AB0079DA4B /* StartViewController.swift */; };
-		2C4BB3E8251C70AB0079DA4B /* MyHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3E0251C70AB0079DA4B /* MyHintView.swift */; };
 		2C4BB3E9251C70AB0079DA4B /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3E1251C70AB0079DA4B /* MyEventConfigMetatype.swift */; };
 		2C4BB3EA251C70AB0079DA4B /* CTXTutorialConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C4BB3E2251C70AB0079DA4B /* CTXTutorialConfig.json */; };
 		2C4BB3EB251C70AB0079DA4B /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4BB3E3251C70AB0079DA4B /* CollectionCell.swift */; };
@@ -34,7 +33,6 @@
 		2C4BB3DD251C70AB0079DA4B /* MyEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEvent.swift; sourceTree = "<group>"; };
 		2C4BB3DE251C70AB0079DA4B /* MyEventConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventConfig.swift; sourceTree = "<group>"; };
 		2C4BB3DF251C70AB0079DA4B /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		2C4BB3E0251C70AB0079DA4B /* MyHintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHintView.swift; sourceTree = "<group>"; };
 		2C4BB3E1251C70AB0079DA4B /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventConfigMetatype.swift; sourceTree = "<group>"; };
 		2C4BB3E2251C70AB0079DA4B /* CTXTutorialConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CTXTutorialConfig.json; sourceTree = "<group>"; };
 		2C4BB3E3251C70AB0079DA4B /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
@@ -77,11 +75,10 @@
 			children = (
 				2C4BB3E3251C70AB0079DA4B /* CollectionCell.swift */,
 				2C4BB3E2251C70AB0079DA4B /* CTXTutorialConfig.json */,
-				2C4BB3E4251C70AB0079DA4B /* ExamplesViewController.swift */,
 				2C4BB3DD251C70AB0079DA4B /* MyEvent.swift */,
 				2C4BB3DE251C70AB0079DA4B /* MyEventConfig.swift */,
 				2C4BB3E1251C70AB0079DA4B /* MyEventConfigMetatype.swift */,
-				2C4BB3E0251C70AB0079DA4B /* MyHintView.swift */,
+				2C4BB3E4251C70AB0079DA4B /* ExamplesViewController.swift */,
 				2C4BB3DF251C70AB0079DA4B /* StartViewController.swift */,
 				2C4BB3D8251C70A00079DA4B /* App */,
 				2C4BB3CD251C6F8C0079DA4B /* Assets.xcassets */,
@@ -106,7 +103,6 @@
 				0C56A1DA0FE390CF79297526 /* Pods-Example.debug.xcconfig */,
 				20E0EB714E871A847CC716E5 /* Pods-Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -241,7 +237,6 @@
 				2C4BB3E9251C70AB0079DA4B /* MyEventConfigMetatype.swift in Sources */,
 				2C4BB3E5251C70AB0079DA4B /* MyEvent.swift in Sources */,
 				2C4BB3DC251C70A00079DA4B /* SceneDelegate.swift in Sources */,
-				2C4BB3E8251C70AB0079DA4B /* MyHintView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

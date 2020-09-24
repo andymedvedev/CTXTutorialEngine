@@ -166,17 +166,6 @@ extension ExamplesViewController: CTXTutorialEngineDelegate {
         return .lightContent
     }
     
-    func engine(_ engine: CTXTutorialEngine,
-                hintViewFor tutorial: CTXTutorial,
-                with currentStepModel: CTXTutorialStepModel,
-                isHavePreviousStep: Bool,
-                isHaveNextStep: Bool) -> CTXTutorialHintView? {
-        return MyHintView(with: .init(step: currentStepModel,
-                                      showBackButton: isHavePreviousStep,
-                                      showNextButton: isHaveNextStep,
-                                      showCloseButton: true))
-    }
-    
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         if tutorial.id == 0 {
             let safeAreaTop = view.safeAreaInsets.top

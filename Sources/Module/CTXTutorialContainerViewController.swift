@@ -21,18 +21,9 @@ final class CTXTutorialContainerViewController: UIViewController {
     private let tutorialContainer = CTXTutorialContainerView()
     private var currentStepIndex = 0
     private var totalStepsCount = 1
-    private var statusBarStyle: UIStatusBarStyle? {
-        didSet {
-            setNeedsStatusBarAppearanceUpdate()
-        }
-    }
     
     override var shouldAutorotate: Bool {
         return false
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle ?? .default
     }
     
     override func loadView() {
@@ -105,26 +96,29 @@ private extension CTXTutorialContainerViewController {
         let isHavePreviousStep = totalStepsCount > 1 && currentStepIndex > 0
         let isHaveNextStep = totalStepsCount > 1 && currentStepIndex < totalStepsCount - 1
         
-        var hintView: CTXTutorialHintView
+        var hintView = delegate?.container(self,
+                                           hintViewForTutorialWith: stepModel,
+                                           isHavePreviousStep: isHavePreviousStep,
+                                           isHaveNextStep: isHaveNextStep)
         
-        if CTXTutorialEngine.shared.useDefaultHintView {
-            
+        if hintView == nil && CTXTutorialEngine.shared.useDefaultHintView {
+            hintView = CTXTutorialDefaultHintView(with: .init(step: stepModel,
+            showBackButton: isHavePreviousStep,
+            showNextButton: isHaveNextStep,
+            showCloseButton: true))
         }
-        let customHintView = delegate?.container(self,
-                                                 hintViewForTutorialWith: stepModel,
-                                                 isHavePreviousStep: isHavePreviousStep,
-                                                 isHaveNextStep: isHaveNextStep)
         
-        customHintView?.previousStepHandler = previousStepHandler()
-        customHintView?.nextStepHandler = nextStepHandler()
-        customHintView?.closeTutorialHandler = {
+        hintView?.previousStepHandler = previousStepHandler()
+        hintView?.nextStepHandler = nextStepHandler()
+        hintView?.closeTutorialHandler = {
             [weak self] in
             
             self?.presenter?.onHideTutorial()
         }
         
-        if let customHintView = customHintView {
-            tutorialContainer.showStep(with: customHintView, views: stepModel.views)
+        if let hintView = hintView {
+            tutorialContainer.showStep(with: hintView, views: stepModel.views)
+            CTXTutorialEngine.shared.defaultHintViewConfig.onAppear?(hintView)
         }
     
         let stepPresentationInfo = CTXTutorialStepPresentationInfo(stepIndex: currentStepIndex,

@@ -20,4 +20,5 @@ public final class CTXTutorialDefaultHintViewConfig {
     public var nextButton: UIButton?
     public var closeButton: UIButton?
     public var textLabel: UILabel?
+    public var onAppear: ((CTXTutorialHintView) -> Void)?
 }

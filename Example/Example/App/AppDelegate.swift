@@ -40,9 +40,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        configureDefaultHintView()
         engine.start()
         
         return true
+    }
+    
+    private func configureDefaultHintView() {
+        let config = engine.defaultHintViewConfig
+        config.anchorSize = CGSize(width: 16, height: 16)
+        config.anchorColor = .green
+        config.onAppear = {
+            hintView in
+            
+            let animation = CAKeyframeAnimation(keyPath: "transform.scale")
+            animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+            animation.duration = 0.5
+            animation.values = [
+                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
+                NSValue(cgPoint: CGPoint(x: 1.1, y: 1.1)),
+                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
+                NSValue(cgPoint: CGPoint(x: 0.9, y: 0.9)),
+                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
+                NSValue(cgPoint: CGPoint(x: 1.05, y: 1.05)),
+                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
+                NSValue(cgPoint: CGPoint(x: 0.95, y: 0.95)),
+                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
+            ]
+            hintView.layer.add(animation, forKey: "spring")
+        }
     }
 }
 
