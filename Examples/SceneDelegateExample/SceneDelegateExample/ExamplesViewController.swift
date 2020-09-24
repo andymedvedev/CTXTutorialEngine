@@ -9,7 +9,7 @@
 import UIKit
 import CTXTutorialEngine
 
-class ViewController: UIViewController, CTXTutorialShowing {
+class ExamplesViewController: UIViewController, CTXTutorialShowing {
     
     private let redView = UIView()
     private let greenView = UIView()
@@ -138,7 +138,7 @@ class ViewController: UIViewController, CTXTutorialShowing {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension ExamplesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
     }
@@ -153,14 +153,14 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-private extension ViewController {
+private extension ExamplesViewController {
     
     @objc func tap() {
         engine.closeCurrentTutorial()
     }
 }
 
-extension ViewController: CTXTutorialEngineDelegate {
+extension ExamplesViewController: CTXTutorialEngineDelegate {
 
     func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
         return .lightContent
@@ -174,8 +174,7 @@ extension ViewController: CTXTutorialEngineDelegate {
         return MyHintView(with: .init(step: currentStepModel,
                                       showBackButton: isHavePreviousStep,
                                       showNextButton: isHaveNextStep,
-                                      showCloseButton: true,
-                                      boundingView: view))
+                                      showCloseButton: true))
     }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {

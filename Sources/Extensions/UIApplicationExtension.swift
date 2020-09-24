@@ -16,7 +16,7 @@ extension UIApplication {
             return topViewController(base: nav.visibleViewController)
         } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
             return topViewController(base: selected)
-        } else if let presented = base?.presentedViewController, presented.view.bounds == base?.view.bounds {
+        } else if let presented = base?.presentedViewController {
             return topViewController(base: presented)
         }
         

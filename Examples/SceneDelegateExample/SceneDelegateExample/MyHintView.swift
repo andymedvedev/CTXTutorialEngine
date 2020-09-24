@@ -34,7 +34,6 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         let showBackButton: Bool
         let showNextButton: Bool
         let showCloseButton: Bool
-        let boundingView: UIView
     }
     
     private enum AnchorDirection {
@@ -73,6 +72,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     private let anchorSize: CGFloat = 16
     private let cornerRadius: CGFloat = 6
     private let buttonSize = CGSize(width: 16, height: 16)
+    private let screenBounds = UIScreen.main.bounds
     
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
@@ -108,7 +108,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             fatalError("Step model doesn't contains any views")
         }
         
-        let convertedFrame = view.convert(view.bounds, to: viewModel.boundingView)
+        let convertedFrame = view.convert(view.bounds, to: nil)
         
         func originX() -> CGFloat {
             let centerX = convertedFrame.midX
@@ -116,7 +116,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             if centerX - bubleView.frame.width > minHorizontalInset {
                 anchorAlignment = .right
                 return centerX - bubleView.frame.width
-            } else if centerX + bubleView.frame.width < viewModel.boundingView.bounds.width - minHorizontalInset {
+            } else if centerX + bubleView.frame.width < screenBounds.width - minHorizontalInset {
                 anchorAlignment = .left
                 return centerX
             } else {
@@ -206,14 +206,13 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             fatalError("Step model doesn't contains any snapshots")
         }
         
-        let convertedFrame = view.convert(view.bounds, to: viewModel.boundingView)
+        let convertedFrame = view.convert(view.bounds, to: nil)
         
         backButton.isHidden = !viewModel.showBackButton
         nextButton.isHidden = !viewModel.showNextButton
         closeButton.isHidden = !viewModel.showCloseButton
         textLabel.text = viewModel.step.text
         
-        let bounds = viewModel.boundingView.bounds
         let safeAreaInsets: UIEdgeInsets
         
         if let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
@@ -227,21 +226,21 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         let viewMinY = convertedFrame.minY
         let viewMaxY = convertedFrame.maxY
         
-        let availableHeight = bounds.height - safeAreaInsets.bottom - safeAreaInsets.top
+        let availableHeight = screenBounds.height - safeAreaInsets.bottom - safeAreaInsets.top
         let topSpace = viewMinY - safeAreaInsets.top
-        let bottomSpace = bounds.maxY - safeAreaInsets.bottom - viewMaxY
+        let bottomSpace = screenBounds.maxY - safeAreaInsets.bottom - viewMaxY
         let leftSpace = viewMinX
-        let rightSpace = bounds.width - viewMaxX
+        let rightSpace = screenBounds.width - viewMaxX
         
         var anchorDirection = AnchorDirection.none
         var anchorAlignment = AnchorAlignment.center
         
         if topSpace > bottomSpace {
             anchorDirection = .toBottom
-            fitAndPlace(with: CGSize(width: bounds.width, height: topSpace), anchorDirection: anchorDirection)
+            fitAndPlace(with: CGSize(width: screenBounds.width, height: topSpace), anchorDirection: anchorDirection)
         } else if topSpace < bottomSpace {
             anchorDirection = .toTop
-            fitAndPlace(with: CGSize(width: bounds.width, height: bottomSpace), anchorDirection: anchorDirection)
+            fitAndPlace(with: CGSize(width: screenBounds.width, height: bottomSpace), anchorDirection: anchorDirection)
         } else if leftSpace > rightSpace {
             anchorDirection = .toRight
             fitAndPlace(with: CGSize(width: leftSpace, height: availableHeight), anchorDirection: anchorDirection)
@@ -250,7 +249,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
             fitAndPlace(with: CGSize(width: rightSpace, height: availableHeight), anchorDirection: anchorDirection)
         } else {
             anchorDirection = .none
-            fitAndPlace(with: CGSize(width: bounds.width, height: availableHeight), anchorDirection: anchorDirection)
+            fitAndPlace(with: CGSize(width: screenBounds.width, height: availableHeight), anchorDirection: anchorDirection)
         }
         
         placeHint(by: viewModel, anchorDirection: anchorDirection, anchorAlignment: &anchorAlignment)

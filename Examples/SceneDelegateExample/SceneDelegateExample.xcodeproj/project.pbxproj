@@ -17,7 +17,8 @@
 		2C031FBF251BA03900098EF8 /* MyHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB8251BA03900098EF8 /* MyHintView.swift */; };
 		2C031FC0251BA03900098EF8 /* MyEventConfigMetatype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */; };
 		2C031FC1251BA03900098EF8 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FBA251BA03900098EF8 /* CollectionCell.swift */; };
-		2C031FC2251BA03900098EF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FBB251BA03900098EF8 /* ViewController.swift */; };
+		2C031FC2251BA03900098EF8 /* ExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C031FBB251BA03900098EF8 /* ExamplesViewController.swift */; };
+		2C600E22251C50930092B5C3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C600E21251C50930092B5C3 /* StartViewController.swift */; };
 		2E19C82674E5A1B9E5CC3170 /* Pods_SceneDelegateExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629464069233D32BDF696095 /* Pods_SceneDelegateExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +35,8 @@
 		2C031FB8251BA03900098EF8 /* MyHintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHintView.swift; sourceTree = "<group>"; };
 		2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventConfigMetatype.swift; sourceTree = "<group>"; };
 		2C031FBA251BA03900098EF8 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		2C031FBB251BA03900098EF8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2C031FBB251BA03900098EF8 /* ExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplesViewController.swift; sourceTree = "<group>"; };
+		2C600E21251C50930092B5C3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		629464069233D32BDF696095 /* Pods_SceneDelegateExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SceneDelegateExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B794AC936B4FFF3EE5E04AA2 /* Pods-SceneDelegateExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneDelegateExample.debug.xcconfig"; path = "Target Support Files/Pods-SceneDelegateExample/Pods-SceneDelegateExample.debug.xcconfig"; sourceTree = "<group>"; };
 		F265123B7043249135DBB8C1 /* Pods-SceneDelegateExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SceneDelegateExample.release.xcconfig"; path = "Target Support Files/Pods-SceneDelegateExample/Pods-SceneDelegateExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,20 +92,29 @@
 		2C031F51251B7A3000098EF8 /* SceneDelegateExample */ = {
 			isa = PBXGroup;
 			children = (
+				2C4BB395251C6B030079DA4B /* App */,
 				2C031FBA251BA03900098EF8 /* CollectionCell.swift */,
 				2C031FB5251BA03900098EF8 /* CTXTutorialConfig.json */,
 				2C031FB6251BA03900098EF8 /* MyEvent.swift */,
 				2C031FB7251BA03900098EF8 /* MyEventConfig.swift */,
 				2C031FB9251BA03900098EF8 /* MyEventConfigMetatype.swift */,
 				2C031FB8251BA03900098EF8 /* MyHintView.swift */,
-				2C031FBB251BA03900098EF8 /* ViewController.swift */,
-				2C031F52251B7A3000098EF8 /* AppDelegate.swift */,
-				2C031F54251B7A3000098EF8 /* SceneDelegate.swift */,
+				2C031FBB251BA03900098EF8 /* ExamplesViewController.swift */,
+				2C600E21251C50930092B5C3 /* StartViewController.swift */,
 				2C031F5B251B7A3100098EF8 /* Assets.xcassets */,
 				2C031F5D251B7A3100098EF8 /* LaunchScreen.storyboard */,
 				2C031F60251B7A3100098EF8 /* Info.plist */,
 			);
 			path = SceneDelegateExample;
+			sourceTree = "<group>";
+		};
+		2C4BB395251C6B030079DA4B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2C031F52251B7A3000098EF8 /* AppDelegate.swift */,
+				2C031F54251B7A3000098EF8 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +238,8 @@
 				2C031FBD251BA03900098EF8 /* MyEvent.swift in Sources */,
 				2C031FC1251BA03900098EF8 /* CollectionCell.swift in Sources */,
 				2C031F55251B7A3000098EF8 /* SceneDelegate.swift in Sources */,
-				2C031FC2251BA03900098EF8 /* ViewController.swift in Sources */,
+				2C600E22251C50930092B5C3 /* StartViewController.swift in Sources */,
+				2C031FC2251BA03900098EF8 /* ExamplesViewController.swift in Sources */,
 				2C031FC0251BA03900098EF8 /* MyEventConfigMetatype.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

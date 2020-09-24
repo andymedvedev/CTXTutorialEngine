@@ -12,20 +12,24 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     
     func showTutorial(startHandler: @escaping VoidClosure,
                       hideCompletion: @escaping VoidClosure) {
-        guard let topVC = UIApplication.topViewController() as? CTXTutorialShowing,
-            let tutorialVC = tutorialViewController else {
-            print("CTXTutorianEngine: can't find app keyWindow")
+        guard let topVC = UIApplication.topViewController() as? CTXTutorialShowing else {
+            print("CTXTutorianEngine: can't cast top view controller to CTXTutorialShowing, no tutorial will show")
+            return
+        }
+        
+        guard let tutorialVC = tutorialViewController else {
             return
         }
         
         self.topViewController = topVC
         self.hideCompletion = hideCompletion
         
-        tutorialVC.view.frame = topVC.view.frame
-        tutorialVC.view.layoutIfNeeded()
-        topVC.addChild(tutorialVC)
-        topVC.view.addSubview(tutorialVC.view)
-        tutorialVC.didMove(toParent: topVC)
+        let window = UIApplication.keyWindow()
+        
+        window?.addSubview(tutorialVC.view)
+        
+        tutorialVC.view.frame = UIScreen.main.bounds
+        
         topVC.isTutorialShowing = true
         topVC.setNeedsStatusBarAppearanceUpdate()
         
@@ -36,9 +40,9 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         topViewController?.isTutorialShowing = false
         topViewController?.setNeedsStatusBarAppearanceUpdate()
         
-        tutorialViewController?.willMove(toParent: nil)
-        tutorialViewController?.view.removeFromSuperview()
-        tutorialViewController?.removeFromParent()
+        let window = UIApplication.keyWindow()
+        
+        window?.subviews.first { $0 === tutorialViewController?.view }?.removeFromSuperview()
 
         hideCompletion?()
     }
