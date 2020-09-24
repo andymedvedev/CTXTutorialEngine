@@ -105,6 +105,11 @@ private extension CTXTutorialContainerViewController {
         let isHavePreviousStep = totalStepsCount > 1 && currentStepIndex > 0
         let isHaveNextStep = totalStepsCount > 1 && currentStepIndex < totalStepsCount - 1
         
+        var hintView: CTXTutorialHintView
+        
+        if CTXTutorialEngine.shared.useDefaultHintView {
+            
+        }
         let customHintView = delegate?.container(self,
                                                  hintViewForTutorialWith: stepModel,
                                                  isHavePreviousStep: isHavePreviousStep,

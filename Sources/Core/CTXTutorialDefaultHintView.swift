@@ -1,15 +1,14 @@
 //
-//  MyHintView.swift
+//  CTXTutorialDefaultHintView.swift
 //  CTXTutorialEngine
 //
-//  Created by Andrey Medvedev on 08.12.2019.
-//  Copyright © 2019 Andrey Medvedev. All rights reserved.
+//  Created by Andrey Medvedev on 24.09.2020.
+//  Copyright © 2020 home. All rights reserved.
 //
 
 import UIKit
-import CTXTutorialEngine
 
-public class CustomButton: UIButton {
+class CustomButton: UIButton {
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         let minTouchAreaSize: CGFloat = 30
@@ -22,12 +21,12 @@ public class CustomButton: UIButton {
     }
 }
 
-public final class MyHintView: UIView, CTXTutorialHintView {
+final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     
     public var previousStepHandler: VoidClosure?
     public var nextStepHandler: VoidClosure?
     public var closeTutorialHandler: VoidClosure?
-
+    
     public struct ViewModel {
         
         let step: CTXTutorialStepModel
@@ -52,7 +51,9 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         case center
     }
     
-    private let textLabel = UILabel()
+    private let config = CTXTutorialEngine.shared.defaultHintViewConfig
+    
+    private lazy var textLabel = config.textLabel ?? UILabel()
     private lazy var bubleView: UIView = {
         let view = UIView()
         view.addSubview(closeButton)
@@ -60,17 +61,16 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         view.addSubview(backButton)
         view.addSubview(nextButton)
         view.backgroundColor = .white
-        view.layer.cornerRadius = cornerRadius
+        view.layer.cornerRadius = config.cornerRadius
         return view
     }()
     private let minHorizontalInset: CGFloat = 16
     private let bubleInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     private let bubleInnerSpacing: CGFloat = 8
-    private let backButton = CustomButton(type: .system)
-    private let nextButton = CustomButton(type: .system)
-    private let closeButton = CustomButton(type: .system)
-    private let anchorSize: CGFloat = 16
-    private let cornerRadius: CGFloat = 6
+    private lazy var backButton = config.backButton ?? CustomButton(type: .system)
+    private lazy var nextButton = config.nextButton ?? CustomButton(type: .system)
+    private lazy var closeButton = config.closeButton ?? CustomButton(type: .system)
+    private lazy var anchorSize = config.anchorSize
     private let buttonSize = CGSize(width: 16, height: 16)
     private let screenBounds = UIScreen.main.bounds
     
@@ -150,17 +150,17 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         
         switch anchorDirection {
         case .toLeft:
-            bubleView.frame.origin.x = anchorSize
-            availableWidthForLabel -= anchorSize
+            bubleView.frame.origin.x = anchorSize.height
+            availableWidthForLabel -= anchorSize.height
         case .toRight:
             bubleView.frame.origin.x = .zero
-            availableWidthForLabel -= anchorSize
+            availableWidthForLabel -= anchorSize.height
         case .toTop:
-            bubleView.frame.origin.y = anchorSize
-            selfHeight += anchorSize
+            bubleView.frame.origin.y = anchorSize.height
+            selfHeight += anchorSize.height
         case .toBottom:
             bubleView.frame.origin.y = .zero
-            selfHeight += anchorSize
+            selfHeight += anchorSize.height
         default:
             break
         }
@@ -263,7 +263,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
         let path = UIBezierPath()
         let middlePoint: CGPoint
         
-        path.move(to: CGPoint(x: .zero, y: anchorSize))
+        path.move(to: CGPoint(x: .zero, y: anchorSize.height))
         
         switch (direction, alignment) {
         case (.toTop, .left),
@@ -275,13 +275,13 @@ public final class MyHintView: UIView, CTXTutorialHintView {
              (.toTop, .right),
              (.toLeft, .top),
              (.toRight, .bottom):
-            middlePoint = CGPoint(x: anchorSize, y: .zero)
+            middlePoint = CGPoint(x: anchorSize.width, y: .zero)
         default:
-            middlePoint = CGPoint(x: anchorSize / 2, y: .zero)
+            middlePoint = CGPoint(x: anchorSize.width / 2, y: .zero)
         }
         
         path.addLine(to: middlePoint)
-        path.addLine(to: CGPoint(x: anchorSize, y: anchorSize))
+        path.addLine(to: CGPoint(x: anchorSize.width, y: anchorSize.height))
         path.close()
         anchorLayer.path = path.cgPath
         anchorLayer.frame = anchorFrame(for: direction, alignment: alignment)
@@ -305,36 +305,36 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     
     private func anchorFrame(for direction: AnchorDirection, alignment: AnchorAlignment) -> CGRect {
         let origin: CGPoint
-        let size = CGSize(width: anchorSize, height: anchorSize)
+        let anchorWidth = anchorSize.width
         
         switch (direction, alignment) {
         case (.toTop, .left), (.toLeft, .top):
             origin = .zero
         case (.toTop, .right):
-            origin = CGPoint(x: bubleView.frame.maxX - anchorSize, y: .zero)
+            origin = CGPoint(x: bubleView.frame.maxX - anchorWidth, y: .zero)
         case (.toTop, .center):
-            origin = CGPoint(x: bubleView.center.x - anchorSize / 2, y: .zero)
+            origin = CGPoint(x: bubleView.center.x - anchorWidth / 2, y: .zero)
         case (.toBottom, .left):
             origin = CGPoint(x: .zero, y: bubleView.frame.maxY)
         case (.toBottom, .right):
-            origin = CGPoint(x: bubleView.frame.maxX - anchorSize, y: bubleView.frame.maxY)
+            origin = CGPoint(x: bubleView.frame.maxX - anchorWidth, y: bubleView.frame.maxY)
         case (.toBottom, .center):
-            origin = CGPoint(x: bubleView.center.x - anchorSize / 2, y: bubleView.frame.maxY)
+            origin = CGPoint(x: bubleView.center.x - anchorWidth / 2, y: bubleView.frame.maxY)
         case (.toLeft, .bottom):
-            origin = CGPoint(x: .zero, y: bubleView.frame.maxY - anchorSize)
+            origin = CGPoint(x: .zero, y: bubleView.frame.maxY - anchorWidth)
         case (.toLeft, .center):
-            origin = CGPoint(x: .zero, y: bubleView.center.y - anchorSize / 2)
+            origin = CGPoint(x: .zero, y: bubleView.center.y - anchorWidth / 2)
         case (.toRight, .top):
             origin = CGPoint(x: bubleView.frame.maxX, y: .zero)
         case (.toRight, .bottom):
-            origin = CGPoint(x: bubleView.frame.maxX, y: bubleView.frame.maxY - anchorSize)
+            origin = CGPoint(x: bubleView.frame.maxX, y: bubleView.frame.maxY - anchorSize.width)
         case (.toRight, .center):
-            origin = CGPoint(x: bubleView.frame.maxX, y: bubleView.center.y - anchorSize / 2)
+            origin = CGPoint(x: bubleView.frame.maxX, y: bubleView.center.y - anchorWidth / 2)
         default:
             return .zero
         }
         
-        return CGRect(origin: origin, size: size)
+        return CGRect(origin: origin, size: anchorSize)
     }
     
     private func maskedCorners(for direction: AnchorDirection, alignment: AnchorAlignment) -> CACornerMask {
@@ -362,7 +362,7 @@ public final class MyHintView: UIView, CTXTutorialHintView {
     }
 }
 
-private extension MyHintView {
+private extension CTXTutorialDefaultHintView {
     
     @objc func previousStep() {
         previousStepHandler?()

@@ -10,6 +10,9 @@ public final class CTXTutorialEngine {
 
     public static let shared = CTXTutorialEngine()
     
+    public let defaultHintViewConfig = CTXTutorialDefaultHintViewConfig()
+    public var useDefaultHintView = true
+    
     public weak var delegate: CTXTutorialEngineDelegate?
     
     public var pollingInterval: TimeInterval = 0.1 {
