@@ -53,20 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.onAppear = {
             hintView in
             
+            let deltas: [Double] = [0.0, 0.1, 0.0, -0.1, 0.0, 0.05, 0.0, -0.05, 0.0]
             let animation = CAKeyframeAnimation(keyPath: "transform.scale")
             animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
             animation.duration = 0.5
-            animation.values = [
-                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
-                NSValue(cgPoint: CGPoint(x: 1.1, y: 1.1)),
-                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
-                NSValue(cgPoint: CGPoint(x: 0.9, y: 0.9)),
-                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
-                NSValue(cgPoint: CGPoint(x: 1.05, y: 1.05)),
-                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
-                NSValue(cgPoint: CGPoint(x: 0.95, y: 0.95)),
-                NSValue(cgPoint: CGPoint(x: 1, y: 1)),
-            ]
+            animation.values = deltas.map { 1.0 + $0 }
             hintView.layer.add(animation, forKey: "spring")
         }
     }
