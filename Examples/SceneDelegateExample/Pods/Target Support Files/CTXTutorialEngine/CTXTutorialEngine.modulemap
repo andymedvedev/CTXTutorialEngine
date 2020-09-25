@@ -1,6 +1,0 @@
-framework module CTXTutorialEngine {
-  umbrella header "CTXTutorialEngine-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -6,46 +6,44 @@ import UIKit
 
 public class CTXTutorialRouterImpl: CTXTutorialRouter {
     
-    weak var rootViewController: CTXTutorialContainerViewController?
+    weak var tutorialViewController: CTXTutorialContainerViewController?
+    private var topViewController: CTXTutorialShowing?
+    private var hideCompletion: VoidClosure?
     
-    private var window: UIWindow?
-    private var appWindow: UIWindow?
-    private var hideCompletion: (() -> Void)?
-    private var viewManager: CTXTutorialViewManager?
-    
-    func showTutorial(startHandler: @escaping () -> (),
-                      hideCompletion: @escaping () -> Void) {
-        guard let appWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else {
-            print("CTXTutorianEngine: can't find app keyWindow")
+    func showTutorial(startHandler: @escaping VoidClosure,
+                      hideCompletion: @escaping VoidClosure) {
+        guard let topVC = UIApplication.topViewController() as? CTXTutorialShowing else {
+            print("CTXTutorianEngine: can't cast top view controller to CTXTutorialShowing, no tutorial will show")
             return
         }
         
-        viewManager = CTXTutorialViewManager(for: appWindow)
-        viewManager?.pause()
-        
-        self.hideCompletion = hideCompletion
-        
-        self.appWindow = appWindow
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-        if #available(iOS 13, *) {
-            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                window = UIWindow(windowScene: windowScene)
-            }
+        guard let tutorialVC = tutorialViewController else {
+            return
         }
         
-        window?.rootViewController = self.rootViewController
-        window?.windowLevel = .alert
-        window?.makeKeyAndVisible()
+        self.topViewController = topVC
+        self.hideCompletion = hideCompletion
+        
+        let window = UIApplication.keyWindow()
+        
+        window?.addSubview(tutorialVC.view)
+        
+        tutorialVC.view.frame = UIScreen.main.bounds
+        
+        topVC.isTutorialShowing = true
+        topVC.setNeedsStatusBarAppearanceUpdate()
         
         startHandler()
     }
     
     func hideTutorial() {
-        viewManager?.resume()
-        window?.windowLevel = .normal
-        appWindow?.makeKeyAndVisible()
+        topViewController?.isTutorialShowing = false
+        topViewController?.setNeedsStatusBarAppearanceUpdate()
+        
+        let window = UIApplication.keyWindow()
+        
+        window?.subviews.first { $0 === tutorialViewController?.view }?.removeFromSuperview()
+
         hideCompletion?()
-        UIApplication.getTopViewController()?.setNeedsStatusBarAppearanceUpdate()
     }
 }

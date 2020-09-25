@@ -10,6 +10,9 @@ public final class CTXTutorialEngine {
 
     public static let shared = CTXTutorialEngine()
     
+    public let defaultHintViewConfig = CTXTutorialDefaultHintViewConfig()
+    public var useDefaultHintView = true
+    
     public weak var delegate: CTXTutorialEngineDelegate?
     
     public var pollingInterval: TimeInterval = 0.1 {
@@ -32,12 +35,13 @@ public final class CTXTutorialEngine {
     var eventConfigTypes: [CTXTutorialEventConfig.Type]?
     
     private let bus = CTXTutorialEventBus.shared
-    private let visibilityChecker = CTXTutorialViewVisibilityChecker()
+    private let availabilityChecker = CTXTutorialViewAvailabilityChecker()
     private var weakViewControllers = [CTXTutorialWeakViewController]()
     private var tutorials = [CTXTutorial]()
+    private var currentTutorial: CTXTutorial?
     private var pollingTimer: Timer?
     private var stoppedByUser = false
-
+    
     private init() {}
     
     public func addTutorials<M: Meta>(from configName: String = "CTXTutorialConfig",
@@ -86,6 +90,10 @@ public final class CTXTutorialEngine {
         completion(nil)
     }
     
+    public func closeCurrentTutorial() {
+        currentTutorial?.close()
+    }
+    
     public func start() {
         
         pollingTimer?.invalidate()
@@ -108,9 +116,13 @@ public final class CTXTutorialEngine {
         
         let weakVC = CTXTutorialWeakViewController(with: viewController,
                                                    contentType: contentType,
-                                                   visibilityChecker: visibilityChecker)
+                                                   availabilityChecker: availabilityChecker)
         
         weakViewControllers.append(weakVC)
+    }
+    
+    public func push(_ event: CTXTutorialEvent) {
+        bus.push(event)
     }
     
     public func unobserve(_ viewController: UIViewController) {
@@ -122,7 +134,6 @@ public final class CTXTutorialEngine {
 private extension CTXTutorialEngine {
     
     func pollingFunction(_ timer: Timer) {
-        
         guard timer.isValid else { return }
         
         weakViewControllers.forEach { weakVC in
@@ -131,17 +142,15 @@ private extension CTXTutorialEngine {
             
             if vc.view.window != nil
                 && vc.presentedViewController == nil
-                && visibilityChecker.isVisible(vc.view, inSafeArea: false) {//vc currently on screen and visible
+                && availabilityChecker.isAvailable(vc.view, inSafeArea: false) {//vc currently on screen and visible
                 
-                let visibleViewsDict = weakVC.visibleAccessibilityViewsDict
+                let availableViewsDict = weakVC.availableAccessibilityViewsDict
                 var viewsToProcess = [UIView]()
                 
                 if let delegate = delegate {
-                    
-                    viewsToProcess = delegate.selectedViewsToProcess(in: visibleViewsDict)
+                    viewsToProcess = delegate.selectedViewsToProcess(in: availableViewsDict)
                 } else {
-                    
-                    visibleViewsDict.forEach { (_, viewsArr) in
+                    availableViewsDict.forEach { (_, viewsArr) in
                         viewsToProcess.append(viewsArr[0][0])
                     }
                 }
@@ -158,6 +167,7 @@ private extension CTXTutorialEngine {
 
 extension CTXTutorialEngine: CTXTutorialDelegate {
     func tutorialWillShow(_ tutorial: CTXTutorial) {
+        currentTutorial = tutorial
         delegate?.engineWillShow(self, tutorial: tutorial)
         
         //prevent handling incoming events by stopping polling
@@ -189,10 +199,6 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     
     func cornerRadiusForModalViewSnapshot() -> CGFloat? {
         return delegate?.cornerRadiusForModalViewSnapshot()
-    }
-    
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
-        return delegate?.preferredTutorialStatusBarStyle()
     }
     
     func tutorialOverlayColor() -> UIColor? {

@@ -1,0 +1,70 @@
+{
+    "tutorials": [
+        {
+            "id": 0,
+            "name": "tapButtonTutorial",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "Tap on this button to\nshow shapes.",
+                                    "accessibilityIdentifier": "button"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        
+        {
+            "id": 1,
+            "name": "rgbViewsTutorial",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "This view is red and its hot",
+                                    "accessibilityIdentifier": "redView"
+                                },
+                                
+                                {
+                                    "text": "This view is green like grass",
+                                    "accessibilityIdentifier": "greenView"
+                                },
+                                
+                                {
+                                    "text": "This view as deep sea or sky",
+                                    "accessibilityIdentifier": "blueView"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+
+        {
+            "id": 2,
+            "name": "cellTutorial",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "Orange cell",
+                                    "accessibilityIdentifier": "orangeCell"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+    ]
+}

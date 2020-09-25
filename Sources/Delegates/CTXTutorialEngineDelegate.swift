@@ -19,8 +19,6 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
                 with currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView?
-
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle?
     
     func tutorialOverlayColor() -> UIColor?
     
@@ -42,10 +40,6 @@ public extension CTXTutorialEngineDelegate {
                 with currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView? {
-        return nil
-    }
-    
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
         return nil
     }
     
