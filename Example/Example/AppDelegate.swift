@@ -48,9 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureDefaultHintView() {
         let config = engine.defaultHintViewConfig
+        config.gradientOuterColor = UIColor(named: "gradientOuter")
+        config.gradientInnerColor = UIColor(named: "gradientInner")
+        config.gradientTopControlPoint = 0.3
+        config.gradientBottomControlPoint = 0.6
+        config.anchorColor = UIColor(named: "gradientOuter")
         config.anchorSize = CGSize(width: 16, height: 16)
-        config.anchorColor = .green
-        config.textLabel = UILabel()
+        config.textColor = UIColor(named: "yellow")
+        config.font = .systemFont(ofSize: 18)
         config.onAppear = {
             hintView in
             

@@ -73,6 +73,8 @@
 		2C4BB3C3251C6F8B0079DA4B /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				2C4BB3D9251C70A00079DA4B /* AppDelegate.swift */,
+				2C4BB3DA251C70A00079DA4B /* SceneDelegate.swift */,
 				2C4BB3E3251C70AB0079DA4B /* CollectionCell.swift */,
 				2C4BB3E2251C70AB0079DA4B /* CTXTutorialConfig.json */,
 				2C4BB3DD251C70AB0079DA4B /* MyEvent.swift */,
@@ -80,21 +82,11 @@
 				2C4BB3E1251C70AB0079DA4B /* MyEventConfigMetatype.swift */,
 				2C4BB3E4251C70AB0079DA4B /* ExamplesViewController.swift */,
 				2C4BB3DF251C70AB0079DA4B /* StartViewController.swift */,
-				2C4BB3D8251C70A00079DA4B /* App */,
 				2C4BB3CD251C6F8C0079DA4B /* Assets.xcassets */,
 				2C4BB3CF251C6F8C0079DA4B /* LaunchScreen.storyboard */,
 				2C4BB3D2251C6F8C0079DA4B /* Info.plist */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		2C4BB3D8251C70A00079DA4B /* App */ = {
-			isa = PBXGroup;
-			children = (
-				2C4BB3D9251C70A00079DA4B /* AppDelegate.swift */,
-				2C4BB3DA251C70A00079DA4B /* SceneDelegate.swift */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		443B6C58A740A3F8C64B529B /* Pods */ = {
