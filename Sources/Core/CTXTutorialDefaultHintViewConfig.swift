@@ -23,6 +23,7 @@ public final class CTXTutorialDefaultHintViewConfig {
     public var backButton: UIButton?
     public var nextButton: UIButton?
     public var closeButton: UIButton?
+    public var buttonsTintColor: UIColor = .white
     public var textColor: UIColor? = .black
     public var font: UIFont = .systemFont(ofSize: 16)
     public var onAppear: ((CTXTutorialHintView) -> Void)?

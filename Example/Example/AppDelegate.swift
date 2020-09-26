@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.anchorSize = CGSize(width: 16, height: 16)
         config.textColor = UIColor(named: "yellow")
         config.font = .systemFont(ofSize: 18)
+        config.buttonsTintColor = UIColor(named: "yellow")!
         config.onAppear = {
             hintView in
             

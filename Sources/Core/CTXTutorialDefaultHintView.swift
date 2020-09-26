@@ -127,7 +127,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         nextButton.setImage(UIImage(named: "arrow_forward"), for: .normal)
         closeButton.setImage(UIImage(named: "cross"), for: .normal)
         
-        [backButton, nextButton, closeButton].forEach { $0.tintColor = .darkGray }
+        [backButton, nextButton, closeButton].forEach { $0.tintColor = config.buttonsTintColor }
         
         backButton.addTarget(self, action: #selector(previousStep), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
