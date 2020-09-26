@@ -1,6 +1,8 @@
 language: swift
 xcode_sdk: iphonesimulator13.7
 osx_image: xcode11.6
+xcode_project: CTXTutorialEngine.xcodeproj
+xcode_scheme: CTXTutorialEngine
 git:
   submodules: false
 jobs:
