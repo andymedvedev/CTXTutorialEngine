@@ -269,7 +269,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         let path = UIBezierPath()
         let middlePoint: CGPoint
         
-        path.move(to: CGPoint(x: .zero, y: anchorSize.height))
+        path.move(to: CGPoint(x: .zero, y: anchorSize.height + 1)) // +1 to remove line between buble and anchor
         
         switch (direction, alignment) {
         case (.toTop, .left),
@@ -285,9 +285,10 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         default:
             middlePoint = CGPoint(x: anchorSize.width / 2, y: .zero)
         }
-        
+        path.addLine(to: CGPoint(x: .zero, y: anchorSize.height))
         path.addLine(to: middlePoint)
         path.addLine(to: CGPoint(x: anchorSize.width, y: anchorSize.height))
+        path.addLine(to: CGPoint(x: anchorSize.width, y: anchorSize.height + 1))
         path.close()
         anchorLayer.path = path.cgPath
         anchorLayer.frame = anchorFrame(for: direction, alignment: alignment)
