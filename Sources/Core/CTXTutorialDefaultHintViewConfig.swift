@@ -15,7 +15,7 @@ public final class CTXTutorialDefaultHintViewConfig {
     public var anchorSize = CGSize(width: 16, height: 16)
     public var anchorColor = UIColor.white
     public var insets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    public var spacing = 8
+    public var spacing: CGFloat = 8
     public var backButton: UIButton?
     public var nextButton: UIButton?
     public var closeButton: UIButton?

@@ -16,7 +16,7 @@ final class StartViewController: UIViewController {
         super.viewDidLoad()
         
         startButton.setTitle("Start", for: .normal)
-        startButton.titleLabel?.font = .systemFont(ofSize: 20)
+        startButton.titleLabel?.font = .systemFont(ofSize: 26)
         startButton.addTarget(self, action: #selector(start(_:)), for: .touchUpInside)
         startButton.sizeToFit()
         

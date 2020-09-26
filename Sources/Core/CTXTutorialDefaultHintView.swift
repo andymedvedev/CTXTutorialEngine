@@ -65,8 +65,8 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         return view
     }()
     private let minHorizontalInset: CGFloat = 16
-    private let bubleInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    private let bubleInnerSpacing: CGFloat = 8
+    private lazy var bubleInsets = config.insets
+    private lazy var bubleInnerSpacing = config.spacing
     private lazy var backButton = config.backButton ?? CustomButton(type: .system)
     private lazy var nextButton = config.nextButton ?? CustomButton(type: .system)
     private lazy var closeButton = config.closeButton ?? CustomButton(type: .system)

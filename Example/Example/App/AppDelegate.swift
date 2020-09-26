@@ -23,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        let stepConfig = CTXTutorialStepConfig(text: "My Custom View Tutorial step",
-                                               accessibilityIdentifier: "myCustomView")
+        let stepConfig = CTXTutorialStepConfig(text: "\"Welcome\" label shown!",
+                                               accessibilityIdentifier: "welcomeLabel")
         
         let viewsShownEventConfig = CTXTutorialViewsShownEventConfig(stepConfigs: [stepConfig])
         
         guard let viewsShownEvent = CTXTutorialViewsShownEvent(with: viewsShownEventConfig) else {fatalError("cannot create event")}
         
-        let customTutorial = CTXTutorial(id: 100,
-                                         name: "My Custom Tutorial",
+        let customTutorial = CTXTutorial(id: 0,
+                                         name: "Welcome tutorial",
                                          eventsChain: [viewsShownEvent])
         
         engine.add(customTutorial) { error in
@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config = engine.defaultHintViewConfig
         config.anchorSize = CGSize(width: 16, height: 16)
         config.anchorColor = .green
+        config.textLabel = UILabel()
         config.onAppear = {
             hintView in
             

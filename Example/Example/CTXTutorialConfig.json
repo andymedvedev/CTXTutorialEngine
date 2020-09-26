@@ -2,6 +2,25 @@
     "tutorials": [
         {
             "id": 0,
+            "name": "nameOfLibrary",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "Welcome to library!",
+                                    "accessibilityIdentifier": "libraryNameContainer"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        
+        {
+            "id": 1,
             "name": "tapButtonTutorial",
             "events": [
                 {
@@ -20,7 +39,7 @@
         },
         
         {
-            "id": 1,
+            "id": 2,
             "name": "rgbViewsTutorial",
             "events": [
                 {

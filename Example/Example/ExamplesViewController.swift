@@ -11,10 +11,11 @@ import CTXTutorialEngine
 
 class ExamplesViewController: UIViewController, CTXTutorialShowing {
     
+    private let libraryNameLabel = UILabel()
+    private let libraryNameContainerView = UIView()
     private let redView = UIView()
     private let greenView = UIView()
     private let blueView = UIView()
-    private let customView = UIView(frame: CGRect(x: 0, y: 350, width: 40, height: 60))
     private let button = UIButton(type: .system)
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -46,43 +47,55 @@ class ExamplesViewController: UIViewController, CTXTutorialShowing {
         
         self.view.backgroundColor = .white
         
-        redView.backgroundColor = .red
-        blueView.backgroundColor = .blue
-        greenView.backgroundColor = .green
-        customView.backgroundColor = .systemPink
+        redView.backgroundColor = UIColor(named: "red")
+        greenView.backgroundColor = UIColor(named: "green")
+        blueView.backgroundColor = UIColor(named: "blue")
+        button.backgroundColor = UIColor(named: "yellow")
         
         redView.layer.mask = roundLayer()
         greenView.layer.mask = triangleLayer()
         
+        libraryNameContainerView.accessibilityIdentifier = "libraryNameContainer"
         redView.accessibilityIdentifier = "redView"
         greenView.accessibilityIdentifier = "greenView"
         blueView.accessibilityIdentifier = "blueView"
-        customView.accessibilityIdentifier = "myCustomView"
         button.accessibilityIdentifier = "button"
         
-        button.backgroundColor =  UIColor(red: 100 / 255.0, green: 151 / 255.0, blue: 177 / 255.0, alpha: 1.0)
-        button.setTitle("Tap me", for: .normal)
-        button.tintColor = .yellow
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        let font = UIFont.systemFont(ofSize: 16)
+        let attrString = NSMutableAttributedString()
+        attrString.append(.init(string: "● ",
+                                attributes: [
+                                    .font: font,
+                                    .foregroundColor: UIColor(named: "red") as Any,
+        ]))
+        attrString.append(.init(string: "▲ ",
+                                attributes: [
+                                    .font: font,
+                                    .foregroundColor: UIColor(named: "green") as Any,
+        ]))
+        attrString.append(.init(string: "■",
+                                attributes: [
+                                    .font: font,
+                                    .foregroundColor: UIColor(named: "blue") as Any,
+        ]))
+        button.setAttributedTitle(attrString, for: .normal)
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
-        
         button.layer.cornerRadius = 10
-        button.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMinYCorner]
         
-        view.addSubview(redView)
-        view.addSubview(greenView)
-        view.addSubview(blueView)
-        view.addSubview(customView)
-        view.addSubview(button)
-        view.addSubview(collectionView)
+        [redView, greenView, blueView, button, collectionView, libraryNameContainerView].forEach {
+            view.addSubview($0)
+            $0.alpha = .zero
+        }
         
-        customView.center.x = view.center.x
-        button.center.x = view.center.x
-        button.frame.origin.y = customView.frame.maxY + 50
+        libraryNameContainerView.alpha = 1
+        libraryNameContainerView.addSubview(libraryNameLabel)
+        libraryNameContainerView.layer.cornerRadius = 12
+        
+        libraryNameLabel.font = .systemFont(ofSize: 32)
+        libraryNameLabel.text = "CTXTutorialEngine"
+        libraryNameLabel.sizeToFit()
         
         collectionView.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.reuseId)
-        
-        customView.alpha = 0
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,9 +104,15 @@ class ExamplesViewController: UIViewController, CTXTutorialShowing {
         if isFirstLayout {
             isFirstLayout = false
             
-            redView.frame = CGRect(x: 50, y: -50, width: 50, height: 50)
-            greenView.frame = CGRect(x: view.center.x - 25, y: -150, width: 50, height: 50)
-            blueView.frame = CGRect(x: view.bounds.maxX - 100, y : -250, width: 50, height: 50)
+            libraryNameContainerView.frame.size = CGSize(width: libraryNameLabel.frame.width + 32,
+                                                         height: libraryNameLabel.frame.height + 32)
+            libraryNameContainerView.center = view.center
+            libraryNameLabel.center = CGPoint(x: libraryNameContainerView.bounds.midX,
+                                              y: libraryNameContainerView.bounds.midY)
+            [redView, greenView, blueView].forEach {
+                $0.frame.size = CGSize(width: 50, height: 50)
+                $0.center = view.center
+            }
             button.frame.size = CGSize(width: 100, height: 50)
             button.center = view.center
             collectionView.frame = CGRect(x: 0,
@@ -153,10 +172,29 @@ extension ExamplesViewController: UICollectionViewDataSource {
     }
 }
 
+var animated = false
+
 private extension ExamplesViewController {
     
     @objc func tap() {
         engine.closeCurrentTutorial()
+        
+        [redView, greenView, blueView].forEach {
+            $0.transform = .identity
+            $0.alpha = 1
+        }
+
+        UIView.animateKeyframes(withDuration: 2, delay: .zero, options: [.calculationModeCubic], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25) {
+                self.redView.transform = CGAffineTransform(translationX: -100, y: -100)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.33, relativeDuration: 0.25) {
+                self.greenView.transform = CGAffineTransform(translationX: 0, y: -100)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.66, relativeDuration: 0.25) {
+                self.blueView.transform = CGAffineTransform(translationX: 100, y: -100)
+            }
+        })
     }
 }
 
@@ -168,21 +206,15 @@ extension ExamplesViewController: CTXTutorialEngineDelegate {
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
         if tutorial.id == 0 {
-            let safeAreaTop = view.safeAreaInsets.top
-            
-            UIView.animate(withDuration: 2, delay: .zero, options: [.curveEaseInOut], animations: {
-                self.redView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 100)
-                self.greenView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 200)
-                self.blueView.transform = CGAffineTransform(translationX: .zero, y: safeAreaTop + 300)
-            })
-        } else if tutorial.id == 1 {
-            customView.alpha = 1
-            UIView.animate(withDuration: 2,
-                          delay: .zero,
-                           options: [.curveEaseInOut],
-                           animations: {
-                            self.customView.transform = CGAffineTransform(translationX: 0, y: 100)
-            })
+            UIView.animate(withDuration: 1, delay: .zero, options: [.curveEaseOut], animations:  {
+                self.libraryNameContainerView.transform = CGAffineTransform(translationX: 0, y: -200)
+            }) {
+                _ in
+                
+                UIView.animate(withDuration: 1) {
+                    self.button.alpha = 1
+                }
+            }
         }
     }
 }
