@@ -17,6 +17,7 @@
   },
   "swift_versions": "5.2",
   "source_files": "Sources/**/*.{swift,h}",
+  "resources": "Sources/**/*.{xcassets}",
   "platforms": {
     "ios": "11.0"
   },

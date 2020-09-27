@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C3F5ED3252036C300B05205 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C600E1D251C50450092B5C3 /* CTXTutorialShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialShowing.swift; sourceTree = "<group>"; };
 		2C600E1E251C50450092B5C3 /* CTXTutorialViewAvailabilityChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTXTutorialViewAvailabilityChecker.swift; sourceTree = "<group>"; };
 		2C6F97E9251CA1A2003352AA /* CTXTutorialDefaultHintViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXTutorialDefaultHintViewConfig.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 				2C88B591251757FD005155B3 /* Delegates */,
 				2C88B596251757FD005155B3 /* Info.plist */,
 				2C88B570251757FD005155B3 /* CTXTutorialEngine.h */,
+				2C3F5ED3252036C300B05205 /* Assets.xcassets */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;

@@ -26,28 +26,16 @@ class GradientView: UIView {
     public override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
-    
-    private var gradientLayer: CAGradientLayer {
-        return layer as! CAGradientLayer
-    }
 
     init(config: CTXTutorialDefaultHintViewConfig) {
         super.init(frame: .zero)
         
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer.locations = [
-            0.0,
-            config.gradientTopControlPoint,
-            config.gradientBottomControlPoint,
-            1.0,
-        ].map { NSNumber(value: $0) }
-        gradientLayer.colors = [
-            config.gradientOuterColor,
-            config.gradientInnerColor,
-            config.gradientInnerColor,
-            config.gradientOuterColor,
-        ].compactMap { $0?.cgColor }
+        let gradientLayer = layer as! CAGradientLayer
+        
+        gradientLayer.startPoint = config.gradientStartPoint
+        gradientLayer.endPoint = config.gradientEndPoint
+        gradientLayer.locations = config.gradientLocations.map { NSNumber(value: $0) }
+        gradientLayer.colors = config.gradientColors.compactMap { $0?.cgColor }
     }
     
     required init?(coder: NSCoder) {
@@ -110,24 +98,32 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     private lazy var bubleInsets = config.insets
     private lazy var bubleInnerSpacing = config.spacing
     private lazy var backgroundView = GradientView(config: config)
-    private lazy var backButton = config.backButton ?? CustomButton(type: .system)
-    private lazy var nextButton = config.nextButton ?? CustomButton(type: .system)
-    private lazy var closeButton = config.closeButton ?? CustomButton(type: .system)
+    private let backButton = CustomButton(type: .system)
+    private let nextButton = CustomButton(type: .system)
+    private let closeButton = CustomButton(type: .system)
     private lazy var anchorSize = config.anchorSize
     private let buttonSize = CGSize(width: 16, height: 16)
     private let screenBounds = UIScreen.main.bounds
+    private let bundle = Bundle(for: CTXTutorialDefaultHintView.self)
+    
+    private lazy var backIcon = UIImage(named: "arrow_backward", in: bundle, compatibleWith: nil)
+    private lazy var nextIcon = UIImage(named: "arrow_forward", in: bundle, compatibleWith: nil)
+    private lazy var closeIcon = UIImage(named: "cross", in: bundle, compatibleWith: nil)
     
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
         
-        textLabel.font = .systemFont(ofSize: 15)
-        textLabel.numberOfLines = 0
+        backButton.tintColor = config.backButtonTintColor
+        backButton.setImage(config.backButtonImage ?? backIcon, for: .normal)
+        backButton.setTitle(config.backButtonTitle, for: .normal)
         
-        backButton.setImage(UIImage(named: "arrow_backward"), for: .normal)
-        nextButton.setImage(UIImage(named: "arrow_forward"), for: .normal)
-        closeButton.setImage(UIImage(named: "cross"), for: .normal)
+        nextButton.tintColor = config.nextButtonTintColor
+        nextButton.setImage(config.nextButtonImage ?? nextIcon, for: .normal)
+        nextButton.setTitle(config.nextButtonTitle, for: .normal)
         
-        [backButton, nextButton, closeButton].forEach { $0.tintColor = config.buttonsTintColor }
+        closeButton.tintColor = config.closeButtonTintColor
+        closeButton.setImage(config.closeButtonImage ?? closeIcon, for: .normal)
+        closeButton.setTitle(config.closeButtonTitle, for: .normal)
         
         backButton.addTarget(self, action: #selector(previousStep), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
