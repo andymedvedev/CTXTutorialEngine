@@ -87,8 +87,6 @@ private extension CTXTutorialContainerView {
             } else {
                 return UIBezierPath(rect: viewLayer.bounds)
             }
-        } else if let maskView = view.mask {
-            return self.path(for: maskView)
         } else {
             return UIBezierPath(roundedRect: viewLayer.bounds,
                                 byRoundingCorners: viewLayer.maskedCorners.asRectCorner,
