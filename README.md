@@ -60,38 +60,38 @@ You want to show hint view for some UIView.
 
 1. Add to `AppDelegate's` `application(_:didFinishLaunchingWithOptions:)` following code:
 ```swift
-    CTXTutorialEngine.shared.addTutorials { error in
-        if let error = error {
-            //handle error
-        }
+CTXTutorialEngine.shared.addTutorials { error in
+    if let error = error {
+        //handle error
     }
+}
     
-    CTXTutorialEngine.shared.start()
+CTXTutorialEngine.shared.start()
 ```
 2. Add `CTXTutorialConfig.json` to your project with content:
 ```
-    {
-        "tutorials": [
-            {
-                "id": "0",
-                "name": "My view tutorial",
-                "events": [
-                    {
-                        "CTXTutorialViewsShownEvent": {
-                            "event": {
-                                "steps": [
-                                    {
-                                        "text": "Hello world!",
-                                        "accessibilityIdentifier": "myView"
-                                    }
-                                ]
-                            }
+{
+    "tutorials": [
+        {
+            "id": "0",
+            "name": "My view tutorial",
+            "events": [
+                {
+                    "CTXTutorialViewsShownEvent": {
+                        "event": {
+                            "steps": [
+                                {
+                                    "text": "Hello world!",
+                                    "accessibilityIdentifier": "myView"
+                                }
+                            ]
                         }
                     }
-                ]
-            }
-        ]
-    }
+                }
+            ]
+        }
+    ]
+}
 ```
 
 And your ViewCotroller's code should looks like this:
