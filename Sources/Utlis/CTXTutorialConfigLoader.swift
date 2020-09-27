@@ -15,7 +15,7 @@ enum ConfigLoaderError: Error {
 
 final class CTXTutorialConfigLoader {
     
-    func loadConfigs<M: Meta>(from fileName: String, eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>]  {
+    func loadConfigs<M: Meta>(from fileName: String, eventConfigMetaType: M.Type) throws -> [CTXTutorialConfig<M>] {
         
         guard let configFileURL = Bundle.main.url(forResource: fileName, withExtension: "json") else {
             throw ConfigLoaderError.error("Config with name: \"\(fileName)\" not found.")
@@ -32,5 +32,9 @@ final class CTXTutorialConfigLoader {
         } else {
             throw ConfigLoaderError.error("Configs are nil")
         }
+    }
+    
+    func loadSimpleConfig(from fileName: String) throws -> [CTXTutorialConfig<CTXTutorialEventConfigMetaType>] {
+        return try loadConfigs(from: fileName, eventConfigMetaType: CTXTutorialEventConfigMetaType.self)
     }
 }

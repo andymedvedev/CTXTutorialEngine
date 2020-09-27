@@ -44,6 +44,9 @@ public class CTXTutorial: CTXTutorialProtocol {
 extension CTXTutorial: CTXTutorialEventObserver {
     
     func push(_ event: CTXTutorialEvent) {
+        guard delegate?.tutorialShouldProcessEvents(self) ?? false else {
+            return
+        }
         
         if let currentEvent = eventsChain.first {
             

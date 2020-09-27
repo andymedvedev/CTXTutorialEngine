@@ -10,6 +10,7 @@ import UIKit
 
 protocol CTXTutorialDelegate: AnyObject {
     
+    func tutorialShouldProcessEvents(_ tutorial: CTXTutorial) -> Bool
     func tutorialWillShow(_ tutorial: CTXTutorial)
     func tutorialDidEndShow(_ tutorial: CTXTutorial)
     func tutorialWillShowTutorialStep(_ tutorial: CTXTutorial,

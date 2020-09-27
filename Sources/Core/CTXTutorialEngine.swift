@@ -12,6 +12,9 @@ public final class CTXTutorialEngine {
     
     public let defaultHintViewConfig = CTXTutorialDefaultHintViewConfig()
     public var useDefaultHintView = true
+    public var isHaveShownTutorials: Bool {
+        return !shownTutorialsIds.isEmpty
+    }
     
     public weak var delegate: CTXTutorialEngineDelegate?
     
@@ -41,13 +44,31 @@ public final class CTXTutorialEngine {
     private var currentTutorial: CTXTutorial?
     private var pollingTimer: Timer?
     private var stoppedByUser = false
+    private let defaultsKey = "CTXTutorialEngineTutorialsShownStatus"
+    private var shownTutorialsIds: [CTXTutorialID] {
+        get {
+            return (UserDefaults.standard.array(forKey: defaultsKey) as? [CTXTutorialID]) ?? []
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: defaultsKey)
+        }
+    }
     
     private init() {}
     
-    public func addTutorials<M: Meta>(from configName: String = "CTXTutorialConfig",
-                                      with eventTypes: [CTXTutorialEvent.Type],
-                                      eventConfigMetaType: M.Type,
-                                      completion: (CTXTutorialAdditionError?) -> ()) where M.Element == CTXTutorialEventConfig {
+    public func addTutorials(from configName: String = "CTXTutorialConfig",
+                             completion: (CTXTutorialAdditionError?) -> ()) {
+        addTutorialsWithMeta(from: configName,
+                             with: [CTXTutorialViewsShownEvent.self],
+                             eventConfigMetaType: CTXTutorialEventConfigMetaType.self,
+                             completion: completion)
+    }
+    
+    public func addTutorialsWithMeta<M: Meta>(from configName: String = "CTXTutorialConfig",
+                                              with eventTypes: [CTXTutorialEvent.Type],
+                                              eventConfigMetaType: M.Type,
+                                              completion: (CTXTutorialAdditionError?) -> ()) where M.Element == CTXTutorialEventConfig {
         
         self.eventTypes = eventTypes
         
@@ -62,11 +83,7 @@ public final class CTXTutorialEngine {
             }
         }
         
-        self.tutorials = tutorialConfigs.compactMap { tutorialConfig in
-            guard !isTutorialShownBefore(with: tutorialConfig.id) else {
-                return nil
-            }
-            
+        self.tutorials = tutorialConfigs.map { tutorialConfig in
             let tutorial = CTXTutorial(with: tutorialConfig)
             
             tutorial.delegate = self
@@ -79,11 +96,6 @@ public final class CTXTutorialEngine {
     }
     
     public func add(_ tutorial: CTXTutorial, completion: (CTXTutorialAdditionError?) -> ()) {
-        guard !isTutorialShownBefore(with: tutorial.id) else {
-            completion(nil)
-            return
-        }
-        
         if tutorials.first(where: {$0.id == tutorial.id}) != nil {
             
             completion(CTXTutorialAdditionError(id: tutorial.id, name: tutorial.name))
@@ -136,6 +148,10 @@ public final class CTXTutorialEngine {
         
         weakViewControllers.removeAll(where: { $0.viewController === viewController })
     }
+    
+    public func resetShownTutorials() {
+        shownTutorialsIds = []
+    }
 }
 
 private extension CTXTutorialEngine {
@@ -172,19 +188,17 @@ private extension CTXTutorialEngine {
     }
     
     func setTutorial(with id: CTXTutorialID, isShown: Bool) {
-        UserDefaults.standard.set(isShown, forKey: key(for: id))
-    }
-    
-    func isTutorialShownBefore(with id: CTXTutorialID) -> Bool {
-        return UserDefaults.standard.bool(forKey: key(for: id))
-    }
-    
-    func key(for id: CTXTutorialID) -> String {
-        return "CTXTutorialEngine:\(id)"
+        if !shownTutorialsIds.contains(id) {
+            shownTutorialsIds.append(id)
+        }
     }
 }
 
 extension CTXTutorialEngine: CTXTutorialDelegate {
+    
+    func tutorialShouldProcessEvents(_ tutorial: CTXTutorial) -> Bool {
+        return !shownTutorialsIds.contains(tutorial.id)
+    }
     
     func tutorialWillShow(_ tutorial: CTXTutorial) {
         currentTutorial = tutorial
