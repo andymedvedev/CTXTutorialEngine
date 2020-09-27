@@ -62,7 +62,10 @@ public final class CTXTutorialEngine {
             }
         }
         
-        self.tutorials = tutorialConfigs.map { tutorialConfig in
+        self.tutorials = tutorialConfigs.compactMap { tutorialConfig in
+            guard !isTutorialShownBefore(with: tutorialConfig.id) else {
+                return nil
+            }
             
             let tutorial = CTXTutorial(with: tutorialConfig)
             
@@ -76,6 +79,10 @@ public final class CTXTutorialEngine {
     }
     
     public func add(_ tutorial: CTXTutorial, completion: (CTXTutorialAdditionError?) -> ()) {
+        guard !isTutorialShownBefore(with: tutorial.id) else {
+            completion(nil)
+            return
+        }
         
         if tutorials.first(where: {$0.id == tutorial.id}) != nil {
             
@@ -163,6 +170,18 @@ private extension CTXTutorialEngine {
             }
         }
     }
+    
+    func setTutorial(with id: CTXTutorialID, isShown: Bool) {
+        UserDefaults.standard.set(isShown, forKey: key(for: id))
+    }
+    
+    func isTutorialShownBefore(with id: CTXTutorialID) -> Bool {
+        return UserDefaults.standard.bool(forKey: key(for: id))
+    }
+    
+    func key(for id: CTXTutorialID) -> String {
+        return "CTXTutorialEngine:\(id)"
+    }
 }
 
 extension CTXTutorialEngine: CTXTutorialDelegate {
@@ -180,6 +199,7 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     
     func tutorialDidEndShow(_ tutorial: CTXTutorial) {
         delegate?.engineDidEndShow(self, tutorial: tutorial)
+        setTutorial(with: tutorial.id, isShown: true)
         
         tutorials.removeAll(where: { $0 === tutorial })
         bus.remove(tutorial)

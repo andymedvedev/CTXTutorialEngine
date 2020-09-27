@@ -10,7 +10,7 @@ import Foundation
 
 public struct CTXTutorialAdditionError: LocalizedError {
     
-    public let id: Int
+    public let id: CTXTutorialID
     public let name: String?
     
     public var errorDescription: String {

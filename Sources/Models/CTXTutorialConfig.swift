@@ -10,7 +10,7 @@ import Foundation
 
 public struct CTXTutorialConfig<M: Meta>: Decodable {
     
-    let id: Int
+    let id: CTXTutorialID
     let name: String?
     let eventConfigs: CTXTutorialEventConfigsArray<M>
     

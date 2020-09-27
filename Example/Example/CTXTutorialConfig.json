@@ -1,7 +1,7 @@
 {
     "tutorials": [
         {
-            "id": 0,
+            "id": "0",
             "name": "tapButtonTutorial",
             "events": [
                 {
@@ -20,7 +20,7 @@
         },
         
         {
-            "id": 1,
+            "id": "1",
             "name": "rgbViewsTutorial",
             "events": [
                 {
@@ -49,7 +49,7 @@
         },
 
         {
-            "id": 2,
+            "id": "2",
             "name": "cellTutorial",
             "events": [
                 {

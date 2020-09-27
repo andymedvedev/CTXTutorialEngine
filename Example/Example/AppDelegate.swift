@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let viewsShownEvent = CTXTutorialViewsShownEvent(with: viewsShownEventConfig) else {fatalError("cannot create event")}
         
-        let customTutorial = CTXTutorial(id: 100,
+        let customTutorial = CTXTutorial(id: "100",
                                          name: "Welcome tutorial",
                                          eventsChain: [viewsShownEvent])
         

@@ -15,11 +15,11 @@ class ExamplesViewController: UIViewController, CTXTutorialShowing {
         case red, green, blue
     }
     
-    fileprivate enum TutorialID: Int {
-        case welcomeTutorial = 100
-        case shapesButtonTutorial = 0
-        case shapesTutorial = 1
-        case cellTutorial = 2
+    fileprivate enum TutorialID: String {
+        case welcomeTutorial = "100"
+        case shapesButtonTutorial = "0"
+        case shapesTutorial = "1"
+        case cellTutorial = "2"
     }
     
     private let libraryNameLabel = UILabel()

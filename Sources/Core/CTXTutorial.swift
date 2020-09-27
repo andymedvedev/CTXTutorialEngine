@@ -4,14 +4,16 @@
 
 import UIKit
 
+public typealias CTXTutorialID = String
+
 public protocol CTXTutorialProtocol {
-    var id: Int {get}
+    var id: CTXTutorialID {get}
     var name: String? {get}
 }
 
 public class CTXTutorial: CTXTutorialProtocol {
     
-    public let id: Int
+    public let id: CTXTutorialID
     public var name: String?
     
     weak var delegate: CTXTutorialDelegate?
@@ -27,7 +29,7 @@ public class CTXTutorial: CTXTutorialProtocol {
         self.makeChain(from: config)
     }
     
-    public init(id: Int, name: String? = nil, eventsChain: [CTXTutorialEvent]) {
+    public init(id: CTXTutorialID, name: String? = nil, eventsChain: [CTXTutorialEvent]) {
         
         self.id = id
         self.name = name

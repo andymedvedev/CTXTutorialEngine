@@ -38,8 +38,6 @@ final class CollectionCell: UICollectionViewCell {
     func configure(by index: Int) {
         let accessibilityViewsRange = (4...6)
         
-        
-        
         if accessibilityViewsRange.contains(index) {
             accessibilityIdentifier = "cell"
             textLabel.text = "will be\nhinted..."
