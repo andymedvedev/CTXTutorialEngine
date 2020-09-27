@@ -9,17 +9,14 @@
 import UIKit
 
 protocol CTXTutorialDelegate: AnyObject {
+    
     func tutorialWillShow(_ tutorial: CTXTutorial)
-    
     func tutorialDidEndShow(_ tutorial: CTXTutorial)
-    
+    func tutorialWillShowTutorialStep(_ tutorial: CTXTutorial,
+                                      with stepInfo: CTXTutorialStepPresentationInfo)
     func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
                                      with stepInfo: CTXTutorialStepPresentationInfo)
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat?
-    
     func tutorialOverlayColor() -> UIColor?
-    
     func tutorialHintView(_ tutorial: CTXTutorial,
                           with currentStepModel: CTXTutorialStepModel,
                           isHavePreviousStep: Bool,

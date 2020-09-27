@@ -333,16 +333,17 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         path.close()
         anchorLayer.path = path.cgPath
         anchorLayer.frame = anchorFrame(for: direction, alignment: alignment)
-        anchorLayer.fillColor = (config.anchorColor ?? .white).cgColor
+        
         
         switch direction {
         case .toTop:
-            break
+            anchorLayer.fillColor = (config.gradientColors.first ?? .white)?.cgColor
         case .toLeft:
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi / 2))
         case .toRight:
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: -CGFloat.pi / 2))
         case .toBottom:
+            anchorLayer.fillColor = (config.gradientColors.last ?? .white)?.cgColor
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi))
         case .none:
             break

@@ -12,14 +12,11 @@ import UIKit
 protocol CTXTutorialModuleDelegate: AnyObject {
     
     func moduleDidEndShowTutorial(_ module: CTXTutorialModule)
-    
+    func moduleWillShowTutorialStep(_ module: CTXTutorialModule,
+                                    with stepInfo: CTXTutorialStepPresentationInfo)
     func moduleDidShowTutorialStep(_ module: CTXTutorialModule,
                                    with stepInfo: CTXTutorialStepPresentationInfo)
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat?
-    
     func tutorialOverlayColor() -> UIColor?
-    
     func module(_ module: CTXTutorialModule,
                 hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,

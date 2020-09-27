@@ -58,7 +58,7 @@ public final class CTXTutorialEngine {
             
             if tutorials.first(where: {$0.id == tutorialConfig.id}) != nil {
                 
-                completion(CTXTutorialAdditionError())
+                completion(CTXTutorialAdditionError(id: tutorialConfig.id, name: tutorialConfig.name))
             }
         }
         
@@ -79,7 +79,7 @@ public final class CTXTutorialEngine {
         
         if tutorials.first(where: {$0.id == tutorial.id}) != nil {
             
-            completion(CTXTutorialAdditionError())
+            completion(CTXTutorialAdditionError(id: tutorial.id, name: tutorial.name))
         }
         
         tutorial.delegate = self
@@ -166,6 +166,7 @@ private extension CTXTutorialEngine {
 }
 
 extension CTXTutorialEngine: CTXTutorialDelegate {
+    
     func tutorialWillShow(_ tutorial: CTXTutorial) {
         currentTutorial = tutorial
         delegate?.engineWillShow(self, tutorial: tutorial)
@@ -191,14 +192,14 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
         }
     }
     
-    func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
-                                     with stepInfo: CTXTutorialStepPresentationInfo) {
-        
-        delegate?.engineDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
+    func tutorialWillShowTutorialStep(_ tutorial: CTXTutorial,
+                                      with stepInfo: CTXTutorialStepPresentationInfo) {
+        delegate?.engineWillShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
     }
     
-    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
-        return delegate?.cornerRadiusForModalViewSnapshot()
+    func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
+                                     with stepInfo: CTXTutorialStepPresentationInfo) {
+        delegate?.engineDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
     }
     
     func tutorialOverlayColor() -> UIColor? {
@@ -209,7 +210,6 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
                           with currentStepModel: CTXTutorialStepModel,
                           isHavePreviousStep: Bool,
                           isHaveNextStep: Bool) -> CTXTutorialHintView? {
-        
         return delegate?.engine(self,
                                 hintViewFor: tutorial,
                                 with: currentStepModel,

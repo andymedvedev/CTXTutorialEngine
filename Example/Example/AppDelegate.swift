@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        let stepConfig = CTXTutorialStepConfig(text: "\"Welcome\" label shown!",
-                                               accessibilityIdentifier: "welcomeLabel")
+        let stepConfig = CTXTutorialStepConfig(text: "Welcome to library!",
+                                               accessibilityIdentifier: "libraryNameContainer")
         
         let viewsShownEventConfig = CTXTutorialViewsShownEventConfig(stepConfigs: [stepConfig])
         
         guard let viewsShownEvent = CTXTutorialViewsShownEvent(with: viewsShownEventConfig) else {fatalError("cannot create event")}
         
-        let customTutorial = CTXTutorial(id: 0,
+        let customTutorial = CTXTutorial(id: 100,
                                          name: "Welcome tutorial",
                                          eventsChain: [viewsShownEvent])
         
@@ -48,16 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureDefaultHintView() {
         let config = engine.defaultHintViewConfig
-        config.gradientColors = [
-            UIColor(named: "gradientOuter"),
-            UIColor(named: "gradientInner"),
-            UIColor(named: "gradientInner"),
-            UIColor(named: "gradientOuter"),
-        ]
         config.gradientLocations = [0.0, 0.3, 0.6, 1.0]
         config.anchorColor = UIColor(named: "gradientOuter")
         config.anchorSize = CGSize(width: 16, height: 16)
-        config.textColor = UIColor(named: "yellow")
         config.font = .systemFont(ofSize: 18)
         config.backButtonTintColor = UIColor(named: "yellow")
         config.nextButtonTintColor = UIColor(named: "yellow")

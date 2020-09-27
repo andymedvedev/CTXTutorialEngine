@@ -11,6 +11,17 @@ import CTXTutorialEngine
 
 class ExamplesViewController: UIViewController, CTXTutorialShowing {
     
+    fileprivate enum ShapesTutorialStep: String, CaseIterable {
+        case red, green, blue
+    }
+    
+    fileprivate enum TutorialID: Int {
+        case welcomeTutorial = 100
+        case shapesButtonTutorial = 0
+        case shapesTutorial = 1
+        case cellTutorial = 2
+    }
+    
     private let libraryNameLabel = UILabel()
     private let libraryNameContainerView = UIView()
     private let redView = UIView()
@@ -196,6 +207,24 @@ private extension ExamplesViewController {
             }
         })
     }
+    
+    func animateLibraryNameShapesButton() {
+        UIView.animate(withDuration: 1, delay: .zero, options: [.curveEaseOut], animations:  {
+            self.libraryNameContainerView.transform = CGAffineTransform(translationX: 0, y: -200)
+        }) {
+            _ in
+            
+            UIView.animate(withDuration: 1) {
+                self.button.alpha = 1
+            }
+        }
+    }
+    
+    func animateCollectionView() {
+        UIView.animate(withDuration: 1) {
+            self.collectionView.alpha = 1
+        }
+    }
 }
 
 extension ExamplesViewController: CTXTutorialEngineDelegate {
@@ -204,17 +233,81 @@ extension ExamplesViewController: CTXTutorialEngineDelegate {
         return .lightContent
     }
     
+    func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
+        guard let tutorialId = TutorialID(rawValue: tutorial.id) else {
+            print("cant create TutorialID with rawValue: \(tutorial.id)")
+            return
+        }
+        
+        let config = engine.defaultHintViewConfig
+        let tintColor = tutorialId.tintColor
+        config.gradientColors = tutorialId.gradientColors(for: stepInfo.stepIndex)
+        config.textColor = tintColor
+        config.backButtonTintColor = tintColor
+        config.nextButtonTintColor = tintColor
+        config.closeButtonTintColor = tintColor
+
+    }
+    
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
-        if tutorial.id == 0 {
-            UIView.animate(withDuration: 1, delay: .zero, options: [.curveEaseOut], animations:  {
-                self.libraryNameContainerView.transform = CGAffineTransform(translationX: 0, y: -200)
-            }) {
-                _ in
-                
-                UIView.animate(withDuration: 1) {
-                    self.button.alpha = 1
-                }
+        guard let tutorialId = TutorialID(rawValue: tutorial.id) else {
+            print("cant create TutorialID with rawValue: \(tutorial.id)")
+            return
+        }
+        
+        switch tutorialId {
+        case .welcomeTutorial:
+            animateLibraryNameShapesButton()
+        case .shapesTutorial:
+            animateCollectionView()
+        default:
+            break
+        }
+    }
+}
+
+extension ExamplesViewController.TutorialID {
+    
+    func gradientColors(for stepIndex: Int) -> [UIColor?] {
+        let outerName: String
+        let innerName: String
+        
+        switch self {
+        case .welcomeTutorial:
+            outerName = "violetLight"
+            innerName = "violet"
+        case .shapesButtonTutorial:
+            outerName = "peach"
+            innerName = "yellow"
+        case .shapesTutorial:
+            let shapeStep = ExamplesViewController.ShapesTutorialStep.allCases[stepIndex]
+            switch shapeStep {
+            case .red:
+                outerName = "pink"
+                innerName = "red"
+            case .green:
+                outerName = "greenLight"
+                innerName = "green"
+            case .blue:
+                outerName = "blueLight"
+                innerName = "blue"
             }
+        case .cellTutorial:
+            outerName = "atomicTangerine"
+            innerName = "burntSienna"
+        }
+        
+        return [outerName, innerName, innerName, outerName].map(UIColor.init(named:))
+    }
+    
+    var tintColor: UIColor? {
+        switch self {
+        case .welcomeTutorial, .shapesTutorial:
+            return UIColor(named: "yellow")
+        case .shapesButtonTutorial:
+            return UIColor(named: "regalBlue")
+        case .cellTutorial:
+            return .white
         }
     }
 }

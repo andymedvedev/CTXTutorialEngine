@@ -95,11 +95,15 @@ private extension CTXTutorialContainerViewController {
         let stepModel = stepModels[currentStepIndex]
         let isHavePreviousStep = totalStepsCount > 1 && currentStepIndex > 0
         let isHaveNextStep = totalStepsCount > 1 && currentStepIndex < totalStepsCount - 1
-        
+        let stepPresentationInfo = CTXTutorialStepPresentationInfo(stepIndex: currentStepIndex,
+                                                                   stepsCount: totalStepsCount,
+                                                                   stepModel: stepModel)
         var hintView = delegate?.container(self,
                                            hintViewForTutorialWith: stepModel,
                                            isHavePreviousStep: isHavePreviousStep,
                                            isHaveNextStep: isHaveNextStep)
+        
+        delegate?.containerWillShowTutorialStep(self, with: stepPresentationInfo)
         
         if hintView == nil && CTXTutorialEngine.shared.useDefaultHintView {
             hintView = CTXTutorialDefaultHintView(with: .init(step: stepModel,
@@ -120,10 +124,6 @@ private extension CTXTutorialContainerViewController {
             tutorialContainer.showStep(with: hintView, views: stepModel.views)
             CTXTutorialEngine.shared.defaultHintViewConfig.onAppear?(hintView)
         }
-    
-        let stepPresentationInfo = CTXTutorialStepPresentationInfo(stepIndex: currentStepIndex,
-                                                                   stepsCount: totalStepsCount,
-                                                                   stepModel: stepModel)
         
         delegate?.containerDidShowTutorialStep(self, with: stepPresentationInfo)
     }

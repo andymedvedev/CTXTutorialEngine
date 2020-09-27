@@ -19,7 +19,9 @@ final class CollectionCell: UICollectionViewCell {
         super.init(frame: frame)
         
         contentView.addSubview(textLabel)
-        textLabel.font = .systemFont(ofSize: 30)
+        textLabel.font = .systemFont(ofSize: 12)
+        textLabel.textAlignment = .left
+        textLabel.numberOfLines = 0
     }
     
     required init?(coder: NSCoder) {
@@ -36,17 +38,19 @@ final class CollectionCell: UICollectionViewCell {
     func configure(by index: Int) {
         let accessibilityViewsRange = (4...6)
         
+        
+        
         if accessibilityViewsRange.contains(index) {
-            accessibilityIdentifier = "orangeCell"
-            backgroundColor = .orange
-            textLabel.textColor = .white
+            accessibilityIdentifier = "cell"
+            textLabel.text = "will be\nhinted..."
+            backgroundColor = UIColor(named: "burntSienna")
+            textLabel.textColor = UIColor(named: "regalBlue")
         } else {
             accessibilityIdentifier = nil
-            backgroundColor = .lightGray
-            textLabel.textColor = .black
+            textLabel.text = "lorem ipsum"
+            backgroundColor = UIColor(named: "royalBlue")
+            textLabel.textColor = UIColor(named: "paleYellow")
         }
-        
-        textLabel.text = "\(index)"
         setNeedsLayout()
     }
 }

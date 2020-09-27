@@ -7,33 +7,35 @@ import UIKit
 public protocol CTXTutorialEngineDelegate: AnyObject {
     
     func engineWillShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial)
-    
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial)
-    
+    func engineWillShowTutorialStep(_ engine: CTXTutorialEngine,
+                                    tutorial: CTXTutorial,
+                                    with stepInfo: CTXTutorialStepPresentationInfo)
     func engineDidShowTutorialStep(_ engine: CTXTutorialEngine,
                                    tutorial: CTXTutorial,
                                    with stepInfo: CTXTutorialStepPresentationInfo)
-    
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
                 with currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView?
-    
     func tutorialOverlayColor() -> UIColor?
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat?
-    
     func selectedViewsToProcess(in accessibilityViewsDict: [String: [[UIView]]]) -> [UIView]
 }
 
 public extension CTXTutorialEngineDelegate {
     
-    func engineWillShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {}
+    func engineWillShow(_ engien: CTXTutorialEngine, tutorial: CTXTutorial) {
+    }
     
-    func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {}
+    func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {
+    }
     
-    func engineDidShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {}
+    func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
+    }
+    
+    func engineDidShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
+    }
     
     func engine(_ engine: CTXTutorialEngine,
                 hintViewFor tutorial: CTXTutorial,
@@ -44,10 +46,6 @@ public extension CTXTutorialEngineDelegate {
     }
     
     func tutorialOverlayColor() -> UIColor? {
-        return nil
-    }
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
         return nil
     }
     

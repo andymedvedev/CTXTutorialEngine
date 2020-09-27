@@ -43,14 +43,15 @@ extension CTXTutorialModule: CTXTutorialContainerDelegate {
         delegate?.moduleDidEndShowTutorial(self)
     }
     
+    func containerWillShowTutorialStep(_ container: CTXTutorialContainerViewController,
+                                       with stepInfo: CTXTutorialStepPresentationInfo) {
+        delegate?.moduleWillShowTutorialStep(self, with: stepInfo)
+    }
+    
     func containerDidShowTutorialStep(_ container: CTXTutorialContainerViewController,
                                       with stepInfo: CTXTutorialStepPresentationInfo) {
         
         delegate?.moduleDidShowTutorialStep(self, with: stepInfo)
-    }
-    
-    func cornerRadiusForModalViewSnapshot() -> CGFloat? {
-        return delegate?.cornerRadiusForModalViewSnapshot()
     }
     
     func tutorialOverlayColor() -> UIColor? {

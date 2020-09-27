@@ -25,13 +25,13 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         self.hideCompletion = hideCompletion
         
         let window = UIApplication.keyWindow()
-        
         window?.addSubview(tutorialVC.view)
         
         tutorialVC.view.frame = UIScreen.main.bounds
         
         topVC.isTutorialShowing = true
         topVC.setNeedsStatusBarAppearanceUpdate()
+        topVC.presentationController?.presentedView?.gestureRecognizers?.forEach { $0.isEnabled = false }
         
         startHandler()
     }
@@ -39,9 +39,9 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
     func hideTutorial() {
         topViewController?.isTutorialShowing = false
         topViewController?.setNeedsStatusBarAppearanceUpdate()
+        topViewController?.presentationController?.presentedView?.gestureRecognizers?.forEach { $0.isEnabled = true }
         
         let window = UIApplication.keyWindow()
-        
         window?.subviews.first { $0 === tutorialViewController?.view }?.removeFromSuperview()
 
         hideCompletion?()

@@ -10,7 +10,10 @@ import Foundation
 
 public struct CTXTutorialAdditionError: LocalizedError {
     
+    public let id: Int
+    public let name: String?
+    
     public var errorDescription: String {
-        return "Tutorial with same ID already in system and not fired."
+        return "Tutorial with same ID (id: \(id), name: \"\(name ?? "")\" already in the system, and it will not be fired."
     }
 }
