@@ -21,6 +21,7 @@ CTXTutorialEngine is library provides ability to display hints or even tutorials
 - [x] Handling shape layers along as well as cornered views.
 - [x] Automatically store shown tutorial states + ability to reset all tutorials shown states.
 - [x] Forward touches to hinted views.
+- [x] Ability to show custom hint views.
 
 ## Requirements
 
