@@ -228,10 +228,6 @@ private extension ExamplesViewController {
 }
 
 extension ExamplesViewController: CTXTutorialEngineDelegate {
-
-    func preferredTutorialStatusBarStyle() -> UIStatusBarStyle? {
-        return .lightContent
-    }
     
     func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
         guard let tutorialId = TutorialID(rawValue: tutorial.id) else {
