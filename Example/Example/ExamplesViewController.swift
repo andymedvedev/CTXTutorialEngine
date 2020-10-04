@@ -220,9 +220,12 @@ private extension ExamplesViewController {
 extension ExamplesViewController: CTXTutorialEngineDelegate {
     
     func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
-        guard let tutorialId = TutorialID(rawValue: tutorial.id),
-            tutorialId != .welcomeTutorial else {
+        guard let tutorialId = TutorialID(rawValue: tutorial.id) else {
             print("cant create TutorialID with rawValue: \(tutorial.id)")
+            return
+        }
+        
+        guard tutorialId != .welcomeTutorial else {
             return
         }
         
@@ -233,7 +236,6 @@ extension ExamplesViewController: CTXTutorialEngineDelegate {
         appearance.backButtonTintColor = tintColor
         appearance.nextButtonTintColor = tintColor
         appearance.closeButtonTintColor = tintColor
-
     }
     
     func engineDidEndShow(_ engine: CTXTutorialEngine, tutorial: CTXTutorial) {

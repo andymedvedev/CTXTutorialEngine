@@ -103,25 +103,20 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     private let closeButton = CustomButton(type: .system)
     private lazy var anchorSize = appearance.anchorSize
     private let screenBounds = UIScreen.main.bounds
-    private let bundle = Bundle(for: CTXTutorialDefaultHintView.self)
-    
-    private lazy var backIcon = UIImage(named: "arrow_backward", in: bundle, compatibleWith: nil)
-    private lazy var nextIcon = UIImage(named: "arrow_forward", in: bundle, compatibleWith: nil)
-    private lazy var closeIcon = UIImage(named: "cross", in: bundle, compatibleWith: nil)
     
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
         
         backButton.tintColor = appearance.backButtonTintColor
-        backButton.setImage(appearance.backButtonImage ?? backIcon, for: .normal)
+        backButton.setImage(appearance.backButtonImage ?? arrowImage(toRight: false), for: .normal)
         backButton.setTitle(appearance.backButtonTitle, for: .normal)
         
         nextButton.tintColor = appearance.nextButtonTintColor
-        nextButton.setImage(appearance.nextButtonImage ?? nextIcon, for: .normal)
+        nextButton.setImage(appearance.nextButtonImage ?? arrowImage(toRight: true), for: .normal)
         nextButton.setTitle(appearance.nextButtonTitle, for: .normal)
         
         closeButton.tintColor = appearance.closeButtonTintColor
-        closeButton.setImage(appearance.closeButtonImage ?? closeIcon, for: .normal)
+        closeButton.setImage(appearance.closeButtonImage ?? closeImage(), for: .normal)
         closeButton.setTitle(appearance.closeButtonTitle, for: .normal)
         
         backButton.addTarget(self, action: #selector(previousStep), for: .touchUpInside)
@@ -408,6 +403,59 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         
         return corners
     }
+    
+    private func closeImage() -> UIImage? {
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: .zero)
+        bezierPath.addLine(to: CGPoint(x: 16, y: 16))
+        bezierPath.move(to: CGPoint(x: 16, y: .zero))
+        bezierPath.addLine(to: CGPoint(x: .zero, y: 16))
+        let layer = CAShapeLayer()
+        layer.path = bezierPath.cgPath
+        layer.lineWidth = 2
+        layer.strokeColor = UIColor.black.cgColor
+        layer.bounds.size = CGSize(width: 16, height: 16)
+        
+        return image(from: layer)
+    }
+    
+    private func arrowImage(toRight: Bool) -> UIImage? {
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: .zero, y: 8))
+        bezierPath.addLine(to: CGPoint(x: 16, y: 8))
+        bezierPath.addLine(to: CGPoint(x: 10, y: 2))
+        bezierPath.move(to: CGPoint(x: 16, y: 8))
+        bezierPath.addLine(to: CGPoint(x: 10, y: 14))
+        if !toRight {
+            let mirror = CGAffineTransform(scaleX: -1,
+                                           y: 1)
+            let translate = CGAffineTransform(translationX: 16,
+                                              y: 0)
+            let concatenated = mirror.concatenating(translate)
+            
+            bezierPath.apply(concatenated)
+        }
+        
+        let layer = CAShapeLayer()
+        layer.path = bezierPath.cgPath
+        layer.lineWidth = 2
+        layer.strokeColor = UIColor.black.cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        layer.lineCap = .round
+        layer.bounds.size = CGSize(width: 16, height: 16)
+        
+        return image(from: layer)
+    }
+    
+    private func image(from layer: CALayer) -> UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: layer.bounds.size)
+             
+        return renderer.image {
+            context in
+
+            return layer.render(in: context.cgContext)
+        }
+    }
 }
 
 private extension CTXTutorialDefaultHintView {
@@ -424,4 +472,3 @@ private extension CTXTutorialDefaultHintView {
         closeTutorialHandler?()
     }
 }
-
