@@ -36,21 +36,21 @@ CTXTutorialEngine is library provides ability to display hints or even tutorials
 platform :ios, '11.0'
 use_frameworks!
 
-pod 'CTXTutorialEngine', '~> 2.0.0'
+pod 'CTXTutorialEngine', '~> 3.0.0'
 ```
 
 #### Carthage
 
 In your `Cartfile`, add
 ```
-github "andymedvedev/CTXTutorialEngine" ~> 2.0.0
+github "andymedvedev/CTXTutorialEngine" ~> 3.0.0
 ```
 
 #### Swift Package Manager
 
 ```swift
 dependencies: [
-.package(url: "https://github.com/andymedvedev/CTXTutorialEngine.git", .upToNextMajor(from: "2.0.0")))
+.package(url: "https://github.com/andymedvedev/CTXTutorialEngine.git", .upToNextMajor(from: "3.0.0")))
 ]
 ```
 
