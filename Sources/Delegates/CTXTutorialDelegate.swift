@@ -17,7 +17,6 @@ protocol CTXTutorialDelegate: AnyObject {
                                       with stepInfo: CTXTutorialStepPresentationInfo)
     func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
                                      with stepInfo: CTXTutorialStepPresentationInfo)
-    func tutorialOverlayColor() -> UIColor?
     func tutorialHintView(_ tutorial: CTXTutorial,
                           with currentStepModel: CTXTutorialStepModel,
                           isHavePreviousStep: Bool,

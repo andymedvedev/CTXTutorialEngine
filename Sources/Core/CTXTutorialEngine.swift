@@ -10,7 +10,7 @@ public final class CTXTutorialEngine {
 
     public static let shared = CTXTutorialEngine()
     
-    public let defaultHintViewConfig = CTXTutorialDefaultHintViewConfig()
+    public let appearance = CTXTutorialAppearance()
     public var useDefaultHintView = true
     public var isHaveShownTutorials: Bool {
         return !shownTutorialsIds.isEmpty
@@ -234,10 +234,6 @@ extension CTXTutorialEngine: CTXTutorialDelegate {
     func tutorialDidShowTutorialStep(_ tutorial: CTXTutorial,
                                      with stepInfo: CTXTutorialStepPresentationInfo) {
         delegate?.engineDidShowTutorialStep(self, tutorial: tutorial, with: stepInfo)
-    }
-    
-    func tutorialOverlayColor() -> UIColor? {
-        return delegate?.tutorialOverlayColor()
     }
     
     func tutorialHintView(_ tutorial: CTXTutorial,

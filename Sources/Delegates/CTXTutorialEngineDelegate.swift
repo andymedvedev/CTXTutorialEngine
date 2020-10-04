@@ -19,7 +19,6 @@ public protocol CTXTutorialEngineDelegate: AnyObject {
                 with currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView?
-    func tutorialOverlayColor() -> UIColor?
     func selectedViewsToProcess(in accessibilityViewsDict: [String: [[UIView]]]) -> [UIView]
 }
 
@@ -42,10 +41,6 @@ public extension CTXTutorialEngineDelegate {
                 with currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,
                 isHaveNextStep: Bool) -> CTXTutorialHintView? {
-        return nil
-    }
-    
-    func tutorialOverlayColor() -> UIColor? {
         return nil
     }
     

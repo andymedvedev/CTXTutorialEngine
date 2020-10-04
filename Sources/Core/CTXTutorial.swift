@@ -148,10 +148,6 @@ extension CTXTutorial: CTXTutorialModuleDelegate {
         delegate?.tutorialDidShowTutorialStep(self, with: stepInfo)
     }
     
-    func tutorialOverlayColor() -> UIColor? {
-        return delegate?.tutorialOverlayColor()
-    }
-    
     func module(_ module: CTXTutorialModule,
                 hintViewForTutorialWith currentStepModel: CTXTutorialStepModel,
                 isHavePreviousStep: Bool,

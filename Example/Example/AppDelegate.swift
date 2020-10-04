@@ -46,15 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func configureDefaultHintView() {
-        let config = engine.defaultHintViewConfig
-        config.gradientLocations = [0.0, 0.3, 0.6, 1.0]
-        config.anchorColor = UIColor(named: "gradientOuter")
-        config.anchorSize = CGSize(width: 16, height: 16)
-        config.font = .systemFont(ofSize: 18)
-        config.backButtonTintColor = UIColor(named: "yellow")
-        config.nextButtonTintColor = UIColor(named: "yellow")
-        config.closeButtonTintColor = UIColor(named: "yellow")
-        config.onAppear = {
+        let appearance = engine.appearance
+        appearance.gradientLocations = [0.0, 0.3, 0.6, 1.0]
+        appearance.anchorColor = UIColor(named: "gradientOuter")
+        appearance.anchorSize = CGSize(width: 16, height: 16)
+        appearance.font = .systemFont(ofSize: 18)
+        appearance.backButtonTintColor = UIColor(named: "yellow")
+        appearance.nextButtonTintColor = UIColor(named: "yellow")
+        appearance.closeButtonTintColor = UIColor(named: "yellow")
+        appearance.onAppear = {
             hintView in
             
             let deltas: [Double] = [0.0, 0.1, 0.0, -0.1, 0.0, 0.05, 0.0, -0.05, 0.0]

@@ -27,15 +27,15 @@ class GradientView: UIView {
         return CAGradientLayer.self
     }
 
-    init(config: CTXTutorialDefaultHintViewConfig) {
+    init(appearance: CTXTutorialAppearance) {
         super.init(frame: .zero)
         
         let gradientLayer = layer as! CAGradientLayer
         
-        gradientLayer.startPoint = config.gradientStartPoint
-        gradientLayer.endPoint = config.gradientEndPoint
-        gradientLayer.locations = config.gradientLocations.map { NSNumber(value: $0) }
-        gradientLayer.colors = config.gradientColors.compactMap { $0?.cgColor }
+        gradientLayer.startPoint = appearance.gradientStartPoint
+        gradientLayer.endPoint = appearance.gradientEndPoint
+        gradientLayer.locations = appearance.gradientLocations.map { NSNumber(value: $0) }
+        gradientLayer.colors = appearance.gradientColors.compactMap { $0?.cgColor }
     }
     
     required init?(coder: NSCoder) {
@@ -73,13 +73,13 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         case center
     }
     
-    private let config = CTXTutorialEngine.shared.defaultHintViewConfig
+    private let appearance = CTXTutorialEngine.shared.appearance
     
     private lazy var  textLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = config.textColor
-        label.font = config.font
+        label.textColor = appearance.textColor
+        label.font = appearance.font
         return label
     }()
     private lazy var bubleView: UIView = {
@@ -90,19 +90,18 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         view.addSubview(backButton)
         view.addSubview(nextButton)
         view.backgroundColor = .white
-        view.layer.cornerRadius = config.cornerRadius
+        view.layer.cornerRadius = appearance.cornerRadius
         view.clipsToBounds = true
         return view
     }()
     private let minHorizontalInset: CGFloat = 16
-    private lazy var bubleInsets = config.insets
-    private lazy var bubleInnerSpacing = config.spacing
-    private lazy var backgroundView = GradientView(config: config)
+    private lazy var bubleInsets = appearance.insets
+    private lazy var bubleInnerSpacing = appearance.spacing
+    private lazy var backgroundView = GradientView(appearance: appearance)
     private let backButton = CustomButton(type: .system)
     private let nextButton = CustomButton(type: .system)
     private let closeButton = CustomButton(type: .system)
-    private lazy var anchorSize = config.anchorSize
-    private let buttonSize = CGSize(width: 16, height: 16)
+    private lazy var anchorSize = appearance.anchorSize
     private let screenBounds = UIScreen.main.bounds
     private let bundle = Bundle(for: CTXTutorialDefaultHintView.self)
     
@@ -113,17 +112,17 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     public init(with viewModel: ViewModel) {
         super.init(frame: .zero)
         
-        backButton.tintColor = config.backButtonTintColor
-        backButton.setImage(config.backButtonImage ?? backIcon, for: .normal)
-        backButton.setTitle(config.backButtonTitle, for: .normal)
+        backButton.tintColor = appearance.backButtonTintColor
+        backButton.setImage(appearance.backButtonImage ?? backIcon, for: .normal)
+        backButton.setTitle(appearance.backButtonTitle, for: .normal)
         
-        nextButton.tintColor = config.nextButtonTintColor
-        nextButton.setImage(config.nextButtonImage ?? nextIcon, for: .normal)
-        nextButton.setTitle(config.nextButtonTitle, for: .normal)
+        nextButton.tintColor = appearance.nextButtonTintColor
+        nextButton.setImage(appearance.nextButtonImage ?? nextIcon, for: .normal)
+        nextButton.setTitle(appearance.nextButtonTitle, for: .normal)
         
-        closeButton.tintColor = config.closeButtonTintColor
-        closeButton.setImage(config.closeButtonImage ?? closeIcon, for: .normal)
-        closeButton.setTitle(config.closeButtonTitle, for: .normal)
+        closeButton.tintColor = appearance.closeButtonTintColor
+        closeButton.setImage(appearance.closeButtonImage ?? closeIcon, for: .normal)
+        closeButton.setTitle(appearance.closeButtonTitle, for: .normal)
         
         backButton.addTarget(self, action: #selector(previousStep), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
@@ -141,7 +140,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
-        config.onAppear?(self)
+        appearance.onAppear?(self)
     }
     
     required init?(coder: NSCoder) {
@@ -189,7 +188,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         var bubleHeight = bubleInsets.top
         var selfHeight: CGFloat = .zero
         
-        [closeButton, backButton, nextButton].forEach { $0.frame.size = buttonSize }
+        [closeButton, backButton, nextButton].forEach { $0.sizeToFit() }
         
         var availableWidthForLabel = size.width - bubleInsets.left - bubleInsets.right
         
@@ -224,7 +223,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         let width = labelSize.width + bubleInsets.left + bubleInsets.right
         
         if !closeButton.isHidden {
-            closeButton.frame.origin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
+            closeButton.frame.origin = CGPoint(x: width - closeButton.bounds.width - bubleInsets.right,
                                                y: bubleInsets.top)
         }
         
@@ -232,7 +231,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
             bubleHeight += bubleInsets.bottom
         } else {
             
-            nextButton.frame.origin = CGPoint(x: width - buttonSize.width - bubleInsets.right,
+            nextButton.frame.origin = CGPoint(x: width - nextButton.bounds.width - bubleInsets.right,
                                               y: bubleHeight + bubleInnerSpacing)
             backButton.frame.origin = CGPoint(x: bubleInsets.left,
                                               y: bubleHeight + bubleInnerSpacing)
@@ -337,13 +336,13 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
         
         switch direction {
         case .toTop:
-            anchorLayer.fillColor = (config.gradientColors.first ?? .white)?.cgColor
+            anchorLayer.fillColor = (appearance.gradientColors.first ?? .white)?.cgColor
         case .toLeft:
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi / 2))
         case .toRight:
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: -CGFloat.pi / 2))
         case .toBottom:
-            anchorLayer.fillColor = (config.gradientColors.last ?? .white)?.cgColor
+            anchorLayer.fillColor = (appearance.gradientColors.last ?? .white)?.cgColor
             anchorLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat.pi))
         case .none:
             break

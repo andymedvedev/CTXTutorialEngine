@@ -100,20 +100,10 @@ And your ViewCotroller's code should looks like this:
 ``` swift
 import CTXTutorialEngine
 
-class ViewController: UIViewController, CTXTutorialShowing {
+class ViewController: CTXTutorialViewController {
 
     private let myView: UIView = ...
     private let engine = CTXTutorialEngine.shared
-
-    var isTutorialShowing: Bool = false
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if isTutorialShowing {
-            return .lightContent
-        } else {
-            return .darkContent
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,13 +128,13 @@ class ViewController: UIViewController, CTXTutorialShowing {
 ```
 
 3. Default Hint View will appear and it will be plain white with black text and gray buttons,
-but if you wan to alter appearance you should set parameters of `CTXTutorialEngine.shared.defaultHintViewConfig`.
+but if you wan to alter appearance you should set parameters of `CTXTutorialEngine.shared.appearance`.
 You can do it at app start or on each step of your tutorial by conforming your `ViewController` to `CTXTutorialEngineDelegate`:
 ```swift
 extension ViewController: CTXTutorialEngineDelegate {
 
     func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
-        let config = engine.defaultHintViewConfig
+        let appearance = engine.appearance
         ...
     }
 }

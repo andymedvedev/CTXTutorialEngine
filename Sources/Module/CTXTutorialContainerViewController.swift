@@ -39,9 +39,7 @@ extension CTXTutorialContainerViewController: CTXTutorialView {
         totalStepsCount = stepModels.count
         self.stepModels = stepModels
                 
-        let overlayColor = delegate?.tutorialOverlayColor() ?? CTXTutorialConstants.tutorialOverlayColor
-        
-        tutorialContainer.configure(overlayColor: overlayColor) {
+        tutorialContainer.configure {
             [weak self] in
             
             self?.presenter?.onHideTutorial()
@@ -122,7 +120,7 @@ private extension CTXTutorialContainerViewController {
         
         if let hintView = hintView {
             tutorialContainer.showStep(with: hintView, views: stepModel.views)
-            CTXTutorialEngine.shared.defaultHintViewConfig.onAppear?(hintView)
+            CTXTutorialEngine.shared.appearance.onAppear?(hintView)
         }
         
         delegate?.containerDidShowTutorialStep(self, with: stepPresentationInfo)

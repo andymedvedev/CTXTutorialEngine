@@ -10,10 +10,9 @@ final class CTXTutorialContainerView: UIView {
     private var hintView: UIView?
     private var view: UIView?
     
-    func configure(overlayColor: UIColor,
-                   closeHandler: VoidClosure?) {
+    func configure(closeHandler: VoidClosure?) {
         
-        backgroundColor = overlayColor
+        backgroundColor = CTXTutorialEngine.shared.appearance.overlayColor
         
         self.closeHandler = closeHandler
         

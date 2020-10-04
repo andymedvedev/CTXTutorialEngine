@@ -9,7 +9,7 @@
 import UIKit
 import CTXTutorialEngine
 
-class ExamplesViewController: UIViewController, CTXTutorialShowing {
+class ExamplesViewController: CTXTutorialViewController {
     
     fileprivate enum ShapesTutorialStep: String, CaseIterable {
         case red, green, blue
@@ -40,18 +40,8 @@ class ExamplesViewController: UIViewController, CTXTutorialShowing {
         return collectionView
     }()
     
-    var isTutorialShowing: Bool = false
-    
     private let engine = CTXTutorialEngine.shared
     private var isFirstLayout = true
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if isTutorialShowing {
-            return .lightContent
-        } else {
-            return .darkContent
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -230,18 +220,19 @@ private extension ExamplesViewController {
 extension ExamplesViewController: CTXTutorialEngineDelegate {
     
     func engineWillShowTutorialStep(_ engine: CTXTutorialEngine, tutorial: CTXTutorial, with stepInfo: CTXTutorialStepPresentationInfo) {
-        guard let tutorialId = TutorialID(rawValue: tutorial.id) else {
+        guard let tutorialId = TutorialID(rawValue: tutorial.id),
+            tutorialId != .welcomeTutorial else {
             print("cant create TutorialID with rawValue: \(tutorial.id)")
             return
         }
         
-        let config = engine.defaultHintViewConfig
+        let appearance = engine.appearance
         let tintColor = tutorialId.tintColor
-        config.gradientColors = tutorialId.gradientColors(for: stepInfo.stepIndex)
-        config.textColor = tintColor
-        config.backButtonTintColor = tintColor
-        config.nextButtonTintColor = tintColor
-        config.closeButtonTintColor = tintColor
+        appearance.gradientColors = tutorialId.gradientColors(for: stepInfo.stepIndex)
+        appearance.textColor = tintColor
+        appearance.backButtonTintColor = tintColor
+        appearance.nextButtonTintColor = tintColor
+        appearance.closeButtonTintColor = tintColor
 
     }
     
@@ -269,9 +260,6 @@ extension ExamplesViewController.TutorialID {
         let innerName: String
         
         switch self {
-        case .welcomeTutorial:
-            outerName = "violetLight"
-            innerName = "violet"
         case .shapesButtonTutorial:
             outerName = "peach"
             innerName = "yellow"
@@ -291,6 +279,8 @@ extension ExamplesViewController.TutorialID {
         case .cellTutorial:
             outerName = "atomicTangerine"
             innerName = "burntSienna"
+        default:
+            return []
         }
         
         return [outerName, innerName, innerName, outerName].map(UIColor.init(named:))
@@ -298,12 +288,14 @@ extension ExamplesViewController.TutorialID {
     
     var tintColor: UIColor? {
         switch self {
-        case .welcomeTutorial, .shapesTutorial:
+        case .shapesTutorial:
             return UIColor(named: "yellow")
         case .shapesButtonTutorial:
             return UIColor(named: "regalBlue")
         case .cellTutorial:
             return .white
+        default:
+            return nil
         }
     }
 }
