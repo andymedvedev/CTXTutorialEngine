@@ -143,10 +143,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     }
     
     private func placeHint(by viewModel: ViewModel, anchorDirection: AnchorDirection, anchorAlignment: inout AnchorAlignment) {
-        guard let view = viewModel.step.views.first  else {
-            fatalError("Step model doesn't contains any views")
-        }
-        
+        let view = viewModel.step.view
         let convertedFrame = view.convert(view.bounds, to: nil)
         
         func originX() -> CGFloat {
@@ -243,10 +240,7 @@ final class CTXTutorialDefaultHintView: UIView, CTXTutorialHintView {
     }
     
     private func setup(with viewModel: ViewModel) {
-        guard let view = viewModel.step.views.first else {
-            fatalError("Step model doesn't contains any snapshots")
-        }
-        
+        let view = viewModel.step.view
         let convertedFrame = view.convert(view.bounds, to: nil)
         
         backButton.isHidden = !viewModel.showBackButton

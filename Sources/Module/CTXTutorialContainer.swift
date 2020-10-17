@@ -8,7 +8,7 @@ final class CTXTutorialContainerView: UIView {
     
     private var closeHandler: VoidClosure?
     private var hintView: UIView?
-    private var view: UIView?
+    private var hintedView: UIView?
     
     func configure(closeHandler: VoidClosure?) {
         
@@ -21,17 +21,15 @@ final class CTXTutorialContainerView: UIView {
         addGestureRecognizer(tapGesture)
     }
     
-    func showStep(with hintView: UIView, views: [UIView]) {
+    func showStep(with hintView: UIView, hintedView: UIView) {
         self.hintView?.removeFromSuperview()
         
         self.hintView = hintView
+        self.hintedView = hintedView
         
-        if let view = views.first {
-            self.view = view
-            let mask = maskLayer(for: view)
-            layer.mask = mask
-            clipsToBounds = true
-        }
+        let mask = maskLayer(for: hintedView)
+        layer.mask = mask
+        clipsToBounds = true
         
         if let hintView = self.hintView {
             addSubview(hintView)
@@ -39,7 +37,7 @@ final class CTXTutorialContainerView: UIView {
     }
     
     public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard let view = self.view else {
+        guard let view = self.hintedView else {
             return nil
         }
         

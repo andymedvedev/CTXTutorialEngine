@@ -119,7 +119,7 @@ private extension CTXTutorialContainerViewController {
         }
         
         if let hintView = hintView {
-            tutorialContainer.showStep(with: hintView, views: stepModel.views)
+            tutorialContainer.showStep(with: hintView, hintedView: stepModel.view)
             CTXTutorialEngine.shared.appearance.onAppear?(hintView)
         }
         

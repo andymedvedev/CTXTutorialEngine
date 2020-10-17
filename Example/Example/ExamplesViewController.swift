@@ -28,6 +28,8 @@ class ExamplesViewController: CTXTutorialViewController {
     private let greenView = UIView()
     private let blueView = UIView()
     private let button = UIButton(type: .system)
+    private let resetButton = UIButton(type: .system)
+    
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = 2
@@ -83,10 +85,15 @@ class ExamplesViewController: CTXTutorialViewController {
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         button.layer.cornerRadius = 10
         
-        [redView, greenView, blueView, button, collectionView, libraryNameContainerView].forEach {
+        resetButton.setTitle("RESET", for: .normal)
+        resetButton.addTarget(self, action: #selector(resetTutorials), for: .touchUpInside)
+        
+        [redView, greenView, blueView, button, collectionView, libraryNameContainerView, resetButton].forEach {
             view.addSubview($0)
             $0.alpha = .zero
         }
+        
+        resetButton.alpha = engine.isHaveShownTutorials ? 1.0 : 0.0
         
         libraryNameContainerView.alpha = 1
         libraryNameContainerView.addSubview(libraryNameLabel)
@@ -110,6 +117,10 @@ class ExamplesViewController: CTXTutorialViewController {
             libraryNameContainerView.center = view.center
             libraryNameLabel.center = CGPoint(x: libraryNameContainerView.bounds.midX,
                                               y: libraryNameContainerView.bounds.midY)
+            
+            resetButton.sizeToFit()
+            resetButton.layer.anchorPoint.y = 0
+            resetButton.center = CGPoint(x: view.center.x, y: libraryNameContainerView.frame.maxY + 16)
             [redView, greenView, blueView].forEach {
                 $0.frame.size = CGSize(width: 50, height: 50)
                 $0.center = view.center
@@ -176,6 +187,11 @@ extension ExamplesViewController: UICollectionViewDataSource {
 var animated = false
 
 private extension ExamplesViewController {
+    
+    @objc func resetTutorials() {
+        resetButton.alpha = .zero
+        engine.resetShownTutorials()
+    }
     
     @objc func tap() {
         engine.closeCurrentTutorial()

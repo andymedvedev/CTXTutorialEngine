@@ -37,7 +37,7 @@ public final class CTXTutorialViewsShownEvent: CTXTutorialEvent {
         
         self.stepConfigs = config.eventConfig.stepConfigs
         
-        views = stepConfigs.map{ stepConfig -> UIView in
+        views = stepConfigs.map { stepConfig -> UIView in
             
             let view = UIView()
             

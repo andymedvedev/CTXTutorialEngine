@@ -7,5 +7,5 @@ import UIKit
 public struct CTXTutorialStepModel {
     
     public let text: String?
-    public let views: [UIView]
+    public let view: UIView
 }

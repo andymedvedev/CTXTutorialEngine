@@ -105,14 +105,10 @@ private extension CTXTutorial {
             
             for stepConfig in configuredEvent.stepConfigs {
                 
-                let viewsForModel = views.filter{ view in
-                    
-                    stepConfig.accessibilityIdentifier == view.accessibilityIdentifier
+                if let view = views.first(where: {stepConfig.accessibilityIdentifier == $0.accessibilityIdentifier }) {
+                    let model = CTXTutorialStepModel(text: stepConfig.text, view: view)
+                    models.append(model)
                 }
-                
-                let model = CTXTutorialStepModel(text: stepConfig.text, views: viewsForModel)
-                
-                models.append(model)
             }
             
             let module = CTXTutorialModule()
