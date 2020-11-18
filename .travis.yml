@@ -7,10 +7,6 @@ git:
   submodules: false
 jobs:
   include:
-    - name: "SPM Build"
-      script:
-        - set -o pipefail
-        - swift build
     - name: "Carthage Build"
       before_install:
         - brew update
@@ -21,5 +17,3 @@ jobs:
 notifications:
   email:
     on_success: never
-
-
