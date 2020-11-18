@@ -26,10 +26,10 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         
         let window = UIApplication.keyWindow()
         window?.addSubview(tutorialVC.view)
-        
         tutorialVC.view.frame = UIScreen.main.bounds
         
         topVC.isTutorialShowing = true
+        topVC.view.layer.pause()
         topVC.setNeedsStatusBarAppearanceUpdate()
         topVC.presentationController?.presentedView?.gestureRecognizers?.forEach { $0.isEnabled = false }
         
@@ -40,10 +40,13 @@ public class CTXTutorialRouterImpl: CTXTutorialRouter {
         topViewController?.isTutorialShowing = false
         topViewController?.setNeedsStatusBarAppearanceUpdate()
         topViewController?.presentationController?.presentedView?.gestureRecognizers?.forEach { $0.isEnabled = true }
+        topViewController?.view.layer.resume()
         
         let window = UIApplication.keyWindow()
         window?.subviews.first { $0 === tutorialViewController?.view }?.removeFromSuperview()
-
+        
         hideCompletion?()
     }
+    
+
 }

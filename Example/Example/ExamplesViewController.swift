@@ -170,6 +170,7 @@ class ExamplesViewController: CTXTutorialViewController {
 }
 
 extension ExamplesViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
     }
